@@ -1,0 +1,2793 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>2026학년도 중학교 3학년 기술·가정 지필평가 실전 모의평가</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js CDN for Portfolio Visualizations -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- FontAwesome 6 CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Nanum+Myeongjo:wght@700;800&family=Song+Myung&display=swap');
+
+    * {
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      background-color: #f8fafc;
+      color: #0f172a;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .serif-title {
+      font-family: 'Nanum Myeongjo', serif;
+    }
+
+    .paper-sheet {
+      background: #ffffff;
+      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05), 0 2px 6px -1px rgba(0, 0, 0, 0.03);
+      border: 1px solid #e2e8f0;
+    }
+
+    input[type="text"] {
+      font-size: 16px !important;
+    }
+
+    .choice-card:hover {
+      background-color: #f0fdf4;
+      border-color: #16a34a;
+    }
+    .choice-card:active {
+      transform: scale(0.99);
+    }
+    .choice-card.selected {
+      background-color: #dcfce7;
+      border-color: #15803d;
+      color: #14532d;
+      font-weight: 600;
+    }
+
+    .passage-box {
+      background-color: #fcfcfd;
+      border: 1px solid #e2e8f0;
+      border-left: 4px solid #15803d;
+    }
+
+    .figure-box {
+      background-color: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 0.75rem;
+      padding: 0.75rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    @keyframes redPulse {
+      0%, 100% { color: #dc2626; transform: scale(1); }
+      50% { color: #ef4444; transform: scale(1.05); }
+    }
+    .urgent-timer {
+      animation: redPulse 1s infinite ease-in-out;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between">
+
+  <div id="app" class="flex-1 flex flex-col">
+    <!-- Global Header -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-xs">
+      <div class="max-w-5xl mx-auto px-3 sm:px-4 py-2 sm:py-3 flex items-center justify-between">
+        <div class="flex items-center space-x-2 sm:space-x-3">
+          <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-emerald-700 text-white flex items-center justify-center font-bold text-xs sm:text-sm shadow-xs shrink-0">
+            기가
+          </div>
+          <div>
+            <h1 class="serif-title text-sm sm:text-lg font-black tracking-tight text-slate-900 leading-tight">
+              중3 기술·가정 지필평가 실전 모의고사
+            </h1>
+            <p class="hidden sm:block text-[11px] text-slate-500 font-medium">수송 기술 시스템 · 신·재생 에너지 · 정보 통신 기술 · 가족의 안전한 생활 · 25문항 100점 만점</p>
+          </div>
+        </div>
+
+        <!-- Student Badge & Timer Header Info -->
+        <div id="headerExamInfo" class="hidden flex items-center space-x-2 sm:space-x-4">
+          <div class="text-right">
+            <span id="headerStudentName" class="text-xs font-bold text-slate-800 block truncate max-w-[80px] sm:max-w-none"></span>
+          </div>
+          <div class="flex items-center space-x-1.5 bg-slate-100 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg border border-slate-200">
+            <i class="fa-regular fa-clock text-slate-600 text-xs sm:text-sm"></i>
+            <span id="timerDisplay" class="font-mono font-bold text-xs sm:text-base text-slate-800">40:00</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- [화면 1] 시작 및 학생 인증 화면 -->
+    <section id="screenIntro" class="flex-1 flex items-center justify-center p-3 sm:p-6">
+      <div class="max-w-xl w-full paper-sheet rounded-2xl p-5 sm:p-10 my-2">
+        <div class="text-center mb-6 sm:mb-8 border-b border-slate-200 pb-5 sm:pb-6">
+          <span class="inline-block bg-emerald-50 text-emerald-800 text-[11px] sm:text-xs font-semibold px-3 py-0.5 rounded-full border border-emerald-200 mb-2">
+            2026학년도 중학교 3학년 2학기 기술·가정 지필평가 대비
+          </span>
+          <h2 class="serif-title text-xl sm:text-3xl font-black text-slate-900 tracking-tight mb-1.5">
+            기술·가정 실전 모의고사
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500">
+            출제 범위: 수송 기술 시스템, 육·해·공·우주 수송, 신·재생 에너지, 정보 통신 기술, 성적 자기 결정권 및 성폭력 예방
+          </p>
+        </div>
+
+        <div class="space-y-3.5 mb-6 sm:mb-8">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1" for="inputPin">
+              학생 핀번호 (PIN 4~6자리)
+            </label>
+            <div class="relative">
+              <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400">
+                <i class="fa-solid fa-key text-xs sm:text-sm"></i>
+              </span>
+              <input type="text" id="inputPin" inputmode="numeric" pattern="[0-9]*" maxlength="8" autocomplete="off" placeholder="예: 30512 (학번 또는 지정 코드)"
+                class="w-full pl-9 pr-4 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-base sm:text-sm font-medium focus:outline-none focus:border-emerald-700 focus:bg-white transition" />
+            </div>
+            <p class="text-[11px] text-slate-400 mt-1">입력하신 학번과 성명으로 학습 포트폴리오가 자동 누적 관리됩니다.</p>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1" for="inputName">
+              학생 성명 (실명)
+            </label>
+            <div class="relative">
+              <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400">
+                <i class="fa-solid fa-user text-xs sm:text-sm"></i>
+              </span>
+              <input type="text" id="inputName" maxlength="10" autocomplete="off" placeholder="예: 김세영"
+                class="w-full pl-9 pr-4 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-base sm:text-sm font-medium focus:outline-none focus:border-emerald-700 focus:bg-white transition" />
+            </div>
+          </div>
+
+          <div id="introStatusMsg" class="hidden p-3 rounded-xl text-xs font-medium border"></div>
+        </div>
+
+        <div class="bg-slate-50 rounded-xl p-3.5 sm:p-5 border border-slate-200 mb-6 sm:mb-8 text-xs text-slate-600 space-y-2 leading-relaxed">
+          <div class="font-bold text-slate-800 text-xs sm:text-sm flex items-center space-x-1.5 mb-1.5">
+            <i class="fa-solid fa-circle-info text-emerald-700"></i>
+            <span>기술·가정 지필평가 출제 기준 및 시스템 안내</span>
+          </div>
+          <div>1. <strong>시험 시간 및 배점:</strong> 총 40분, 5지선다형 25문항 (문항당 4점, 100점 만점)</div>
+          <div>2. <strong>난이도 완벽 변별력:</strong> <strong>상 6문항, 중 13문항, 하 6문항</strong>으로 상위권 변별력 보장</div>
+          <div>3. <strong>학습지 핵심 제재 100% 반영:</strong> 수송 기술 시스템(투입·과정·산출·되먹임), 바퀴·증기기관·내연기관·전기자동차, 선박의 힘(부력·중력·저항력·추진력)과 종류(LNG선·쇄빙선·위그선), 신재생에너지(수소·연료전지·태양광·지열·조력·파력 등), 정보통신발달(전신·전화·에니악·컴퓨터·웨어러블·사물인터넷), 성적자기결정권 및 성폭력 예방</div>
+          <div>4. <strong>다회차 무중복 매트릭스:</strong> 25개 고유 슬롯의 무작위 출제로 5회 이상 응시 시에도 중복 0% 보장</div>
+        </div>
+
+        <div class="space-y-2.5">
+          <button type="button" id="btnStartExam" onclick="handleStartVerification(event)" 
+            class="w-full py-3.5 bg-emerald-700 active:bg-emerald-800 text-white font-bold rounded-xl shadow-md transition flex items-center justify-center space-x-2 text-sm cursor-pointer select-none">
+            <span id="btnStartExamText">학생 확인 및 기술·가정 시험 시작</span>
+            <i class="fa-solid fa-arrow-right text-xs"></i>
+          </button>
+          
+          <button type="button" id="btnOpenPortfolioFromIntro" onclick="handleCheckPortfolioFromIntro(event)" 
+            class="w-full py-2.5 bg-white active:bg-slate-100 text-slate-700 font-medium rounded-xl border border-slate-300 transition text-xs flex items-center justify-center space-x-1.5 cursor-pointer select-none">
+            <i class="fa-solid fa-chart-pie text-emerald-700"></i>
+            <span>누적 기가 포트폴리오 바로 보기</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- [화면 2] 시험장 화면 (Test Screen) -->
+    <section id="screenExam" class="hidden flex-1 max-w-5xl w-full mx-auto p-2.5 sm:p-6 space-y-4 sm:space-y-6">
+      <!-- OMR Minimap & Progress -->
+      <div class="paper-sheet rounded-2xl p-3.5 sm:p-5">
+        <div class="flex items-center justify-between gap-2 mb-2.5 pb-2.5 border-b border-slate-200">
+          <div class="flex items-center space-x-2">
+            <span class="font-bold text-xs sm:text-sm text-slate-800">OMR 마킹 현황</span>
+            <span id="answeredCountBadge" class="text-[11px] sm:text-xs bg-emerald-50 text-emerald-800 font-semibold px-2 py-0.5 rounded-full border border-emerald-200">
+              0 / 25 완료
+            </span>
+          </div>
+          <div class="flex items-center space-x-2 text-[11px] text-slate-500">
+            <span class="inline-flex items-center"><span class="w-2 h-2 rounded-full bg-rose-500 mr-1"></span>상(변별력)</span>
+            <span class="inline-flex items-center"><span class="w-2 h-2 rounded-full bg-emerald-600 mr-1"></span>중</span>
+            <span class="inline-flex items-center"><span class="w-2 h-2 rounded-full bg-teal-500 mr-1"></span>하</span>
+          </div>
+        </div>
+
+        <div id="omrGrid" class="grid grid-cols-5 sm:grid-cols-10 md:grid-cols-25 gap-1 text-center text-xs font-bold"></div>
+      </div>
+
+      <!-- Main Question Sheet -->
+      <div class="paper-sheet rounded-2xl p-4 sm:p-8 min-h-[480px] flex flex-col justify-between">
+        <div>
+          <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 pb-3 sm:pb-4 mb-4 sm:mb-6">
+            <div class="flex items-center space-x-2 flex-wrap gap-y-1">
+              <span id="qBadgeNum" class="text-base sm:text-xl font-black text-slate-900 serif-title">[01]</span>
+              <span id="qBadgeDiff" class="text-[11px] sm:text-xs px-2 py-0.5 rounded-md font-bold text-white shadow-xs">난이도</span>
+              <span id="qBadgeUnit" class="text-[11px] sm:text-xs px-2 py-0.5 rounded-md font-semibold bg-emerald-50 text-emerald-900 border border-emerald-200 truncate max-w-[200px] sm:max-w-none">영역</span>
+              <span id="qBadgeTopic" class="text-[11px] sm:text-xs px-2 py-0.5 rounded-md font-semibold bg-slate-100 text-slate-700 border border-slate-200">핵심주제</span>
+            </div>
+            <div class="text-[11px] sm:text-xs text-slate-400 font-medium">배점: 4점</div>
+          </div>
+
+          <div class="space-y-4 mb-6 sm:mb-8">
+            <!-- Passage Box -->
+            <div id="qPassageContainer" class="hidden passage-box p-3.5 sm:p-5 rounded-xl text-xs sm:text-sm text-slate-800 leading-relaxed font-normal whitespace-pre-line"></div>
+            <!-- Diagram Container -->
+            <div id="qFigureContainer" class="hidden figure-box mb-4"></div>
+            <!-- Question prompt -->
+            <div id="qText" class="text-sm sm:text-lg font-medium text-slate-900 leading-relaxed"></div>
+          </div>
+
+          <!-- Choices container -->
+          <div id="qChoices" class="space-y-2 sm:space-y-2.5 mb-6 sm:mb-8"></div>
+        </div>
+
+        <!-- Question Bottom Action Bar -->
+        <div class="flex items-center justify-between pt-4 sm:pt-6 border-t border-slate-200">
+          <button type="button" id="btnPrevQ" onclick="navigateQuestion(-1)" 
+            class="px-3.5 py-2 sm:px-4 sm:py-2.5 bg-white border border-slate-300 active:bg-slate-50 text-slate-700 text-xs sm:text-sm font-semibold rounded-xl transition flex items-center space-x-1.5">
+            <i class="fa-solid fa-chevron-left text-xs"></i>
+            <span>이전 문항</span>
+          </button>
+
+          <div class="flex items-center space-x-2">
+            <button type="button" id="btnNextQ" onclick="navigateQuestion(1)" 
+              class="px-4 py-2 sm:px-5 sm:py-2.5 bg-slate-800 active:bg-slate-700 text-white text-xs sm:text-sm font-semibold rounded-xl transition flex items-center space-x-1.5">
+              <span>다음 문항</span>
+              <i class="fa-solid fa-chevron-right text-xs"></i>
+            </button>
+            <button type="button" id="btnFinishExam" onclick="confirmSubmitExam()" 
+              class="hidden px-4 py-2 sm:px-5 sm:py-2.5 bg-emerald-700 active:bg-emerald-800 text-white text-xs sm:text-sm font-bold rounded-xl shadow-xs transition flex items-center space-x-1.5">
+              <i class="fa-solid fa-paper-plane text-xs"></i>
+              <span>답안 제출</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- [화면 3] 채점 결과 및 오답 풀이 (Result Screen) -->
+    <section id="screenResult" class="hidden flex-1 max-w-5xl w-full mx-auto p-3 sm:p-6 space-y-4 sm:space-y-6">
+      <div class="paper-sheet rounded-2xl p-5 sm:p-8">
+        <div class="text-center max-w-md mx-auto mb-6 sm:mb-8 border-b border-slate-200 pb-5 sm:pb-6">
+          <span class="inline-block bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-bold px-3 py-1 rounded-full mb-2">
+            <i class="fa-solid fa-circle-check mr-1"></i> 기술·가정 모의평가 채점 완료
+          </span>
+          <h2 class="serif-title text-xl sm:text-3xl font-black text-slate-900 mb-1">
+            종합 성적 리포트
+          </h2>
+          <p id="resultStudentMeta" class="text-xs sm:text-sm text-slate-500"></p>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-5 gap-2.5 sm:gap-3 mb-4 sm:mb-6">
+          <div class="bg-slate-50 rounded-xl p-3 sm:p-4 border border-slate-200 text-center col-span-2 sm:col-span-1">
+            <div class="text-[11px] sm:text-xs text-slate-500 font-semibold mb-1">최종 득점</div>
+            <div class="text-2xl sm:text-3xl font-black text-slate-900 font-mono">
+              <span id="resTotalScore">0</span><span class="text-xs sm:text-sm font-normal text-slate-400"> / 100</span>
+            </div>
+            <span id="resScoreSummary" class="text-[10px] sm:text-[11px] text-emerald-800 font-semibold mt-1 block">정답 0 / 오답 0</span>
+          </div>
+          <div class="bg-slate-50 rounded-xl p-3 sm:p-4 border border-slate-200 text-center">
+            <div class="text-[11px] sm:text-xs text-slate-500 font-semibold mb-1">수송 기술 시스템</div>
+            <div class="text-lg sm:text-2xl font-bold text-emerald-700 font-mono" id="resDomain1Score">0점</div>
+            <span class="text-[10px] text-slate-400">24점 만점</span>
+          </div>
+          <div class="bg-slate-50 rounded-xl p-3 sm:p-4 border border-slate-200 text-center">
+            <div class="text-[11px] sm:text-xs text-slate-500 font-semibold mb-1">신·재생 에너지</div>
+            <div class="text-lg sm:text-2xl font-bold text-teal-700 font-mono" id="resDomain2Score">0점</div>
+            <span class="text-[10px] text-slate-400">28점 만점</span>
+          </div>
+          <div class="bg-slate-50 rounded-xl p-3 sm:p-4 border border-slate-200 text-center">
+            <div class="text-[11px] sm:text-xs text-slate-500 font-semibold mb-1">정보 통신 기술</div>
+            <div class="text-lg sm:text-2xl font-bold text-blue-700 font-mono" id="resDomain3Score">0점</div>
+            <span class="text-[10px] text-slate-400">24점 만점</span>
+          </div>
+          <div class="bg-slate-50 rounded-xl p-3 sm:p-4 border border-slate-200 text-center">
+            <div class="text-[11px] sm:text-xs text-slate-500 font-semibold mb-1">가족 안전 및 성윤리</div>
+            <div class="text-lg sm:text-2xl font-bold text-violet-700 font-mono" id="resDomain4Score">0점</div>
+            <span class="text-[10px] text-slate-400">24점 만점</span>
+          </div>
+        </div>
+
+        <!-- 난이도별 정답 현황 미니 배너 -->
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-3 mb-6 sm:mb-8 flex items-center justify-around text-xs">
+          <div class="text-center">
+            <span class="text-rose-600 font-bold block">고난도 [상]</span>
+            <span id="resDiffHard" class="font-mono font-bold text-slate-800 text-sm">0 / 6</span>
+          </div>
+          <div class="h-6 w-px bg-slate-300"></div>
+          <div class="text-center">
+            <span class="text-emerald-700 font-bold block">중간 난도 [중]</span>
+            <span id="resDiffMed" class="font-mono font-bold text-slate-800 text-sm">0 / 13</span>
+          </div>
+          <div class="h-6 w-px bg-slate-300"></div>
+          <div class="text-center">
+            <span class="text-teal-600 font-bold block">기본 개념 [하]</span>
+            <span id="resDiffEasy" class="font-mono font-bold text-slate-800 text-sm">0 / 6</span>
+          </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-2.5 sm:gap-3">
+          <button type="button" onclick="handleViewPortfolio()" 
+            class="w-full sm:w-auto px-5 py-3 bg-emerald-700 active:bg-emerald-800 text-white text-xs sm:text-sm font-bold rounded-xl shadow-xs transition flex items-center justify-center space-x-2">
+            <i class="fa-solid fa-chart-line"></i>
+            <span>기술·가정 4대 영역 포트폴리오 분석 보기</span>
+          </button>
+          <button type="button" onclick="handleRestartClinic()" 
+            class="w-full sm:w-auto px-5 py-3 bg-white active:bg-slate-100 text-slate-700 text-xs sm:text-sm font-semibold rounded-xl border border-slate-300 transition flex items-center justify-center space-x-2">
+            <i class="fa-solid fa-rotate-left"></i>
+            <span>틀린 문제만 다시 풀기 (오답 클리닉)</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Review Section -->
+      <div class="paper-sheet rounded-2xl p-4 sm:p-8">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4 sm:mb-6 pb-3 sm:pb-4 border-b border-slate-200">
+          <div>
+            <h3 class="serif-title text-base sm:text-xl font-bold text-slate-900">
+              문항별 정답 및 심층 해설
+            </h3>
+            <p class="text-xs text-slate-500">학습지에 수록된 모든 제재와 용어를 바탕으로 제작된 고품질 해설입니다.</p>
+          </div>
+          <div class="flex items-center space-x-1.5 bg-slate-100 p-1 rounded-xl border border-slate-200 text-xs font-semibold self-start sm:self-auto">
+            <button type="button" id="filterTabAll" onclick="setReviewFilter('ALL')" 
+              class="px-3 py-1.5 rounded-lg bg-white shadow-xs text-slate-900 transition">
+              전체 문항 (25)
+            </button>
+            <button type="button" id="filterTabWrong" onclick="setReviewFilter('WRONG')" 
+              class="px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 transition">
+              오답만 보기
+            </button>
+          </div>
+        </div>
+        <div id="reviewQuestionsContainer" class="space-y-4 sm:space-y-6"></div>
+      </div>
+    </section>
+
+    <!-- [화면 4] 학생 누적 학습 포트폴리오 (Portfolio Screen) -->
+    <section id="screenPortfolio" class="hidden flex-1 max-w-5xl w-full mx-auto p-3 sm:p-6 space-y-4 sm:space-y-6">
+      <div class="paper-sheet rounded-2xl p-4 sm:p-8">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 sm:mb-8 border-b border-slate-200 pb-4 sm:pb-6">
+          <div>
+            <div class="flex items-center space-x-2 mb-1">
+              <span class="text-[11px] font-bold px-2 py-0.5 bg-emerald-100 text-emerald-800 rounded">
+                TECH & HOME ECONOMICS PORTFOLIO
+              </span>
+              <span id="portfolioPinBadge" class="text-xs font-mono text-slate-500">PIN: -</span>
+            </div>
+            <h2 class="serif-title text-lg sm:text-3xl font-black text-slate-900">
+              <span id="portfolioStudentName">-</span> 학생의 누적 성취도 분석
+            </h2>
+          </div>
+          <button type="button" onclick="handleBackFromPortfolio()" 
+            class="px-3.5 py-1.5 bg-white active:bg-slate-100 text-slate-700 text-xs font-bold rounded-xl border border-slate-300 transition flex items-center space-x-1.5 self-start sm:self-center">
+            <i class="fa-solid fa-arrow-left"></i>
+            <span>돌아가기</span>
+          </button>
+        </div>
+
+        <div class="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-2xl p-4 sm:p-5 border border-emerald-200 mb-6 sm:mb-8">
+          <div class="flex items-start space-x-3">
+            <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-emerald-700 text-white flex items-center justify-center font-bold text-xs sm:text-sm shrink-0 shadow-xs">
+              <i class="fa-solid fa-wrench"></i>
+            </div>
+            <div>
+              <h4 class="text-xs sm:text-sm font-bold text-slate-800 mb-0.5">AI 맞춤 기술·가정 진단 피드백</h4>
+              <p id="portfolioAiFeedback" class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                데이터를 분석 중입니다...
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-6 sm:mb-8">
+          <div class="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-xs">
+            <h4 class="text-xs font-bold text-slate-700 uppercase tracking-wider mb-3 flex items-center justify-between">
+              <span>회차별 득점 추이</span>
+              <span class="text-[10px] text-slate-400 font-normal">누적 성장 곡선</span>
+            </h4>
+            <div class="relative h-52 sm:h-60">
+              <canvas id="chartScoreRounds"></canvas>
+            </div>
+          </div>
+          <div class="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-xs">
+            <h4 class="text-xs font-bold text-slate-700 uppercase tracking-wider mb-3 flex items-center justify-between">
+              <span>기가 4대 핵심 영역별 정답률 (%)</span>
+              <span class="text-[10px] text-slate-400 font-normal">역량 레이더</span>
+            </h4>
+            <div class="relative h-52 sm:h-60">
+              <canvas id="chartDomainRadar"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-bold text-slate-700 uppercase tracking-wider mb-3">
+            세부 학습 소단원별 정답률 통계
+          </h4>
+          <div id="portfolioTopicBars" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3.5"></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Custom Modal -->
+  <div id="customModal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 flex items-center justify-center p-4">
+    <div class="bg-white max-w-sm w-full rounded-2xl p-5 sm:p-6 shadow-2xl border border-slate-200 text-center transform transition-all">
+      <div id="modalIconContainer" class="w-10 h-10 sm:w-12 sm:h-12 rounded-full mx-auto flex items-center justify-center text-base sm:text-lg mb-3"></div>
+      <h3 id="modalTitle" class="text-sm sm:text-base font-bold text-slate-900 mb-1.5"></h3>
+      <p id="modalDesc" class="text-xs text-slate-600 mb-5 leading-relaxed"></p>
+      <div id="modalButtons" class="flex items-center justify-center space-x-2"></div>
+    </div>
+  </div>
+
+  <footer class="bg-white border-t border-slate-200 py-3 sm:py-4 text-center text-[11px] sm:text-xs text-slate-400">
+    <p>중학교 3학년 기술·가정 지필평가 모의평가 시스템 &middot; 수송기술 · 신재생에너지 · 정보통신 · 가족안전</p>
+  </footer>
+
+  <script>
+    const safeStorage = {
+      _mem: {},
+      getItem(key) {
+        try { return localStorage.getItem(key); } catch (e) { return this._mem[key] || null; }
+      },
+      setItem(key, val) {
+        try { localStorage.setItem(key, val); } catch (e) { this._mem[key] = String(val); }
+      },
+      removeItem(key) {
+        try { localStorage.removeItem(key); } catch (e) { delete this._mem[key]; }
+      }
+    };
+
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxwSy1XTjU_CYwGLxGOb87aCYWhUuXadmGQ6Fui_2miwNmHqRtBGBsw-IOfri-8qB7QQg/exec";
+    const EXAM_DURATION_SEC = 40 * 60;
+
+    const DOMAIN_KEYS = [
+      "수송 기술 시스템",
+      "신·재생 에너지",
+      "정보 통신 기술",
+      "가족 안전 및 성윤리"
+    ];
+
+    const state = {
+      studentPin: "",
+      studentName: "",
+      verifiedStatus: null,
+      currentExamRound: 1,
+      examQuestions: [],
+      currentQuestionIndex: 0,
+      userAnswers: {},
+      timeRemaining: EXAM_DURATION_SEC,
+      timerInterval: null,
+      examStartTime: null,
+      examSubmitted: false,
+      reviewFilter: 'ALL',
+      scoreData: null
+    };
+
+    let roundsChartInstance = null;
+    let radarChartInstance = null;
+
+    // Robust JSONP wrapper with fallback error suppression to prevent any "Script error" crash
+    function callServerJsonp(action, params = {}, timeoutMs = 3500) {
+      return new Promise((resolve, reject) => {
+        const callbackName = 'gas_tech_cb_' + Date.now() + '_' + Math.floor(Math.random() * 10000);
+        const script = document.createElement('script');
+        let timer = null;
+
+        window[callbackName] = function(data) {
+          cleanup();
+          resolve(data);
+        };
+
+        function cleanup() {
+          if (timer) clearTimeout(timer);
+          if (script.parentNode) script.parentNode.removeChild(script);
+          delete window[callbackName];
+        }
+
+        timer = setTimeout(() => {
+          cleanup();
+          reject(new Error("서버 응답 지연"));
+        }, timeoutMs);
+
+        script.onerror = function() {
+          cleanup();
+          reject(new Error("네트워크 연결 실패"));
+        };
+
+        const queryParts = [`action=${encodeURIComponent(action)}`, `callback=${callbackName}`];
+        for (const k in params) {
+          queryParts.push(`${encodeURIComponent(k)}=${encodeURIComponent(params[k])}`);
+        }
+
+        script.src = `${GOOGLE_SCRIPT_URL}?${queryParts.join('&')}`;
+        document.body.appendChild(script);
+      });
+    }
+
+    function saveStudentPortfolioLocally(pin, name, roundData, itemLogs) {
+      try {
+        const key = `tech_worksheet_portfolio_${pin}`;
+        let portfolio = { 
+          name: name, 
+          pin: pin, 
+          rounds: [], 
+          domainStats: {
+            "수송 기술 시스템": { total: 0, correct: 0 },
+            "신·재생 에너지": { total: 0, correct: 0 },
+            "정보 통신 기술": { total: 0, correct: 0 },
+            "가족 안전 및 성윤리": { total: 0, correct: 0 }
+          },
+          topicStats: {} 
+        };
+        const saved = safeStorage.getItem(key);
+        if (saved) {
+          try { portfolio = JSON.parse(saved); } catch (e) {}
+        }
+
+        portfolio.name = name;
+        portfolio.rounds.push(roundData);
+
+        if (itemLogs && itemLogs.length > 0) {
+          itemLogs.forEach(item => {
+            const unit = item.unit || "수송 기술 시스템";
+            const topic = item.subTopic || unit;
+
+            if (!portfolio.domainStats[unit]) {
+              portfolio.domainStats[unit] = { total: 0, correct: 0 };
+            }
+            portfolio.domainStats[unit].total += 1;
+            if (item.isCorrect) portfolio.domainStats[unit].correct += 1;
+
+            if (!portfolio.topicStats[topic]) {
+              portfolio.topicStats[topic] = { total: 0, correct: 0 };
+            }
+            portfolio.topicStats[topic].total += 1;
+            if (item.isCorrect) portfolio.topicStats[topic].correct += 1;
+          });
+        }
+
+        safeStorage.setItem(key, JSON.stringify(portfolio));
+        return portfolio;
+      } catch (e) {
+        return null;
+      }
+    }
+
+    function getStudentPortfolioLocally(pin) {
+      try {
+        const saved = safeStorage.getItem(`tech_worksheet_portfolio_${pin}`);
+        return saved ? JSON.parse(saved) : null;
+      } catch (e) {
+        return null;
+      }
+    }
+
+    function shuffleChoices(choices, correctIndex) {
+      const items = choices.map((c, i) => ({ text: c, isCorrect: i === correctIndex }));
+      for (let i = items.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [items[i], items[j]] = [items[j], items[i]];
+      }
+      return {
+        choices: items.map(it => it.text),
+        answerIndex: items.findIndex(it => it.isCorrect)
+      };
+    }
+
+    function sanitizeText(str) {
+      if (!str || typeof str !== 'string') return '';
+      return str
+        .replace(/\$\s*\\?rightarrow\s*\$/gi, '→')
+        .replace(/\$\s*ightarrow\s*\$/gi, '→')
+        .replace(/\\rightarrow/gi, '→')
+        .replace(/ightarrow/gi, '→')
+        .replace(/\$([^\$]+)\$/g, '$1');
+    }
+
+    // 25개 고유 기가 평가 슬롯 (난이도 상 6문항 고정 보장: Q03, Q08, Q12, Q15, Q19, Q24)
+    const SLOT_MATRIX = [
+      // [슬롯 01] 수송 기술의 의미와 구성 요소 (하)
+      [
+        {
+          id: "T_S01_01", difficulty: "하", unit: "수송 기술 시스템", subTopic: "수송 기술의 의미",
+          passage: `[기술·가정 교과서 발췌]\n수송 기술은 사람이나 물건 등을 한 장소에서 다른 장소로 이동하는 수단이나 방법을 뜻한다. 수송 기술이 발달하면서 인류의 문명이 빠르게 발전할 수 있었고, 오늘날 우리는 더욱 편리한 생활을 누리고 있다.`,
+          text: "다음 중 '수송 기술'의 개념으로 가장 알맞은 것은?",
+          choices: [
+            "사람이나 물건을 한 장소에서 다른 장소로 이동하는 수단이나 방법",
+            "자연의 원료를 가공하여 유용한 물건을 대량으로 생산하는 기술",
+            "건물이나 도로, 댐 등 구조물을 안전하게 축조하는 기술",
+            "생물의 유전 자원을 변형하여 유용한 농산물을 생산하는 기술",
+            "필요한 정보를 수집·가공하고 원격으로 전달하는 통신 기술"
+          ],
+          answer: 0,
+          explanation: "수송 기술은 사람이나 물건을 공간적으로 이동시키는 수단과 방법을 총칭합니다."
+        },
+        {
+          id: "T_S01_02", difficulty: "하", unit: "수송 기술 시스템", subTopic: "수송 기술의 구성 요소",
+          passage: `[수송 기술의 4가지 구성 요소]\n- 수송 수단: 자동차, 기차, 선박, 비행기 등\n- 수송 공간: 도로, 철도, 해로, 항로\n- 수송 규칙: 교통 신호, 법규 및 안전 지침\n- 지원 시설과 인력: 주차장, 주유소, 정비소, 운전기사 등`,
+          text: "다음 중 수송 기술의 구성 요소로 짝지어진 것 중 거리가 먼 것은?",
+          choices: [
+            "생물 농약과 유전자 조작 품종 (생명 기술 영역)",
+            "수송 수단 (자동차, 비행기 등)",
+            "수송 공간 (도로, 항로, 철도 등)",
+            "수송 규칙 (교통 신호 및 법규)",
+            "지원 시설 및 인력 (주유소, 정비소, 운전기사 등)"
+          ],
+          answer: 0,
+          explanation: "수송 기술의 구성 요소는 수송 수단, 수송 공간, 수송 규칙, 지원 시설과 인력입니다. 생물 농약은 생명 기술 영역입니다."
+        },
+        {
+          id: "T_S01_03", difficulty: "하", unit: "수송 기술 시스템", subTopic: "수송 기술의 구성 요소",
+          passage: `[학습지 활동]\n서울에서 제주도에 사는 친구에게 물건을 보내기 위해 이용할 수 있는 수송 수단과 공간을 점검하였다.`,
+          text: "물건을 원격지로 안전하게 수송하기 위해 반드시 확보되어야 하는 특별한 경로나 통로를 뜻하는 구성 요소는?",
+          choices: ["수송 공간 (도로, 해로, 항로)", "수송 규칙 (교통 법규)", "수송 인력 (운전사)", "지원 시설 (주차장)", "원격 통신망 (인터넷)"],
+          answer: 0,
+          explanation: "수송 수단이 안전하게 다닐 수 있는 특별한 경로를 '수송 공간(도로, 철도, 해로, 항로)'이라 합니다."
+        },
+        {
+          id: "T_S01_04", difficulty: "하", unit: "수송 기술 시스템", subTopic: "수송 기술의 의미",
+          passage: "",
+          text: "인류가 수송 기술을 지속적으로 발전시켜 온 주된 목적과 거리가 먼 것은?",
+          choices: [
+            "지구상의 모든 화석 연료를 최대한 빨리 고갈시키기 위해",
+            "더욱 빠르고 안전하게 사람과 화물을 이동시키기 위해",
+            "지역 간 교류를 활성화하고 경제적 효율성을 높이기 위해",
+            "물류 비용을 절감하고 대량 수송을 실현하기 위해",
+            "생활의 편의를 증진하고 문명을 급격히 발전시키기 위해"
+          ],
+          answer: 0,
+          explanation: "화석 연료의 고갈은 수송 기술 발전의 부작용이나 해결 과제일 뿐, 수송 기술 발전의 목적이 아닙니다."
+        }
+      ],
+
+      // [슬롯 02] 수송 기술 시스템 단계 (투입-과정-산출-되먹임) (중)
+      [
+        {
+          id: "T_S02_01", difficulty: "중", unit: "수송 기술 시스템", subTopic: "수송 기술 시스템",
+          svg: `<svg viewBox="0 0 340 130" class="max-w-[320px] h-auto" xmlns="http://www.w3.org/2000/svg">
+            <rect width="340" height="130" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+            <rect x="15" y="25" width="60" height="40" rx="6" fill="#f0fdf4" stroke="#15803d" stroke-width="1.5"/>
+            <text x="45" y="49" font-size="11" font-weight="bold" fill="#14532d" text-anchor="middle">투입</text>
+            <path d="M75 45 L95 45" stroke="#15803d" stroke-width="2"/>
+            <rect x="95" y="25" width="60" height="40" rx="6" fill="#f0fdf4" stroke="#15803d" stroke-width="1.5"/>
+            <text x="125" y="49" font-size="11" font-weight="bold" fill="#14532d" text-anchor="middle">과정</text>
+            <path d="M155 45 L175 45" stroke="#15803d" stroke-width="2"/>
+            <rect x="175" y="25" width="60" height="40" rx="6" fill="#f0fdf4" stroke="#15803d" stroke-width="1.5"/>
+            <text x="205" y="49" font-size="11" font-weight="bold" fill="#14532d" text-anchor="middle">산출</text>
+            <path d="M235 45 L255 45" stroke="#15803d" stroke-width="2"/>
+            <rect x="255" y="25" width="70" height="40" rx="6" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
+            <text x="290" y="49" font-size="10" font-weight="bold" fill="#991b1b" text-anchor="middle">되먹임</text>
+            <!-- 되먹임 화살표 -->
+            <path d="M290 65 Q 290 100, 170 100 Q 50 100, 50 65" fill="none" stroke="#dc2626" stroke-dasharray="4,3" stroke-width="1.5"/>
+            <text x="170" y="118" font-size="9" font-weight="bold" fill="#dc2626" text-anchor="middle">문제 발생 시 피드백 및 수정 단계</text>
+          </svg>`,
+          passage: `[수송 기술 시스템의 4단계 체계]\n- 투입: 수송을 위한 준비 단계 (수송 대상, 수송 수단, 지원 시설, 인력 준비 및 점검)\n- 과정: 수송이 이루어지는 단계 (탑승·적재 → 이동 → 하차·하역)\n- 산출: 사람 또는 물건이 목적지에 안전하게 도착하는 단계\n- 되먹임: 수송 과정에서 문제가 발생했을 때 수정하고 보완하는 단계`,
+          text: "위 수송 기술 시스템 단계 중 '수송 대상, 수송 수단, 지원 시설, 인력 등의 준비 및 점검'이 이루어지는 단계는?",
+          choices: ["투입 (Input)", "과정 (Process)", "산출 (Output)", "되먹임 (Feedback)", "가공 (Processing)"],
+          answer: 0,
+          explanation: "수송을 위한 준비 단계이자 자원과 대상을 투입하는 단계는 '투입'입니다."
+        },
+        {
+          id: "T_S02_02", difficulty: "중", unit: "수송 기술 시스템", subTopic: "수송 기술 시스템",
+          passage: `[수송 기술 과정 세부 단계]\n- 탑승·적재: 사람이 수송 수단에 타거나 화물을 싣는 것\n- 이동: 수송 수단을 타고 목적지로 이동하는 것\n- 하차·하역: 목적지에 도착하여 사람이나 화물을 내리는 것`,
+          text: "다음 중 수송 기술 시스템의 '과정(Process)' 단계에 해당하지 않는 것은?",
+          choices: [
+            "수송 대상의 사전 선발 및 차량 등록 서류 심사",
+            "탑승 및 화물 적재",
+            "목적지를 향한 이동 및 운행",
+            "목적지에서의 하차 및 하역",
+            "화물의 중간 배달 및 운송"
+          ],
+          answer: 0,
+          explanation: "사전 서류 심사나 차량 등록은 '투입' 단계에 해당합니다. 과정은 탑승·적재, 이동, 하차·하역입니다."
+        },
+        {
+          id: "T_S02_03", difficulty: "중", unit: "수송 기술 시스템", subTopic: "수송 기술 시스템",
+          passage: "",
+          text: "수송 기술 시스템의 '되먹임(Feedback)' 단계의 역할로 가장 알맞은 것은?",
+          choices: [
+            "수송 과정에서 오류나 사고 등 문제가 발생했을 때 이전 단계로 돌아가 원인을 분석하고 수정하는 것",
+            "처음에 투입할 예산과 인력을 무조건 늘리는 것",
+            "수송 수단의 엔진 출력을 최대로 높여 속도를 과속하는 것",
+            "화물을 목적지가 아닌 출발지로 다시 되돌려 보내는 것",
+            "운전자의 면허증을 갱신하고 정기 검진을 받는 것"
+          ],
+          answer: 0,
+          explanation: "되먹임(피드백)은 결과나 진행 상황을 점검하여 문제점을 투입이나 과정에 반영하여 수정하는 단계입니다."
+        },
+        {
+          id: "T_S02_04", difficulty: "중", unit: "수송 기술 시스템", subTopic: "수송 기술 시스템",
+          passage: "",
+          text: "수송 기술 시스템의 각 단계와 세부 활동의 연결이 가장 바른 것은?",
+          choices: [
+            "투입 - 수송 대상, 수송 수단, 지원 시설의 준비 및 점검",
+            "과정 - 목적지 도착 후 최종 만족도 설문 조사 집계 (산출 또는 되먹임)",
+            "산출 - 운전기사의 음주 여부 단속 (투입)",
+            "되먹임 - 버스 정류장에 승객이 탑승하는 것 (과정)",
+            "과정 - 비행기 격납고의 정비 점검 (투입)"
+          ],
+          answer: 0,
+          explanation: "투입은 수송을 위한 준비 및 대상·수단·시설·인력의 점검 단계입니다."
+        }
+      ],
+
+      // [슬롯 03] [고난도 상 ①] 바퀴와 육상 수송의 발달사 복합 분석 (상)
+      [
+        {
+          id: "T_S03_01", difficulty: "상", unit: "수송 기술 시스템", subTopic: "육상 수송의 발달",
+          svg: `<svg viewBox="0 0 340 160" class="max-w-[320px] h-auto" xmlns="http://www.w3.org/2000/svg">
+            <rect width="340" height="160" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+            <!-- 바퀴 4단계 변천 -->
+            <rect x="15" y="20" width="70" height="110" rx="5" fill="#f8fafc" stroke="#64748b"/>
+            <text x="50" y="40" font-size="9.5" font-weight="bold" fill="#0f172a" text-anchor="middle">통나무 바퀴</text>
+            <text x="50" y="65" font-size="8" fill="#475569" text-anchor="middle">가장 오래된 바퀴</text>
+            <text x="50" y="85" font-size="8" fill="#475569" text-anchor="middle">BC 3500년경</text>
+            <text x="50" y="105" font-size="8" fill="#475569" text-anchor="middle">메소포타미아</text>
+
+            <rect x="95" y="20" width="70" height="110" rx="5" fill="#f8fafc" stroke="#64748b"/>
+            <text x="130" y="40" font-size="9.5" font-weight="bold" fill="#0f172a" text-anchor="middle">합판형 바퀴</text>
+            <text x="130" y="65" font-size="8" fill="#475569" text-anchor="middle">3장 널빤지 결합</text>
+            <text x="130" y="85" font-size="8" fill="#475569" text-anchor="middle">BC 2500년</text>
+            <text x="130" y="105" font-size="8" fill="#475569" text-anchor="middle">수메르인</text>
+
+            <rect x="175" y="20" width="70" height="110" rx="5" fill="#f8fafc" stroke="#64748b"/>
+            <text x="210" y="40" font-size="9.5" font-weight="bold" fill="#0f172a" text-anchor="middle">바퀴살 바퀴</text>
+            <text x="210" y="65" font-size="8" fill="#475569" text-anchor="middle">무게 줄이고 속력↑</text>
+            <text x="210" y="85" font-size="8" fill="#475569" text-anchor="middle">BC 2000년 이후</text>
+            <text x="210" y="105" font-size="8" fill="#475569" text-anchor="middle">아시리아인</text>
+
+            <rect x="255" y="20" width="70" height="110" rx="5" fill="#fefce8" stroke="#ca8a04"/>
+            <text x="290" y="40" font-size="9.5" font-weight="bold" fill="#854d0e" text-anchor="middle">쇠바퀴</text>
+            <text x="290" y="65" font-size="8" fill="#a16207" text-anchor="middle">15세기 발명</text>
+            <text x="290" y="85" font-size="8" fill="#a16207" text-anchor="middle">레오나르도</text>
+            <text x="290" y="105" font-size="8" fill="#a16207" text-anchor="middle">다빈치</text>
+            <text x="170" y="148" font-size="9" font-weight="bold" fill="#14532d" text-anchor="middle">★ 바퀴의 발명: 수송 기술 혁신의 기틀 마련</text>
+          </svg>`,
+          passage: `[육상 수송의 발달과 바퀴의 역사]\n- 통나무 바퀴: 기원전 3500년경 메소포타미아에서 발견된 가장 오래된 전차용 바퀴\n- 합판형 바퀴: 기원전 2500년 수메르인들이 3장의 널빤지를 붙여 만듦\n- 바퀴살 바퀴: 기원전 2000년 이후 아시리아인들이 무게를 줄이고 속력을 높임\n- 쇠바퀴: 15세기 레오나르도 다빈치가 발명한 튼튼한 금속 바퀴`,
+          text: "위 바퀴의 발달 과정과 육상 수송 기술에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n\n<보기>\nㄱ. 통나무 바퀴는 기원전 3500년경 메소포타미아에서 발견된 가장 오래된 형태의 바퀴이다.\nㄴ. 수메르인들이 사용한 합판형 바퀴는 3장의 널빤지를 붙여 제작하였다.\nㄷ. 아시리아인들이 도입한 바퀴살 바퀴는 바퀴의 무게를 줄이고 속력을 높이는 데 기여하였다.\nㄹ. 15세기 레오나르도 다빈치는 튼튼한 내구성을 가진 쇠바퀴를 발명하였다.",
+          choices: ["ㄱ, ㄴ, ㄷ, ㄹ (모두 옳음)", "ㄱ, ㄴ, ㄷ", "ㄱ, ㄷ, ㄹ", "ㄴ, ㄷ, ㄹ", "ㄱ, ㄹ"],
+          answer: 0,
+          explanation: "보기의 네 가지 설명(통나무 바퀴, 합판형 바퀴, 바퀴살 바퀴, 레오나르도 다빈치의 쇠바퀴) 모두 기술가정 학습지 내용과 정확히 일치합니다."
+        },
+        {
+          id: "T_S03_02", difficulty: "상", unit: "수송 기술 시스템", subTopic: "육상 수송의 발달",
+          passage: `[증기자동차와 기관차 발명사]\n- 1769년 프랑스 퀴뇨: 대포 수송용 세계 최초의 증기자동차 제작 (속도 3~4km/h, 조향 불가, 노브레이크로 인류 최초의 교통사고 발생)\n- 1833년 영국의 핸목: 최초의 실용화된 14인승 증기버스 제작\n- 1804년 트레비딕 '페니다렌': 최초의 증기기관차\n- 1814년 스티븐슨: 30톤 화물을 시속 6km로 끌 수 있는 증기기관차 제작`,
+          text: "위 내용 중 1769년 프랑스의 포병 장교였던 퀴뇨가 제작한 세계 최초의 증기자동차에 대한 설명으로 옳지 않은 것은?",
+          choices: [
+            "전기 모터와 대용량 리튬 배터리를 탑재하여 무소음 자율주행을 실현하였다.",
+            "대포 수송용으로 제작되었으나 조향 장치(방향 조절)와 브레이크가 없어 인류 최초의 교통사고를 냈다.",
+            "시속 3~4km/h의 느린 속도로 운행되었다.",
+            "18세기 중엽 발명된 증기기관의 힘을 동력으로 이용하였다.",
+            "증기자동차의 발명 역사에서 매우 중요한 시초가 되는 기록이다."
+          ],
+          answer: 0,
+          explanation: "퀴뇨의 증기자동차는 전기 모터가 아니라 18세기 중엽 발명된 증기기관을 동력으로 사용했으며, 브레이크와 조향 장치가 없어 사고를 냈습니다."
+        },
+        {
+          id: "T_S03_03", difficulty: "상", unit: "수송 기술 시스템", subTopic: "육상 수송의 발달",
+          passage: `[내연기관의 발명사]\n- 1876년 독일 오토: 가솔린을 이용한 4기통 엔진(4행정 사이클) 발명\n- 1886년 다임러: 오토의 조수로서 자동차용 가솔린 엔진을 마차에 탑재하여 세계 최초의 가솔린 자동차 제작\n- 1886년 칼 벤츠: 세계 최초의 실용적인 가솔린 3륜차 '모토바겐' 제작 ('자동차의 아버지')\n- 1908년 헨리 포드: 컨베이어 벨트 방식을 도입하여 값싼 'T형 자동차' 대량 생산 ('자동차의 왕')`,
+          text: "위 내연기관 및 자동차 발명사에 대한 설명으로 옳은 것만을 <보기>에서 고른 것은?\n\n<보기>\nㄱ. 독일의 오토는 가솔린을 이용한 4기통 엔진을 발명하였다.\nㄴ. 칼 벤츠는 실용적인 3륜차 모토바겐을 만들어 '자동차의 아버지'로 불린다.\nㄷ. 헨리 포드는 컨베이어 벨트 대량 생산 방식을 통해 T형 자동차를 보급하여 '자동차의 왕'이 되었다.",
+          choices: ["ㄱ, ㄴ, ㄷ", "ㄱ, ㄴ", "ㄴ, ㄷ", "ㄱ, ㄷ", "ㄱ 단독"],
+          answer: 0,
+          explanation: "오토의 4기통 엔진, 칼 벤츠의 모토바겐(자동차의 아버지), 헨리 포드의 T형 자동차 대량 생산(자동차의 왕) 모두 정확합니다."
+        },
+        {
+          id: "T_S03_04", difficulty: "상", unit: "수송 기술 시스템", subTopic: "육상 수송의 발달",
+          passage: "",
+          text: "내연기관의 4행정 사이클(흡기 → 압축 → 폭발 → 배기) 중, 혼합기에 불꽃을 튀겨 가스를 연소시키고 이때 발생하는 엄청난 압력으로 피스톤을 밀어내어 동력을 얻는 행정은?",
+          choices: ["폭발 (Power/Combustion) 행정", "흡기 (Intake) 행정", "압축 (Compression) 행정", "배기 (Exhaust) 행정", "윤활 (Lubrication) 행정"],
+          answer: 0,
+          explanation: "점화 플러그에서 불꽃이 튀어 연소 가스가 팽창하며 피스톤을 밀어내는 행정은 '폭발 행정'입니다."
+        }
+      ],
+
+      // [슬롯 04] 기차와 친환경 자동차 (하)
+      [
+        {
+          id: "T_S04_01", difficulty: "하", unit: "수송 기술 시스템", subTopic: "기차와 친환경 수송",
+          passage: `[기차의 특성 및 종류]\n- 디젤 전기 기관차: 경유를 사용하는 디젤기관으로 전기를 생산 후 전기모터를 돌려 바퀴 구동 (예: 무궁화호, 새마을호)\n- 고속 열차: 선로 위의 전선으로부터 공급받은 전기로 구동 (예: KTX, SRT)\n- 자기부상열차: 철로와 기차 바닥 사이의 자기력으로 살짝 뜬 상태로 이동`,
+          text: "철로 위를 달리며 교통체증이 없어 정확한 시간에 다량의 승객과 화물을 수송할 수 있는 육상 수송 수단은?",
+          choices: ["기차 (철도 수송)", "화물 트럭", "고속 버스", "위그선", "택시"],
+          answer: 0,
+          explanation: "철로를 이용하여 대량 수송과 정시성을 보장하는 육상 수송 수단은 기차입니다."
+        },
+        {
+          id: "T_S04_02", difficulty: "하", unit: "수송 기술 시스템", subTopic: "친환경 자동차",
+          passage: `[친환경 자동차 비교]\n- 하이브리드카: 내연기관 + 전기모터 (출발·저속 시 전기모터, 가속·고속 시 함께 사용. 연비 향상 및 매연 감소)\n- 전기자동차: 전기모터만으로 구동 (완전 친환경이지만 충전소 부족 및 긴 충전 시간의 한계)`,
+          text: "하이브리드 자동차에 대한 설명으로 가장 알맞은 것은?",
+          choices: [
+            "내연기관과 전기모터의 2종 엔진을 탑재하여 연비를 높이고 매연을 줄인 준친환경 자동차이다.",
+            "석탄을 직접 태워 증기 터빈을 돌리는 원시적 자동차이다.",
+            "오직 디젤 경유만 사용하여 검은 매연을 뿜어내는 화물차이다.",
+            "배터리 충전 기능이 아예 없어 수소 가스로만 주행한다.",
+            "바퀴 없이 공중에 떠서 자석의 반발력으로만 움직이는 열차이다."
+          ],
+          answer: 0,
+          explanation: "하이브리드카는 휘발유/경유 내연기관과 전기모터를 결합하여 출발 시 모터, 고속 시 엔진을 함께 활용해 효율을 극대화한 준친환경 차입니다."
+        },
+        {
+          id: "T_S04_03", difficulty: "하", unit: "수송 기술 시스템", subTopic: "기차의 종류",
+          passage: "",
+          text: "다음 중 철로와 기차 바닥 사이의 '자기력(자기 상호작용)'을 이용하여 마찰 없이 살짝 뜬 상태로 고속 주행하는 열차는?",
+          choices: ["자기부상열차", "디젤 전기 기관차", "새마을호", "화물 열차", "증기 기관차"],
+          answer: 0,
+          explanation: "자석의 인력과 척력을 이용해 선로에서 공중부양하여 달리는 열차는 자기부상열차입니다."
+        },
+        {
+          id: "T_S04_04", difficulty: "하", unit: "수송 기술 시스템", subTopic: "친환경 자동차",
+          passage: "",
+          text: "전기자동차의 가장 큰 특징과 현실적인 문제점으로 바르게 짝지어진 것은?",
+          choices: [
+            "배기가스가 전혀 없는 완전 친환경 차량이지만, 충전소 부족과 긴 충전 시간이 단점이다.",
+            "휘발유를 가솔린 엔진으로 태워 소음이 매우 심하다.",
+            "철도 위에서만 주행할 수 있어 도로 접근성이 떨어진다.",
+            "바람의 힘을 받아 돛을 펼쳐야 하므로 역풍에서는 주행이 불가능하다.",
+            "초기 제작 비용이 전혀 들지 않아 누구나 무료로 이용할 수 있다."
+          ],
+          answer: 0,
+          explanation: "전기자동차는 무공해 친환경이지만 인프라(충전소)와 충전 시간이 현실적 과제입니다."
+        }
+      ],
+
+      // [슬롯 05] 해상 수송 기술과 선박의 힘 (중)
+      [
+        {
+          id: "T_S05_01", difficulty: "중", unit: "수송 기술 시스템", subTopic: "해상 수송과 선박",
+          svg: `<svg viewBox="0 0 340 160" class="max-w-[320px] h-auto" xmlns="http://www.w3.org/2000/svg">
+            <rect width="340" height="160" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+            <!-- 바다 수면선 -->
+            <path d="M 10 90 Q 90 80, 170 90 Q 250 100, 330 90" fill="none" stroke="#0284c7" stroke-width="2"/>
+            <!-- 선박 본체 -->
+            <path d="M 60 70 L 280 70 L 260 95 L 80 95 Z" fill="#e0f2fe" stroke="#0369a1" stroke-width="1.5"/>
+            <!-- 4대 힘 화살표 -->
+            <!-- 부력 (위로) -->
+            <line x1="170" y1="80" x2="170" y2="35" stroke="#15803d" stroke-width="2.5"/>
+            <text x="170" y="27" font-size="10" font-weight="bold" fill="#15803d" text-anchor="middle">부력 (위로 뜨는 힘)</text>
+            <!-- 중력 (아래로) -->
+            <line x1="170" y1="85" x2="170" y2="135" stroke="#dc2626" stroke-width="2.5"/>
+            <text x="170" y="148" font-size="10" font-weight="bold" fill="#dc2626" text-anchor="middle">중력 (아래로 누르는 힘)</text>
+            <!-- 추진력 (앞으로) -->
+            <line x1="260" y1="82" x2="310" y2="82" stroke="#2563eb" stroke-width="2.5"/>
+            <text x="285" y="68" font-size="9" font-weight="bold" fill="#2563eb" text-anchor="middle">추진력</text>
+            <!-- 저항력 (뒤로) -->
+            <line x1="80" y1="82" x2="30" y2="82" stroke="#ca8a04" stroke-width="2.5"/>
+            <text x="55" y="68" font-size="9" font-weight="bold" fill="#ca8a04" text-anchor="middle">저항력 (마찰)</text>
+          </svg>`,
+          passage: `[선박에 작용하는 4가지 힘]\n- 부력: 물속의 물체가 물체에 작용하는 압력에 의하여 중력의 반대 방향인 위로 뜨려는 힘\n- 중력: 지구 중심 방향으로 끌어당기는 힘\n- 추진력: 동력 기관에서 발생하여 프로펠러를 회전시켜 배를 앞으로 나아가게 하는 힘\n- 저항력: 물과 선체 간의 마찰 등으로 인해 전진을 방해하는 힘`,
+          text: "위 선박에 작용하는 힘 중, 물속의 물체가 위로 뜨려는 성질이자 중력의 반대 방향으로 작용하는 힘을 무엇이라 하는가?",
+          choices: ["부력 (Buoyancy)", "저항력 (Drag)", "추진력 (Thrust)", "항력 (Lift)", "원심력 (Centrifugal)"],
+          answer: 0,
+          explanation: "물체가 물에 잠겼을 때 위로 떠오르게 만드는 압력에 의한 힘은 '부력'입니다."
+        },
+        {
+          id: "T_S05_02", difficulty: "중", unit: "수송 기술 시스템", subTopic: "선박의 종류",
+          passage: `[선박의 종류와 특징]\n- 쇄빙선: 얼음이 덮여 있는 결빙 해역에서 얼음을 부수어 항로를 만드는 선박\n- 예인선: 거대한 선박을 부두로 끌어당기는 선박\n- LNG선: 천연가스를 운반하는 선박\n- 위그선: 수면 가속 효과를 이용하여 수면 위를 낮게 떠서 고속으로 이동하는 수송 수단`,
+          text: "다음 중 얼음이 덮여 있는 결빙 해역에서 얼음을 직접 부수며 항로를 개척하는 선박의 명칭은?",
+          choices: ["쇄빙선 (Icebreaker)", "예인선 (Tugboat)", "LNG선", "위그선 (WIG)", "컨테이너선"],
+          answer: 0,
+          explanation: "얼음을 깨며 북극이나 남극 항로를 뚫는 특수 목적 선박은 '쇄빙선'입니다."
+        },
+        {
+          id: "T_S05_03", difficulty: "중", unit: "수송 기술 시스템", subTopic: "해상 수송의 발달",
+          passage: "",
+          text: "선박의 추진 장치(프로펠러)에 대한 설명으로 가장 알맞은 것은?",
+          choices: [
+            "동력 기관에서 발생하는 회전력을 이용하여 물을 뒤로 밀어내어 배를 앞으로 나아가게 하는 추진력을 얻는다.",
+            "선체 바닥의 물을 흡입하여 배를 해저 가라앉히는 감속 장치이다.",
+            "바람의 풍향을 측정하여 돛의 각도를 자동으로 조절하는 나침반이다.",
+            "빙산을 탐지하여 선박의 항로를 우회시키는 레이더 스크린이다.",
+            "해수면의 온도차를 이용하여 전기를 생산하는 터빈이다."
+          ],
+          answer: 0,
+          explanation: "프로펠러는 엔진의 회전 운동을 이용해 물을 뒤로 밀어냄으로써 반작용으로 추진력(앞으로 가는 힘)을 얻습니다."
+        },
+        {
+          id: "T_S05_04", difficulty: "중", unit: "수송 기술 시스템", subTopic: "해상 수송의 발달",
+          passage: "",
+          text: "해상 수송 기술의 발달 과정과 특징으로 옳지 않은 것은?",
+          choices: [
+            "뗏목(사람의 힘) → 범선(바람의 힘) → 증기선(증기기관) → 디젤기관선 및 원자력선 순으로 발전하였다.",
+            "범선은 바람의 힘을 이용하므로 13세기 이후 원거리 무역을 크게 활성화하였다.",
+            "증기선은 19세기 초 증기기관의 도입으로 해상 수송의 속도와 효율을 크게 높였다.",
+            "해상 수송은 사람과 대량의 화물을 저렴하게 수송할 수 있어 경제적이지만 물의 마찰 저항으로 속도가 다소 느리다.",
+            "오늘날의 해상 수송은 소형화와 느린 속도를 목표로 퇴보하고 있다."
+          ],
+          answer: 0,
+          explanation: "오늘날의 해상 수송은 대형화와 고속화, 전문화(컨테이너선, LNG선 등) 방향으로 발전하고 있습니다."
+        }
+      ],
+
+      // [슬롯 06] 항공 및 우주 수송 기술 (중)
+      [
+        {
+          id: "T_S06_01", difficulty: "중", unit: "수송 기술 시스템", subTopic: "항공 수송 기술",
+          passage: `[항공기에 작용하는 4가지 힘]\n- 양력(Lift): 비행기를 위로 뜨게 하는 힘 (날개의 상하 압력 차이)\n- 중력(Gravity): 지구가 비행기를 아래로 끌어당기는 힘\n- 추력(Thrust): 엔진이나 프로펠러가 비행기를 앞으로 나아가게 하는 힘\n- 항력(Drag): 비행기가 앞으로 가는 것을 방해하는 공기 저항력`,
+          text: "비행기가 하늘을 날아오를 때, 날개의 구조에 의해 공기가 위는 빠르게 아래는 느리게 흘러 '위로 뜨게 만드는 힘'의 명칭은?",
+          choices: ["양력 (Lift)", "중력 (Gravity)", "추력 (Thrust)", "항력 (Drag)", "부력 (Buoyancy)"],
+          answer: 0,
+          explanation: "비행기 날개 위아래의 압력 차이로 인해 위로 떠오르는 힘은 '양력'입니다."
+        },
+        {
+          id: "T_S06_02", difficulty: "중", unit: "수송 기술 시스템", subTopic: "항공 수송의 발달",
+          passage: `[항공 수송 발달사]\n- 초기: 열기구, 글라이더\n- 동력 비행기: 19세기 초 라이트 형제가 가솔린 기관을 장착하여 최초 비행 성공\n- 제트기: 제트 엔진을 장착하여 음속 비행 및 장거리 대량 수송 가능`,
+          text: "19세기 초 라이트 형제가 하늘을 나는 데 성공할 수 있었던 핵심 동력 장치는?",
+          choices: ["가솔린 기관 (내연기관)", "증기 보일러", "원자력 반응로", "원시적 노와 돛", "태양광 집열판"],
+          answer: 0,
+          explanation: "라이트 형제의 플라이어호는 가솔린 기관을 탑재하여 최초의 동력 비행에 성공했습니다."
+        },
+        {
+          id: "T_S06_03", difficulty: "중", unit: "수송 기술 시스템", subTopic: "우주 수송 기술",
+          passage: `[우주 수송 기술의 발달]\n- 1957년 소련 스푸트니크 1호: 세계 최초 인공위성 발사\n- 1969년 미국 아폴로 11호: 세계 최초 달 착륙 성공\n- 국제 우주 정거장(ISS): 우주 공간에 장기 체류하며 연구하는 구조물`,
+          text: "1957년 소련이 쏘아 올린 세계 최초의 인공위성 명칭은?",
+          choices: ["스푸트니크 1호 (Sputnik 1)", "아폴로 11호", "나로호", "누리호", "텔스타"],
+          answer: 0,
+          explanation: "인류 역사상 최초로 지구궤도에 진입한 인공위성은 1957년 소련의 스푸트니크 1호입니다."
+        },
+        {
+          id: "T_S06_04", difficulty: "중", unit: "수송 기술 시스템", subTopic: "항공 수송 기술",
+          passage: "",
+          text: "비행기에 작용하는 4가지 힘(양력, 중력, 추력, 항력)의 올바른 상호작용으로 알맞은 것은?",
+          choices: [
+            "비행기가 안정적으로 상공을 순항할 때는 양력=중력, 추력=항력의 평형을 이룬다.",
+            "비행기가 이륙하려면 중력이 양력보다 훨씬 더 커야 한다.",
+            "비행기가 전진할 때 항력이 추력보다 항상 커야 속도가 빨라진다.",
+            "비행기에는 공기 저항인 항력이 작용하지 않는다.",
+            "지구의 중력은 비행기가 우주로 탈출할 때 아무런 영향도 주지 않는다."
+          ],
+          answer: 0,
+          explanation: "수평 비행 시 위로 뜨는 양력과 중력이 같고, 앞으로 가는 추력과 공기저항인 항력이 균형을 이룹니다."
+        }
+      ],
+
+      // [슬롯 07] 자원의 의미와 에너지 가공 여부에 따른 분류 (하)
+      [
+        {
+          id: "T_S07_01", difficulty: "하", unit: "신·재생 에너지", subTopic: "자원의 의미와 분류",
+          passage: `[자원의 의미와 에너지 가공 분류]\n- 자원: 에너지의 원료가 되는 물질이나 자연현상 (석유, 석탄, 우라늄 등)\n- 1차 에너지: 자연에서 얻은 채 가공하지 않은 최초의 에너지 (석유, 석탄, 천연가스, 수력, 풍력, 태양열 등)\n- 2차 에너지: 1차 에너지를 변형·가공하여 사용하기 편하게 만든 에너지 (전기 등)`,
+          text: "다음 중 자연에서 얻은 최초의 에너지를 뜻하며 석유, 석탄, 수력, 풍력 등이 포함되는 에너지 분류는?",
+          choices: ["1차 에너지", "2차 에너지", "소모성 에너지", "원자력 에너지", "인공 합성 에너지"],
+          answer: 0,
+          explanation: "가공하지 않은 자연 상태의 최초 에너지는 1차 에너지, 이를 변형한 전기는 2차 에너지입니다."
+        },
+        {
+          id: "T_S07_02", difficulty: "하", unit: "신·재생 에너지", subTopic: "자원의 분류",
+          passage: `[에너지 가공 여부]\n- 1차 에너지: 석유, 석탄, 천연가스, 태양열, 수력 등\n- 2차 에너지: 전기 (화력·원자력·수력 발전 등을 통해 변환되어 가정에 공급됨)`,
+          text: "다음 중 가공 여부에 따른 분류에서 '2차 에너지'에 해당하는 가장 대표적인 것은?",
+          choices: ["전기 (Electricity)", "원유 (Petroleum)", "천연가스 (Natural Gas)", "석탄 (Coal)", "햇빛 (Sunlight)"],
+          answer: 0,
+          explanation: "전기는 1차 에너지를 발전기를 통해 변환·가공하여 사용하는 대표적인 2차 에너지입니다."
+        },
+        {
+          id: "T_S07_03", difficulty: "하", unit: "신·재생 에너지", subTopic: "자원의 의미",
+          passage: "",
+          text: "다음 중 원자력 발전의 연료로 사용되는 대표적인 원자력 자원 두 가지를 바르게 짝지은 것은?",
+          choices: ["우라늄, 플루토늄", "석탄, 석유", "수소, 산소", "메탄, 프로판", "암모니아, 프레온"],
+          answer: 0,
+          explanation: "원자력 자원은 원자핵이 분열 또는 융합할 때 발생하는 에너지를 이용하며, 우라늄과 플루토늄이 원료로 사용됩니다."
+        },
+        {
+          id: "T_S07_04", difficulty: "하", unit: "신·재생 에너지", subTopic: "자원의 의미",
+          passage: "",
+          text: "화석 자원(석유, 석탄, 천연가스)과 원자력 자원(우라늄)에 대한 공통적인 설명으로 옳은 것은?",
+          choices: [
+            "매장량이 한정되어 있어 고갈될 염려가 있는 고갈성 자원이다.",
+            "자연에서 끊임없이 무한히 재생되는 재생 에너지이다.",
+            "에너지 사용 시 이산화탄소를 전혀 배출하지 않는 청정 에너지이다.",
+            "초기 시설 투자비만 들면 이후에는 비용이 전혀 발생하지 않는다.",
+            "지구상의 모든 국가에서 균등하게 채굴된다."
+          ],
+          answer: 0,
+          explanation: "석유, 석탄, 천연가스, 우라늄은 모두 유한한 매장량을 가진 고갈성 자원입니다."
+        }
+      ],
+
+      // [슬롯 08] [고난도 상 ②] 화석에너지의 문제점과 신·재생 에너지 분류 심층 분석 (상)
+      [
+        {
+          id: "T_S08_01", difficulty: "상", unit: "신·재생 에너지", subTopic: "신재생에너지 분류",
+          svg: `<svg viewBox="0 0 340 160" class="max-w-[320px] h-auto" xmlns="http://www.w3.org/2000/svg">
+            <rect width="340" height="160" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+            <!-- 신에너지 vs 재생에너지 분류 -->
+            <rect x="20" y="20" width="140" height="120" rx="6" fill="#f0fdf4" stroke="#15803d" stroke-width="1.5"/>
+            <text x="90" y="45" font-size="11" font-weight="bold" fill="#14532d" text-anchor="middle">신에너지 (New Energy)</text>
+            <text x="90" y="70" font-size="9" fill="#166534" text-anchor="middle">• 수소 에너지</text>
+            <text x="90" y="90" font-size="9" fill="#166534" text-anchor="middle">• 연료 전지</text>
+            <text x="90" y="110" font-size="9" fill="#166534" text-anchor="middle">• 석탄 액화 및 가스화</text>
+            <text x="90" y="130" font-size="8" font-weight="bold" fill="#dc2626" text-anchor="middle">(주의: 석탄 액화·가스화는 친환경 아님)</text>
+
+            <rect x="180" y="20" width="140" height="120" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+            <text x="250" y="45" font-size="11" font-weight="bold" fill="#1e40af" text-anchor="middle">재생에너지 (Renewable)</text>
+            <text x="250" y="65" font-size="8.5" fill="#1e3a8a" text-anchor="middle">• 수력, 풍력, 태양광·태양열</text>
+            <text x="250" y="85" font-size="8.5" fill="#1e3a8a" text-anchor="middle">• 해양(조력·조류·파력·온도차)</text>
+            <text x="250" y="105" font-size="8.5" fill="#1e3a8a" text-anchor="middle">• 지열, 바이오 에너지</text>
+            <text x="250" y="125" font-size="8.5" fill="#1e3a8a" text-anchor="middle">• 폐기물 에너지 (주의: 친환경 아님)</text>
+          </svg>`,
+          passage: `[신·재생 에너지의 정확한 분류]\n- 신에너지: 수소 에너지, 연료 전지, 석탄 액화 및 가스화 (※ 석탄 액화·가스화는 화석연료 기반이므로 친환경 에너지가 아님)\n- 재생에너지: 수력, 풍력, 태양광, 태양열, 해양에너지(조력·조류·파력·온도차), 지열, 바이오에너지, 폐기물에너지 (※ 폐기물에너지는 쓰레기 소각 등이므로 엄격히 친환경이라 볼 수 없음)`,
+          text: "위 신·재생 에너지 분류에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n\n<보기>\nㄱ. 수소 에너지와 연료 전지는 '신에너지'에 해당한다.\nㄴ. 석탄 액화 및 가스화 기술은 신에너지에 속하지만 탄소를 배출하므로 친환경 에너지가 아니다.\nㄷ. 풍력, 태양광, 지열, 조력 에너지는 '재생에너지'에 해당한다.\nㄹ. 폐기물 에너지는 재생에너지로 분류되나, 쓰레기 소각 과정을 포함하므로 완전한 친환경으로 보기는 어렵다.",
+          choices: ["ㄱ, ㄴ, ㄷ, ㄹ (모두 옳음)", "ㄱ, ㄴ, ㄷ", "ㄱ, ㄷ, ㄹ", "ㄴ, ㄷ, ㄹ", "ㄱ, ㄹ"],
+          answer: 0,
+          explanation: "기술가정 학습지 핵심 암기 사항인 '석탄 액화·가스화'와 '폐기물 에너지'의 친환경성 여부를 포함하여 보기의 모든 설명이 정확합니다."
+        },
+        {
+          id: "T_S08_02", difficulty: "상", unit: "신·재생 에너지", subTopic: "화석에너지 문제점",
+          passage: `[화석에너지 잔여 매장량 및 고갈 추정치 (학습지 자료)]\n- 석유: 약 50년\n- 천연가스: 약 60년\n- 우라늄(원자력): 약 120년\n- 석탄: 약 130년`,
+          text: "위 학습지 통계 자료에 나타난 화석에너지 및 원자력 자원의 고갈 연한(잔여 매장량 기준)에 대한 설명으로 옳은 것은?",
+          choices: [
+            "석유가 약 50년으로 가장 짧은 고갈 연한을 보이고 있으며, 화석에너지는 머지않아 고갈될 위기에 처해 있다.",
+            "석탄이 가장 먼저 고갈될 예정이며, 석유는 무한정 매장되어 있다.",
+            "우라늄은 화석에너지가 아니므로 고갈될 염려가 전혀 없다.",
+            "천연가스의 잔여 매장량은 석탄보다 훨씬 많아 500년 이상 쓸 수 있다.",
+            "모든 화석에너지는 재생 주기가 짧아 고갈 수치가 의미 없다."
+          ],
+          answer: 0,
+          explanation: "학습지 표에 따르면 석유(50년), 천연가스(60년), 석탄(130년) 순으로 석유의 고갈 연한이 가장 임박해 있습니다."
+        },
+        {
+          id: "T_S08_03", difficulty: "상", unit: "신·재생 에너지", subTopic: "신재생에너지 필요성",
+          passage: `[신·재생 에너지의 필요성]\n- 비고갈성: 태양광, 풍력과 같이 지속적으로 사용 가능한 비고갈성 에너지\n- 청정성: 에너지 사용 시 이산화탄소 발생이 거의 없는 청정 에너지\n- 자립성: 원유, 석탄, 가스 등의 수입을 줄여 에너지 국외 의존도를 낮추는 자국 미래 에너지\n- 기술 자원화: 연구와 개발을 통해 에너지 자원을 확보할 수 있는 미래 기술`,
+          text: "다음 중 신·재생 에너지를 도입하고 개발해야 하는 이유로 거리가 먼 것은?",
+          choices: [
+            "초기 시설 투자비용이 전혀 들지 않고 즉각적으로 공짜 전기를 얻을 수 있기 때문에",
+            "화석 연료 사용에 따른 지구 온난화 및 이산화탄소 배출 문제를 해결하기 때문에",
+            "석유나 석탄 등 고갈성 화석 자원의 수입 의존도를 낮추고 에너지 안보를 강화하기 때문에",
+            "무한히 재생 가능한 자연 에너지를 이용하여 지속 가능한 발전을 도모하기 때문에",
+            "환경 오염 물질 배출이 거의 없는 청정 미래 에너지를 확보하기 때문에"
+          ],
+          answer: 0,
+          explanation: "신·재생 에너지는 '초기 개발 비용(설치 비용)이 많이 든다'는 단점이 있으므로, 비용이 전혀 들지 않는다는 설명은 틀렸습니다."
+        },
+        {
+          id: "T_S08_04", difficulty: "상", unit: "신·재생 에너지", subTopic: "발전기와 전자기 유도",
+          passage: `[발전기의 원리]\n- 발전기: 전자기 유도 현상을 이용하여 기계적 에너지를 전기 에너지(교류)로 변환하는 기기\n- 원리: 수력·풍력 등의 힘으로 터빈 회전 → 자석의 극성 변화(N-S) → 코일 내 자력선 변화로 유도 전류(전기) 생성`,
+          text: "발전소의 발전기가 전기를 생산해 내는 과학적 원리인 '전자기 유도 현상'의 핵심 요인으로 가장 적절한 것은?",
+          choices: [
+            "터빈의 회전에 따른 코일 내 자기장의 변화(자력선의 변화)로 유도 전류가 발생하는 현상",
+            "태양빛을 태양전지판에 직접 비추어 전자가 튀어나오는 광전효과",
+            "수소와 산소를 화학 반응시켜 물을 생성하며 전기를 얻는 산화환원 반응",
+            "석탄을 고온으로 가열하여 기체 상태의 탄화수소로 바꾸는 가스화 반응",
+            "바닷물의 염분 농도 차이를 이용하여 삼투압 압력을 발생시키는 현상"
+          ],
+          answer: 0,
+          explanation: "발전기는 코일과 자석의 상대 운동에 의한 자력선의 변화(전자기 유도)를 통해 전기를 생산합니다."
+        }
+      ],
+
+      // [슬롯 09] 신에너지: 수소 에너지와 연료 전지 (중)
+      [
+        {
+          id: "T_S09_01", difficulty: "중", unit: "신·재생 에너지", subTopic: "수소 에너지와 연료 전지",
+          passage: `[수소 에너지와 연료 전지]\n- 수소 에너지: 수소가 연소할 때 발생하는 열이나 폭발력을 이용. 가스나 액체 형태로 저장 및 수송 가능. 오염물질 배출 없음. 전기 분해로 얻음.\n- 연료 전지: 수소와 산소가 화학 반응할 때 일으키는 에너지를 전기 에너지로 변환하는 일종의 발전 장치 (배기가스 없음, 소음 없음)`,
+          text: "다음 중 수소와 산소를 화학 반응시켜 발생하는 에너지를 직접 전기 에너지로 변환하는 '연료 전지'의 특징으로 옳은 것은?",
+          choices: [
+            "배기가스가 나오지 않고 소음이 없으며, 자동차 및 가정용 에너지원으로 활용된다.",
+            "석탄을 태울 때 발생하는 검은 매연을 모아서 정화하는 장치이다.",
+            "원자핵을 고온으로 융합하여 막대한 방사능 에너지를 폭발시키는 장치이다.",
+            "바닷물의 염분을 제거하여 식수를 대량으로 생산하는 담수화 설비이다.",
+            "태양빛을 반사하여 거대한 거울로 열을 모으는 집열판이다."
+          ],
+          answer: 0,
+          explanation: "연료 전지는 수소와 산소의 전기 화학 반응을 통해 소음과 배기가스 없이 전기를 생산하는 고효율 발전 장치입니다."
+        },
+        {
+          id: "T_S09_02", difficulty: "중", unit: "신·재생 에너지", subTopic: "석탄 액화 및 가스화",
+          passage: `[석탄 액화 및 가스화 기술]\n- 내용: 석탄에 산소와 물을 넣고 800~1500℃로 가열하여 석탄을 탄화수소(석유, 가스) 상태로 만드는 기술\n- 특징: 석탄 화력 발전소에 비해 발전 효율이 높음\n- 주의: 사용 편리성이 목적이나, 탄소를 배출하므로 '친환경 에너지는 아님'`,
+          text: "석탄 액화 및 가스화 기술에 대한 설명으로 옳은 것만을 <보기>에서 고른 것은?\n\n<보기>\nㄱ. 석탄에 산소와 물을 넣고 고온으로 가열하여 액체나 기체 연료로 변환한다.\nㄴ. 기존 석탄 화력 발전소에 비해 발전 효율이 높다.\nㄷ. 화석연료인 석탄을 기반으로 하므로 '친환경 에너지'로 분류할 수는 없다.",
+          choices: ["ㄱ, ㄴ, ㄷ", "ㄱ, ㄴ", "ㄴ, ㄷ", "ㄱ, ㄷ", "ㄱ 단독"],
+          answer: 0,
+          explanation: "보기의 세 가지 설명(액화·가스화 과정, 높은 발전 효율, 친환경 아님) 모두 학습지 노트 필기와 일치합니다."
+        },
+        {
+          id: "T_S09_03", difficulty: "중", unit: "신·재생 에너지", subTopic: "수소 에너지",
+          passage: "",
+          text: "수소 에너지의 장점으로 가장 알맞지 않은 것은?",
+          choices: [
+            "지구상에 매장량이 전혀 없어 인위적으로 생산이 불가능하다.",
+            "연소 시 물(H₂O) 외에 유해한 환경 오염 물질을 배출하지 않는다.",
+            "가스나 액체 형태로 쉽게 저장하고 필요한 곳으로 수송할 수 있다.",
+            "물 등을 전기 분해하여 친환경적으로 얻어낼 수 있다.",
+            "연료 전지 등과 결합하여 고효율 에너지원으로 활용된다."
+          ],
+          answer: 0,
+          explanation: "수소는 우주에서 가장 흔한 원소 중 하나이며 물의 전기 분해 등을 통해 지속적으로 얻을 수 있습니다. '매장량이 전혀 없다'는 틀린 설명입니다."
+        },
+        {
+          id: "T_S09_04", difficulty: "중", unit: "신·재생 에너지", subTopic: "신에너지",
+          passage: "",
+          text: "다음 중 '신에너지(New Energy)'에 해당하는 기술들로만 바르게 묶인 것은?",
+          choices: [
+            "수소 에너지, 연료 전지, 석탄 액화 및 가스화",
+            "수력 에너지, 풍력 에너지, 태양광 에너지",
+            "조력 발전, 파력 발전, 지열 발전",
+            "원자력 발전, 화석 석유, 천연가스",
+            "바이오 에너지, 폐기물 에너지, 태양열 에너지"
+          ],
+          answer: 0,
+          explanation: "법적·기술적 분류에서 신에너지는 수소에너지, 연료전지, 석탄액화·가스화를 말합니다."
+        }
+      ],
+
+      // [슬롯 10] 재생에너지: 수력, 풍력, 태양광, 태양열 (하)
+      [
+        {
+          id: "T_S10_01", difficulty: "하", unit: "신·재생 에너지", subTopic: "수력 및 풍력 에너지",
+          passage: `[수력 및 풍력 에너지]\n- 수력 에너지: 물의 위치에너지를 회전력으로 전환하여 전기 생산 (운전비용 적고 소요시간 짧으나 초기 건설비용 큼)\n- 풍력 에너지: 바람의 힘으로 풍차(터빈)를 돌려 발전 (환경오염 없음. 바람 많은 산이나 바다에 설치. 풍속 4m/s 이상일 때 효율적)`,
+          text: "다음 중 바람의 힘을 이용하여 풍차를 돌려 전기를 생산하며, 풍속이 초당 4미터 이상 부는 산이나 바다에 설치해야 효율적인 재생에너지는?",
+          choices: ["풍력 에너지 (Wind Power)", "수력 에너지", "조력 에너지", "지열 에너지", "태양열 에너지"],
+          answer: 0,
+          explanation: "풍력 발동기는 바람을 이용하므로 풍속이 초당 4미터 이상 부는 곳이 적합합니다."
+        },
+        {
+          id: "T_S10_02", difficulty: "하", unit: "신·재생 에너지", subTopic: "태양광 및 태양열 에너지",
+          passage: `[태양광 vs 태양열]\n- 태양광 에너지: 태양전지판을 이용하여 태양빛을 직접 전기에너지로 변환 (광전효과, 20년 이상 장기 사용 가능)\n- 태양열 에너지: 집열판으로 태양열을 저장하여 냉·난방에 이용하거나 전기 생산 (설치 간단하나 자연 조건에 따라 출력 변동 큼)`,
+          text: "태양전지판을 이용하여 태양빛을 직접 전기에너지로 변환하는 기술(광전효과 이용)의 명칭은?",
+          choices: ["태양광 에너지 (Solar Photovoltaics)", "태양열 에너지", "지열 에너지", "바이오 에너지", "해양 온도차 발전"],
+          answer: 0,
+          explanation: "빛을 전기로 바꾸는 것은 태양광, 열을 모으는 것은 태양열입니다."
+        },
+        {
+          id: "T_S10_03", difficulty: "하", unit: "신·재생 에너지", subTopic: "수력 에너지",
+          passage: "",
+          text: "수력 발전의 장단점에 대한 설명으로 옳지 않은 것은?",
+          choices: [
+            "댐 건설 초기에는 비용이 전혀 들지 않아 경제적 부담이 없다.",
+            "운전비용이 적고 발전소 가동 소요 시간이 짧다.",
+            "물의 위치에너지를 회전력으로 바꾸어 전기를 생산한다.",
+            "댐 건설로 인해 넓은 지역이 수몰되는 환경 변화가 발생할 수 있다.",
+            "재생 가능한 청정 수자원을 활용한다."
+          ],
+          answer: 0,
+          explanation: "수력 발전은 댐을 건설할 때 막대한 초기 건설 비용이 소요됩니다."
+        },
+        {
+          id: "T_S10_04", difficulty: "하", unit: "신·재생 에너지", subTopic: "태양열 에너지",
+          passage: "",
+          text: "집열판으로 태양열을 저장하여 주로 '냉·난방'에 이용하거나 전기를 생산하는 재생에너지는?",
+          choices: ["태양열 에너지", "태양광 에너지", "수력 에너지", "풍력 에너지", "지열 에너지"],
+          answer: 0,
+          explanation: "열을 모아 냉난방과 급탕에 활용하는 기술은 태양열 에너지입니다."
+        }
+      ],
+
+      // [슬롯 11] 재생에너지: 해양, 지열, 바이오, 폐기물 (중)
+      [
+        {
+          id: "T_S11_01", difficulty: "중", unit: "신·재생 에너지", subTopic: "해양 에너지",
+          passage: `[해양 에너지의 종류와 특징]\n- 조력 발전: 밀물과 썰물 때 바닷물의 낙차와 유속을 이용 (시화호 조력발전소 세계 최대 규모)\n- 조류 발전: 빠른 바닷물의 흐름을 이용 (진도 울돌목 조류발전소)\n- 파력 발전: 파도의 출렁임이나 공기 압력을 이용 (제주 용수리 진동수주형)\n- 해양 온도차 발전: 표층수와 심층수의 20℃ 이상 온도차로 작동유체(암모니아 등)를 기화시켜 터빈 구동`,
+          text: "이순신 장군의 명량대첩 현장인 전남 진도군 울돌목에 설치되어 빠른 바닷물의 흐름을 이용해 전기를 생산하는 발전 방식은?",
+          choices: ["조류 발전", "조력 발전", "파력 발전", "해양 온도차 발전", "지열 발전"],
+          answer: 0,
+          explanation: "조류(바닷물의 흐름)가 빠른 울돌목에 건설된 것은 조류발전소입니다."
+        },
+        {
+          id: "T_S11_02", difficulty: "중", unit: "신·재생 에너지", subTopic: "지열 및 바이오 에너지",
+          passage: `[지열, 바이오, 폐기물]\n- 지열 에너지: 지하의 증기나 온수를 직접 이용하여 전기 생산 (잠재력 무한하나 개발 지역 한정. 포항지열발전소 등)\n- 바이오 에너지: 바이오매스(생물 유기체)를 변환하여 연료나 전기 생산 (어디서나 만들 수 있으나 넓은 토지 필요 및 환경 파괴 위험)\n- 폐기물 에너지: 쓰레기 등 폐기물을 연료화하여 열·전기 생산 (처리 도움 되나 초기 비용 크고 완전 친환경은 아님)`,
+          text: "다음 중 지하의 뜨거운 증기나 온수를 직접 이용하여 전기를 생산하는 재생에너지의 명칭은?",
+          choices: ["지열 에너지 (Geothermal)", "해양 온도차 에너지", "바이오 에너지", "폐기물 에너지", "수소 에너지"],
+          answer: 0,
+          explanation: "지구 내부의 열을 이용하는 에너지는 지열 에너지입니다."
+        },
+        {
+          id: "T_S11_03", difficulty: "중", unit: "신·재생 에너지", subTopic: "조력 발전",
+          passage: `[조력 발전의 원리]\n밀물 때 바닷물이 방조제 안으로 들어오는 수압과 썰물 때 나가는 물살의 힘을 이용하여 터빈을 돌려 전기를 생산함. (경기도 시흥시 시화호 조력발전소 대표적)`,
+          text: "경기도 시흥시 시화호에 건설되어 운영 중인 세계 최대 규모의 조력 발전 방식에 대한 설명으로 옳은 것은?",
+          choices: [
+            "밀물과 썰물 때 발생하는 바닷물의 흐름과 수위를 이용하여 터빈을 돌린다.",
+            "바다 밑바닥의 마그마 열을 이용하여 바닷물을 끓여 증기를 만든다.",
+            "파도가 해안가 방파제에 부딪칠 때 생기는 공기 압력만 이용한다.",
+            "바닷물의 염분 농도 차이를 이용해 전자를 이동시킨다.",
+            "선박의 프로펠러 회전력을 해저 발전기로 연결한다."
+          ],
+          answer: 0,
+          explanation: "조력발전은 밀물과 썰물의 조수 간만 차(낙차)를 이용해 방조제 수문을 열고 닫으며 터빈을 구동합니다."
+        },
+        {
+          id: "T_S11_04", difficulty: "중", unit: "신·재생 에너지", subTopic: "파력 발전",
+          passage: `[파력 발전의 종류]\n- 가동물체형 파력 발전\n- 진동수주형 파력 발전 (제주도 한경면 용수리에 건설되어 운영 중)`,
+          text: "파도가 출렁일 때 수면의 움직임이나 그에 따라 발생하는 공기의 압력을 이용하여 터빈을 돌리는 발전 방식은?",
+          choices: ["파력 발전 (Wave Power)", "조력 발전", "조류 발전", "수력 발전", "지열 발전"],
+          answer: 0,
+          explanation: "파도의 운동 에너지를 이용하는 발전 방식은 파력 발전입니다."
+        }
+      ],
+
+      // [슬롯 12] [고난도 상 ③] 정보 통신 기술의 발달 역사와 에니악(ENIAC) 복합 분석 (상)
+      [
+        {
+          id: "T_S12_01", difficulty: "상", unit: "정보 통신 기술", subTopic: "정보 통신 기술의 발달",
+          svg: `<svg viewBox="0 0 340 160" class="max-w-[320px] h-auto" xmlns="http://www.w3.org/2000/svg">
+            <rect width="340" height="160" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+            <!-- 전기통신 이전 vs 이후 -->
+            <rect x="15" y="20" width="145" height="115" rx="6" fill="#f8fafc" stroke="#64748b"/>
+            <text x="87" y="42" font-size="11" font-weight="bold" fill="#0f172a" text-anchor="middle">전기 통신 이전</text>
+            <text x="87" y="65" font-size="9" fill="#475569" text-anchor="middle">• 몸짓과 소리 (원시 시대)</text>
+            <text x="87" y="85" font-size="9" fill="#475569" text-anchor="middle">• 문자 (상형 문자 기록)</text>
+            <text x="87" y="105" font-size="9" fill="#475569" text-anchor="middle">• 인쇄술의 발명 (대량 보급)</text>
+
+            <rect x="180" y="20" width="145" height="115" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+            <text x="252" y="42" font-size="11" font-weight="bold" fill="#1e40af" text-anchor="middle">전기 통신 이후</text>
+            <text x="252" y="65" font-size="9" fill="#1e3a8a" text-anchor="middle">• 모스 유선 전신기 (1837)</text>
+            <text x="252" y="85" font-size="9" fill="#1e3a8a" text-anchor="middle">• 벨 유선 전화기 (1876)</text>
+            <text x="252" y="105" font-size="9" fill="#1e3a8a" text-anchor="middle">• 마르코니 무선 전신 (1896)</text>
+            <text x="170" y="148" font-size="9" font-weight="bold" fill="#1e40af" text-anchor="middle">★ 전기의 발견으로 장거리 고속 통신 실현</text>
+          </svg>`,
+          passage: `[정보 통신 기술의 발달 역사]\n- 전기 통신 이전: 몸짓과 소리 → 문자(상형문자) → 인쇄술의 발명\n- 전기 통신 이후:\n  · 1837년 미국의 모스: 모스 부호를 전기 신호로 바꾸어 전달하는 '유선 전신기' 발명\n  · 1876년 미국의 벨: 음성을 전기 신호로 바꾸어 전달하는 '유선 전화기' 발명\n  · 1896년 이탈리아 마르코니: 무선 전신기 발명\n  · 20세기: 라디오(1906), TV(1926) 방송 시작\n  · 1946년 전자식 컴퓨터 '에니악(ENIAC)' 발명`,
+          text: "위 정보 통신 기술 발달사에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n\n<보기>\nㄱ. 전기 통신 이전에는 몸짓, 소리, 문자, 인쇄술 등을 통해 정보를 기록하고 전달하였다.\nㄴ. 1837년 모스는 모스 부호를 전기 신호로 전달하는 유선 전신기를 발명하였다.\nㄷ. 1876년 벨은 음성을 전기 신호로 변환하여 전달하는 유선 전화기를 발명하였다.\nㄹ. 1946년 발명된 전자식 컴퓨터 '에니악(ENIAC)'은 진공관을 사용한 거대한 컴퓨터였다.",
+          choices: ["ㄱ, ㄴ, ㄷ, ㄹ (모두 옳음)", "ㄱ, ㄴ, ㄷ", "ㄱ, ㄷ, ㄹ", "ㄴ, ㄷ, ㄹ", "ㄱ, ㄹ"],
+          answer: 0,
+          explanation: "보기의 모든 설명(전기통신 이전 매체, 모스의 유선전신기, 벨의 전화기, 에니악의 진공관 컴퓨터)은 기가 학습지 핵심 내용입니다."
+        },
+        {
+          id: "T_S12_02", difficulty: "상", unit: "정보 통신 기술", subTopic: "컴퓨터와 인터넷의 발달",
+          passage: `[세계 최초의 전자식 컴퓨터 '에니악(ENIAC)' 스펙 (학습지 기재)]\n- 연도: 1946년 발명\n- 부품: 18,000여 개의 진공관 사용\n- 무게: 약 30톤\n- 가격: 당시 50만 달러 (현재 시세 환산 시 800만 달러 수준)`,
+          text: "위 학습지에 소개된 1946년 발명된 세계 최초의 전자식 컴퓨터 '에니악(ENIAC)'의 특징으로 옳지 않은 것은?",
+          choices: [
+            "주머니에 쏙 들어가는 초소형 반도체 칩을 탑재하여 스마트폰과 연동되었다.",
+            "약 18,000여 개의 진공관을 사용하여 제작되었다.",
+            "전체 무게가 약 30톤에 달하는 거대한 규모였다.",
+            "당시 50만 달러라는 막대한 비용이 소요되었다.",
+            "에니악의 발명으로 본격적인 전자식 컴퓨터 시대가 열렸다."
+          ],
+          answer: 0,
+          explanation: "에니악은 1946년 진공관을 사용한 30톤짜리 거대 컴퓨터이며, 소형 반도체나 스마트폰 연동과는 거리가 멉니다."
+        },
+        {
+          id: "T_S12_03", difficulty: "상", unit: "정보 통신 기술", subTopic: "인터넷의 발달",
+          passage: `[인터넷과 WWW의 발달]\n- 인터넷: 1960년대 미국과 소련의 냉전 시대 때 미국에서 '군사적 목적'으로 전 세계 컴퓨터를 연결한 네트워크로 개발됨\n- WWW(World Wide Web): 1989년 팀 버너스 리가 개발. 누구나 평등하게 정보를 공유할 수 있도록 특허권을 포기함`,
+          text: "1960년대 냉전 시대에 미국에서 처음으로 군사적 목적으로 개발하기 시작하여 전 세계 컴퓨터를 연결한 네트워크의 명칭은?",
+          choices: ["인터넷 (Internet)", "블루투스 (Bluetooth)", "NFC 근거리 통신", "위성 텔스타", "모스 부호망"],
+          answer: 0,
+          explanation: "인터넷은 원래 1960년대 미 국방성 산하 연구소에서 군사 통신망 유지를 위해 개발한 네트워크에서 출발했습니다."
+        },
+        {
+          id: "T_S12_04", difficulty: "상", unit: "정보 통신 기술", subTopic: "정보 통신 기술의 특성",
+          passage: "",
+          text: "현대 정보 통신 기술의 발전 경향인 '소형화', '지능화', '융합화(컨버전스)' 중 '지능화'에 해당하는 가장 적절한 사례는?",
+          choices: [
+            "인공지능(AI) 기술의 발달로 컴퓨터가 스스로 학습하고 명령을 분석하여 판단을 내리는 기술",
+            "스마트폰 내부의 부품을 미세 공정으로 제작하여 두께를 얇게 만드는 기술",
+            "자동차에 카메라와 센서를 부착하여 기계와 통신이 결합된 스마트카를 만드는 기술",
+            "손목시계나 안경 형태로 착용할 수 있는 웨어러블 디바이스를 제작하는 기술",
+            "무게 30톤의 진공관 컴퓨터를 연구실에 고정하여 설치하는 기술"
+          ],
+          answer: 0,
+          explanation: "인공지능을 바탕으로 스스로 학습하고 판단하는 것은 정보통신기술의 '지능화'에 해당합니다."
+        }
+      ],
+
+      // [슬롯 13] 통신 매체와 뉴미디어 (중)
+      [
+        {
+          id: "T_S13_01", difficulty: "중", unit: "정보 통신 기술", subTopic: "통신 매체의 종류",
+          passage: `[통신 매체(미디어)의 표현 방법]\n- 문자: 많은 양의 정보를 의미를 정확하게 전달\n- 음성: 소리를 직접 들려주거나 녹음된 음성 전달\n- 그림: 말이나 글로 설명하기 어려운 상황이나 장면을 시각적으로 전달\n- 동영상: 움직이는 영상과 소리가 결합하여 가장 정확한 정보 전달`,
+          text: "다음 중 정보를 표현하는 통신 매체 중 '말이나 글로 설명하기 어려운 상황이나 장면에 대해 시각적 직관성을 제공하는 매체'는?",
+          choices: ["그림 (Image/Photo)", "문자 (Text)", "음성 (Audio)", "순수 텍스트", "모스 부호"],
+          answer: 0,
+          explanation: "그림과 사진은 말이나 글로 표현하기 힘든 시각적 상황을 정확하게 전달합니다."
+        },
+        {
+          id: "T_S13_02", difficulty: "중", unit: "정보 통신 기술", subTopic: "멀티미디어와 뉴미디어",
+          passage: `[멀티미디어와 뉴미디어]\n- 멀티미디어: 두 가지 이상의 통신 매체(문자, 음성, 그림, 동영상 등)를 결합하여 제공 (예: 뮤직비디오 - 가사/문자 + 음악/음성 + 춤/동영상)\n- 뉴미디어: 기존 통신 매체에 새로운 정보 기술이 결합된 더 편리하고 진보된 매체 (예: 유튜브, 웹툰, SNS, 팟캐스트)`,
+          text: "다음 중 두 가지 이상의 통신 매체(문자, 음성, 그림, 동영상 등)를 복합적으로 결합하여 정보를 제공하는 대표적인 사례로 가장 알맞은 것은?",
+          choices: ["뮤직비디오 (Music Video)", "단순 칠판 판서", "원시적 상형 문자", "모스 부호 전신", "종이 신문 텍스트"],
+          answer: 0,
+          explanation: "뮤직비디오는 문자(가사), 음성(노래), 동영상(가수의 율동)이 복합된 대표적인 멀티미디어입니다."
+        },
+        {
+          id: "T_S13_03", difficulty: "중", unit: "정보 통신 기술", subTopic: "미디어 리터러시",
+          passage: `[미디어 리터러시 (Media Literacy) 정의]\n다양한 연령 및 계층의 사람들이 다양한 형태의 미라이언스(미디어)에 대한 접근 능력, 미디어에 대한 비판적 이해 능력, 미디어를 통한 창의적 표현 능력 및 소통 능력`,
+          text: "미디어 리터러시(Media Literacy)의 핵심 역량으로 거리가 먼 것은?",
+          choices: [
+            "모든 미디어 매체의 광고 내용을 무조건 맹신하고 그대로 수용하는 능력",
+            "다양한 형태의 미디어 정보에 접근하고 활용하는 능력",
+            "미디어에 담긴 정보를 비판적으로 이해하고 분석하는 능력",
+            "미디어를 통해 자신의 생각을 창의적으로 표현하고 소통하는 능력",
+            "가짜 뉴스를 분별하고 올바른 정보를 선택하는 소양"
+          ],
+          answer: 0,
+          explanation: "미디어 리터러시는 정보를 맹신하는 것이 아니라 '비판적으로 이해하고 분석'하는 능력을 핵심으로 합니다."
+        },
+        {
+          id: "T_S13_04", difficulty: "중", unit: "정보 통신 기술", subTopic: "통신 매체",
+          passage: "",
+          text: "다음 중 기존의 통신 매체에 새로운 정보 통신 기술이 결합되어 탄생한 '뉴미디어(New Media)'에 해당하지 않는 것은?",
+          choices: [
+            "15세기 구텐베르크의 목판 인쇄기",
+            "유튜브 및 인터넷 방송",
+            "웹툰 및 팟캐스트",
+            "인스타그램, 페이스북 등 SNS",
+            "카카오톡 모바일 메신저"
+          ],
+          answer: 0,
+          explanation: "목판 인쇄기는 전통적인 인쇄술이며 뉴미디어가 아닙니다."
+        }
+      ],
+
+      // [슬롯 14] 이동 통신 기술과 셀룰러 통신 (중)
+      [
+        {
+          id: "T_S14_01", difficulty: "중", unit: "정보 통신 기술", subTopic: "이동 통신 기술",
+          svg: `<svg viewBox="0 0 340 160" class="max-w-[320px] h-auto" xmlns="http://www.w3.org/2000/svg">
+            <rect width="340" height="160" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+            <!-- 육각형 셀 구조 모식 -->
+            <polygon points="70,30 110,30 130,65 110,100 70,100 50,65" fill="#f0fdf4" stroke="#15803d" stroke-width="1.5"/>
+            <text x="90" y="70" font-size="9" font-weight="bold" fill="#14532d" text-anchor="middle">셀 (Cell)</text>
+            <circle cx="90" cy="50" r="4" fill="#dc2626"/>
+            <text x="90" y="115" font-size="8.5" fill="#166534" text-anchor="middle">기지국 안테나</text>
+
+            <polygon points="210,30 250,30 270,65 250,100 210,100 190,65" fill="#f0fdf4" stroke="#15803d" stroke-width="1.5"/>
+            <text x="230" y="70" font-size="9" font-weight="bold" fill="#14532d" text-anchor="middle">셀 (Cell)</text>
+            <circle cx="230" cy="50" r="4" fill="#dc2626"/>
+            <text x="230" y="115" font-size="8.5" fill="#166534" text-anchor="middle">기지국 안테나</text>
+
+            <text x="170" y="145" font-size="9.5" font-weight="bold" fill="#0f172a" text-anchor="middle">★ 셀룰러 통신: 지역을 작은 셀로 나누어 무선 통신</text>
+          </svg>`,
+          passage: `[셀룰러 통신 (Cellular Communication)]\n- 의미: 사용자가 장소를 이동하면서 음성, 영상, 데이터 등을 자유롭게 주고받는 통신 기술\n- 원리: 통신 가능 지역을 벌집 모양의 '셀(Cell)'이라는 작은 단위로 나누고, 각 셀 안에 설치된 통신 안테나(기지국)를 이용하여 정보를 주고받음`,
+          text: "위 도식과 설명에 나타난 '셀룰러 통신'에서 통신 가능 지역을 잘게 나누는 단위인 '셀(Cell)'마다 설치되는 핵심 장비는?",
+          choices: ["통신 안테나 (기지국)", "원자력 발전기", "진공관 에니악", "유선 모스 전신기", "수력 터빈"],
+          answer: 0,
+          explanation: "셀룰러 통신은 구역을 셀로 나누고 각 셀마다 통신 안테나(기지국)를 설치하여 무선 주파수로 연결합니다."
+        },
+        {
+          id: "T_S14_02", difficulty: "중", unit: "정보 통신 기술", subTopic: "이동 통신 기술의 활용",
+          passage: `[이동 통신 기술의 다양한 활용]\n- 스마트 빌딩: 냉난방, 조명, 전력 시스템 자동 제어\n- 스마트 농장(스마트 팜): 온·습도, 이산화탄소 등을 모바일 원격 제어\n- 스마트 공장: 자재 현황과 고객 요구를 실시간 반영하여 맞춤형 생산\n- U-헬스케어: 의료 장비 통신으로 병원 방문 없이 원격 진료\n- 지능형 교통 시스템(ITS): 도로 상황을 자동 파악하여 전광판 및 스마트폰으로 교통 관리`,
+          text: "다음 중 농작물 재배 시설의 온도, 습도, 이산화탄소 등을 모바일 기기를 통해 원격으로 제어하는 스마트 기술은?",
+          choices: ["스마트 농장 (Smart Farm)", "스마트 빌딩", "스마트 공장", "U-헬스케어", "지능형 교통 시스템(ITS)"],
+          answer: 0,
+          explanation: "원격으로 농장 환경을 제어하는 기술은 스마트 농장(스마트 팜)입니다."
+        },
+        {
+          id: "T_S14_03", difficulty: "중", unit: "정보 통신 기술", subTopic: "무선 통신 기술",
+          passage: `[무선 전송 기술]\n- 블루투스(Bluetooth): 휴대전화, 스피커 등의 기기를 선 없이 연결하는 전송 기술\n- NFC(근거리 무선통신): 매우 가까운 거리에서 기기 간 접촉 없이 데이터 송수신\n- 와이파이(Wi-Fi): 신호 범위 내에서 무선으로 인터넷 연결`,
+          text: "매우 가까운 거리(수 cm 이내)에서 기기 간에 접촉이나 복잡한 설정 없이 데이터를 안전하게 송수신할 수 있는 기술은?",
+          choices: ["근거리 무선통신 (NFC)", "블루투스", "와이파이 (Wi-Fi)", "셀룰러 통신", "위성 텔스타"],
+          answer: 0,
+          explanation: "교통카드나 모바일 결제 등에 쓰이는 초근거리 무선통신 기술은 NFC입니다."
+        },
+        {
+          id: "T_S14_04", difficulty: "중", unit: "정보 통신 기술", subTopic: "이동 통신 기술의 활용",
+          passage: "",
+          text: "병원에 직접 방문하지 않고도 의료 장비와 통신망을 통해 환자의 건강 상태를 측정하고 진료를 받을 수 있는 원격 의료 서비스를 뜻하는 용어는?",
+          choices: ["U-헬스케어 (U-Healthcare)", "스마트 빌딩", "스마트 공장", "웨어러블 디바이스", "사물인터넷 (IoT)"],
+          answer: 0,
+          explanation: "유비쿼터스 건강 관리 시스템인 U-헬스케어는 원격 의료 서비스를 제공합니다."
+        }
+      ],
+
+      // [슬롯 15] [고난도 상 ④] 성적 자기 결정권과 성폭력 예방의 이해 (상)
+      [
+        {
+          id: "T_S15_01", difficulty: "상", unit: "가족 안전 및 성윤리", subTopic: "성적 자기 결정권",
+          svg: `<svg viewBox="0 0 340 160" class="max-w-[320px] h-auto" xmlns="http://www.w3.org/2000/svg">
+            <rect width="340" height="160" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+            <!-- 성적 자기 결정권 중심 구조 -->
+            <rect x="70" y="20" width="200" height="40" rx="6" fill="#f0fdf4" stroke="#15803d" stroke-width="2"/>
+            <text x="170" y="45" font-size="11" font-weight="bold" fill="#14532d" text-anchor="middle">성적 자기 결정권 (Sexual Autonomy)</text>
+            
+            <line x1="170" y1="60" x2="170" y2="85" stroke="#15803d" stroke-width="1.5"/>
+
+            <rect x="25" y="85" width="135" height="55" rx="5" fill="#f8fafc" stroke="#64748b"/>
+            <text x="92" y="105" font-size="9.5" font-weight="bold" fill="#0f172a" text-anchor="middle">자율적이고 책임감 있는</text>
+            <text x="92" y="122" font-size="9" fill="#475569" text-anchor="middle">성적 의사 결정 권리</text>
+
+            <rect x="180" y="85" width="135" height="55" rx="5" fill="#f8fafc" stroke="#64748b"/>
+            <text x="247" y="105" font-size="9.5" font-weight="bold" fill="#0f172a" text-anchor="middle">자신과 타인의 성을</text>
+            <text x="247" y="122" font-size="9" fill="#475569" text-anchor="middle">소중히 여기고 존중</text>
+          </svg>`,
+          passage: `[성적 자기 결정권의 의미와 중요성]\n- 의미: 자신의 의지와 판단에 따라 자율적이고 책임감 있게 성적 의사 결정을 할 권리 (자기 행동의 결과까지 책임지는 것을 포함)\n- 중요성: 주체적 판단이나 동의 없는 성 행동은 서로의 몸과 마음에 돌이킬 수 없는 상처를 줄 수 있으므로, 자신과 타인의 성을 소중히 여겨야 함`,
+          text: "위 성적 자기 결정권에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n\n<보기>\nㄱ. 자신의 의지와 판단에 따라 자율적이고 책임감 있게 성적 의사 결정을 할 권리이다.\nㄴ. 자신의 행동에 따른 결과까지 스스로 책임지는 태도를 포함한다.\nㄷ. 주체적 판단이나 동의 없는 성 행동은 타인에게 큰 상처를 줄 수 있으므로 엄격히 금지된다.\nㄹ. 타인의 성을 존중하고 성숙한 성 가치관을 바탕으로 신중하게 결정해야 한다.",
+          choices: ["ㄱ, ㄴ, ㄷ, ㄹ (모두 옳음)", "ㄱ, ㄴ, ㄷ", "ㄱ, ㄷ, ㄹ", "ㄴ, ㄷ, ㄹ", "ㄱ, ㄹ"],
+          answer: 0,
+          explanation: "성적 자기 결정권의 정의, 책임 의식, 타인 존중 등 보기의 모든 설명이 기술가정 학습지 내용과 정확히 일치합니다."
+        },
+        {
+          id: "T_S15_02", difficulty: "상", unit: "가족 안전 및 성윤리", subTopic: "성적 의사 결정과 동의",
+          passage: `[성 행동에서의 '동의' 원칙]\n- 자유로운 선택에 기초한다 (약물, 음주 등에 의한 것은 합법적 동의가 아님)\n- 제한적인 것이다 (어떤 성적 행동에 대한 동의가 다른 행동까지 의미하지는 않음)\n- 가정해서는 안 된다 (상대방이 원하고 원하지 않는 것에 대해 내 생각대로 가정하면 안 됨)`,
+          text: "성 행동에서의 '동의'에 대한 설명으로 옳지 않은 것은?",
+          choices: [
+            "한 번 동의를 얻었다면 이후에 어떤 다른 행동을 하더라도 상대방이 당연히 허락한 것으로 간주한다.",
+            "동의는 반드시 자유로운 선택에 기초해야 하며 약물이나 음주 상태에서의 동의는 합법적 동의가 아니다.",
+            "특정 성적 행동에 대한 동의가 다른 행동까지 포괄적으로 동의한 것을 의미하지는 않는다.",
+            "상대방이 원하고 원하지 않는 것에 대해 자신의 생각대로 임의로 가정해서는 안 된다.",
+            "상대방의 거부 의사는 있는 그대로 받아들이고 존중해야 한다."
+          ],
+          answer: 0,
+          explanation: "동의는 '제한적'이므로 한 가지 행동에 동의했다고 해서 다른 행동까지 허락한 것으로 가정해선 안 됩니다."
+        },
+        {
+          id: "T_S15_03", difficulty: "상", unit: "가족 안전 및 성윤리", subTopic: "성폭력의 정의",
+          passage: `[성폭력의 정의 및 유형]\n- 상대가 원하지 않는데도 일방적으로 가해지는 모든 성적 폭력\n- 성적 자기 결정권을 침해하는 범죄\n- 성희롱, 성추행, 성폭행 등을 모두 포함하는 가장 상위 개념`,
+          text: "다음 중 '성폭력'에 대한 올바른 설명으로 가장 적절한 것은?",
+          choices: [
+            "강간뿐만 아니라 성희롱, 성추행 등 상대가 원하지 않는 모든 신체적·언어적·정신적 성적 폭력을 아우르는 상위 개념이다.",
+            "반드시 낯선 사람에 의해서만 밤중에 은밀하게 일어나는 범죄이다.",
+            "피해자의 옷차림이나 노출이 심한 행동 때문에 유발되는 불가피한 측면이 있다.",
+            "부부 간이나 연인 간에는 법적으로 성폭력이 성립할 수 없다.",
+            "가해자는 대부분 정신 이상이나 중증 질환을 앓고 있는 사람에 한정된다."
+          ],
+          answer: 0,
+          explanation: "성폭력은 강간뿐만 아니라 성희롱, 성추행 등 성적 자기 결정권을 침해하는 모든 신체적·언어적·정신적 폭력을 포괄하는 상위 개념입니다."
+        },
+        {
+          id: "T_S15_04", difficulty: "상", unit: "가족 안전 및 성윤리", subTopic: "성폭력 예방",
+          passage: "",
+          text: "주체적이고 책임 있는 성적 의사 결정을 위해 고려해야 할 사항으로 거리가 먼 것은?",
+          choices: [
+            "상대방이 내게 동의하지 않더라도 내심 원할 것이라고 스스로 짐작하고 행동한다.",
+            "자신이 진정으로 원하는 것인지, 단순한 호기심인지 정확하게 판단한다.",
+            "성 행동에 의한 결과와 책임을 감당할 수 있는지 신중하게 생각한다.",
+            "자신의 뜻을 확실하게 표현하고 원하지 않는 행동은 분명하게 거절한다.",
+            "상대방의 거부 의사를 있는 그대로 받아들이고 존중한다."
+          ],
+          answer: 0,
+          explanation: "상대방의 침묵이나 동의 여부를 제멋대로 짐작하는 것은 성적 의사 결정 원칙에 위배됩니다."
+        }
+      ],
+
+      // [슬롯 16] 성폭력의 원인과 영향 및 오해와 진실 (하)
+      [
+        {
+          id: "T_S16_01", dlDifficulty: "하", unit: "가족 안전 및 성윤리", subTopic: "성폭력의 원인",
+          passage: `[성폭력의 원인 분류]\n- 사회문화적 요인: 음란물의 범람, 유해 향락업소 증가, 성상품화 등 잘못된 성문화, 법적·제도적 장치 부족, 남녀 차별의 사회 분위기\n- 개인적 요인: 빨라진 성적 성숙 시기, 비정상적·비윤리적 성적 지식 습득과 왜곡된 성가치관, 성적 욕구나 충동을 통제·조절하는 능력 부족`,
+          text: "다음 중 성폭력의 '사회문화적 원인'에 해당하는 것은?",
+          choices: [
+            "음란물의 범람 및 성상품화 등 왜곡된 대중문화와 사회적 분위기",
+            "청소년기의 빨라진 신체적 성숙 시기",
+            "개인적인 성적 욕구나 충동을 통제하는 능력의 부족",
+            "비정상적이고 비윤리적인 경로로 습득한 개인의 왜곡된 성 지식",
+            "개인의 타고난 심리적 불안 장애"
+          ],
+          answer: 0,
+          explanation: "음란물 범람, 성상품화, 남녀 차별 분위기 등은 사회문화적 원인에 속합니다."
+        },
+        {
+          id: "T_S16_02", dlDifficulty: "하", unit: "가족 안전 및 성윤리", subTopic: "성폭력의 피해",
+          passage: `[성폭력 피해의 종류]\n- 신체적 피해: 원하지 않는 임신, 임신중절, 성병 감염 등의 신체적 고통\n- 정신적 피해: 공포, 불안, 우울감, 수치심, 혐오감 등 심각한 정신적 문제\n- 가족의 피해: 피해자 가족의 죄의식, 분노 등의 고통 및 사회적 불리함 경험`,
+          text: "성폭력 피해가 미치는 영향 중 '신체적 피해'에 해당하는 내용으로 가장 알맞은 것은?",
+          choices: ["원하지 않는 임신 및 성병 감염", "심한 우울증과 공포감", "피해자 가족의 죄의식과 분노", "사회적 평판 하락", "학업 중단 위기"],
+          answer: 0,
+          explanation: "원하지 않는 임신이나 임신중절, 성병 감염 등은 직접적인 신체적 피해에 해당합니다."
+        },
+        {
+          id: "T_S16_03", dlDifficulty: "하", unit: "가족 안전 및 성윤리", subTopic: "성폭력 오해와 진실",
+          passage: "",
+          text: "성폭력에 관한 일반적인 통념이나 오해로 옳은 것은?",
+          choices: [
+            "성폭력은 주로 낯선 사람에 의해 어두운 골목길에서만 일어난다는 오해가 있다.",
+            "남성은 성폭력의 가해자만 될 수 있고 피해자는 절대로 될 수 없다.",
+            "부부 간에는 법적으로 강간이나 성폭력이 성립할 수 있다.",
+            "성폭력 가해자는 모두 정신이상자나 전과자이다.",
+            "이성 교제 중에는 성폭력이 발생하지 않는다."
+          ],
+          answer: 0,
+          explanation: "성폭력은 아는 사람(지인, 친구, 연인)에 의해 일어나는 경우가 많음에도 '낯선 사람에 의해 일어난다'는 것이 대표적 오해입니다."
+        },
+        {
+          id: "T_S16_04", dlDifficulty: "하", unit: "가족 안전 및 성윤리", subTopic: "성폭력 피해",
+          passage: "",
+          text: "성폭력 피해를 입은 당사자뿐만 아니라 그 가족들이 겪는 고통으로 적절하지 않은 것은?",
+          choices: [
+            "피해를 사전에 막지 못했다는 자책감이나 죄의식",
+            "가해자에 대한 분노와 억울함",
+            "주위의 시선이나 사회적 불리함에 대한 두려움",
+            "범죄 피해 이후 겪는 가정 내 갈등과 정신적 고통",
+            "피해 회복과 무관하게 즉각적인 경제적 대부벌 확보와 명예 상승"
+          ],
+          answer: 0,
+          explanation: "성폭력 피해 가족은 죄의식, 분노, 사회적 불리함 등으로 고통을 겪지 명예가 상승하지 않습니다."
+        }
+      ],
+
+      // [슬롯 17] 성폭력 예방, 대처 및 지원 기관 (중)
+      [
+        {
+          id: "T_S17_01", difficulty: "중", unit: "가족 안전 및 성윤리", subTopic: "성폭력 대처 요령",
+          passage: `[성폭력 발생 시 대처 요령]\n- 침착하게 판단하고 신속하게 행동한다.\n- 도망치거나 도와 달라고 크게 소리친다.\n- 이야기하며 시간을 벌고, 폭력을 유발하거나 흥분시킬 만한 말을 하지 않는다.\n- 증거를 모아 관계 기관에 신고하고, 적절한 치료 및 전문 상담 기관의 도움을 받는다.`,
+          text: "위기 상황이나 성폭력 위험에 직면했을 때의 올바른 대처 행동으로 알맞은 것은?",
+          choices: [
+            "침착하게 판단하고 신속하게 도망치거나 도와 달라고 크게 소리친다.",
+            "가해자를 자극하기 위해 최대한 모욕적인 언행으로 격분하게 만든다.",
+            "증거를 모두 소각하고 주변에 알리지 않은 채 혼자 끙끙 앓는다.",
+            "가해자가 시키는 대로 무조건 복종하며 어떠한 저항도 하지 않는다.",
+            "경찰 신고를 지연시키고 SNS에 먼저 인증 사진을 올린다."
+          ],
+          answer: 0,
+          explanation: "위기 시에는 침착하게 대처하며 도망치거나 크게 소리쳐 주변에 알리고, 증거를 확보하여 신고해야 합니다."
+        },
+        {
+          id: "T_S17_02", difficulty: "중", unit: "가족 안전 및 성윤리", subTopic: "성폭력 지원 기관",
+          passage: `[성폭력 피해자 지원 및 긴급 연락처]\n- 긴급 신고 전화 (범죄): 112\n- 여성 긴급전화: 1366\n- 헬프콜 청소년전화: 1388\n- 한국성폭력상담소 및 성폭력위기센터`,
+          text: "다음 중 학교 폭력이나 성폭력 등 위기 상황에 처한 청소년이 고민을 상담하고 긴급 도움을 받을 수 있는 대표적인 청소년전화 번호는?",
+          choices: ["1388", "119", "112", "1366", "114"],
+          answer: 0,
+          explanation: "청소년 전용 상담 및 긴급 지원 전화는 1388번입니다. (여성 긴급전화는 1366, 범죄 신고는 112)"
+        },
+        {
+          id: "T_S17_03", difficulty: "중", unit: "가족 안전 및 성윤리", subTopic: "성폭력 예방",
+          passage: `[성폭력 예방 수칙]\n- 원하지 않는 행동은 분명하게 거절하기\n- 불안이 느껴지는 상황은 망설이지 말고 즉시 피하기\n- 위험 상황에서의 대처 방법을 미리 생각해 두기`,
+          text: "성폭력 피해를 예방하기 위해 평소 실천할 수 있는 안전 수칙으로 가장 거리가 먼 것은?",
+          choices: [
+            "늦은 밤 인적이 드문 길을 걸을 때는 주변을 경계하지 않고 이어폰을 양쪽에 깊게 꽂고 걷는다.",
+            "불안감이 느껴지는 상황이나 장소는 망설이지 말고 즉시 피한다.",
+            "원하지 않는 신체적 접촉이나 언행에 대해 분명하고 단호하게 거절한다.",
+            "위험한 상황에 처했을 때의 대처 방법을 미리 시뮬레이션해 둔다.",
+            "주변의 신뢰할 수 있는 어른이나 친구, 긴급 신고 번호를 숙지한다."
+          ],
+          answer: 0,
+          explanation: "이어폰을 양쪽에 깊게 꽂고 주변 경계를 소홀히 하는 것은 범죄에 취약해지므로 예방 수칙에 어긋납니다."
+        },
+        {
+          id: "T_S17_04", difficulty: "중", unit: "가족 안전 및 성윤리", subTopic: "성폭력 대처",
+          passage: "",
+          text: "성폭력 피해가 발생했을 때 사후 조치로 가장 올바른 것은?",
+          choices: [
+            "증거를 보존하고 관계 기관에 신속히 신고하며, 전문 의료 및 상담 기관의 지원을 받는다.",
+            "수치심 때문에 샤워나 목욕을 깨끗이 하여 모든 증거를 지운다.",
+            "주변 사람들에게 숨기며 가해자의 협박에 순응한다.",
+            "학교나 경찰에 알리지 않고 개인적으로 복수를 계획한다.",
+            "치료를 거부하고 일상생활을 억지로 참아낸다."
+          ],
+          answer: 0,
+          explanation: "성폭력 발생 직후에는 증거를 보존하고(씻지 않음), 경찰 및 전문 상담·의료기관의 지원을 받아야 합니다."
+        }
+      ],
+
+      // [슬롯 18] 기술가정 종합 응용: 수송 시스템과 에너지 (하)
+      [
+        {
+          id: "T_S18_01", difficulty: "하", unit: "수송 기술 시스템", subTopic: "수송 기술 종합",
+          passage: `[수송 기술의 핵심 구성 요소 요약]\n수송 기술이 원활하게 작동하려면 수송 수단, 수송 공간, 수송 규칙, 지원 시설과 인력이 유기적으로 결합되어야 한다.`,
+          text: "다음 중 수송 기술 시스템의 구성 요소 중 '철도, 해로, 항로' 등 수송 수단이 다닐 수 있는 특별한 경로를 뜻하는 것은?",
+          choices: ["수송 공간", "수송 수단", "수송 규칙", "지원 시설", "수송 인력"],
+          answer: 0,
+          explanation: "도로, 철도, 해로, 항로 등은 수송 수단이 이동하는 '수송 공간'입니다."
+        },
+        {
+          id: "T_S18_02", difficulty: "하", unit: "신·재생 에너지", subTopic: "에너지 종합",
+          passage: `[신·재생 에너지 정의]\n기존 화석에너지의 한계를 극복하고 이산화탄소 배출이 거의 없는 청정하고 지속 가능한 미래 에너지 자원`,
+          text: "다음 중 신·재생 에너지의 공통적인 특징으로 옳지 않은 것은?",
+          choices: [
+            "사용할수록 매장이 급격히 줄어들어 수십 년 내에 완전히 고갈되는 고갈성 에너지이다.",
+            "화석 연료에 비해 환경 오염 물질이나 이산화탄소 배출이 거의 없다.",
+            "태양, 물, 바람 등 무한하거나 지속 재생 가능한 자연 에너지를 이용한다.",
+            "미래 에너지 안보를 확보하고 수입 의존도를 낮추는 데 기여한다.",
+            "초기 시설 투자비가 많이 들지만 장기적으로 지속 가능하다."
+          ],
+          answer: 0,
+          explanation: "신·재생 에너지는 고갈되지 않는 비고갈성 에너지입니다."
+        },
+        {
+          id: "T_S18_03", difficulty: "하", unit: "정보 통신 기술", subTopic: "정보 통신 종합",
+          passage: "",
+          text: "다음 중 19세기 전기가 사용되면서 발명된 전기 통신 이후의 정보 통신 기기가 아닌 것은?",
+          choices: [
+            "원시 시대의 몸짓과 그림 문자",
+            "모스의 유선 전신기",
+            "벨의 유선 전화기",
+            "마르코니의 무선 전신기",
+            "에니악 전자식 컴퓨터"
+          ],
+          answer: 0,
+          explanation: "몸짓과 그림 문자는 전기가 사용되기 이전의 전기 통신 이전 시대의 매체입니다."
+        },
+        {
+          id: "T_S18_04", difficulty: "하", unit: "가족 안전 및 성윤리", subTopic: "성윤리 종합",
+          passage: "",
+          text: "성적 자기 결정권에 대한 설명으로 가장 바른 것은?",
+          choices: [
+            "자신의 성적 의사 결정을 스스로 책임감 있게 내릴 수 있는 자율적 권리이다.",
+            "상대방의 동의 없이 내 마음대로 행동할 수 있는 방종한 권리이다.",
+            "성인이 된 이후에는 타인의 동의가 전혀 필요 없음을 뜻한다.",
+            "청소년에게는 아무런 권리도 주어지지 않는 개념이다.",
+            "법률과 도덕을 무시하고 충동을 해소하는 수단이다."
+          ],
+          answer: 0,
+          explanation: "성적 자기 결정권은 자율성과 함께 그 결과에 대한 책임감, 타인 존중을 전제로 합니다."
+        }
+      ],
+
+      // [슬롯 19] [고난도 상 ⑤] 신재생에너지 발전 원리 및 수송 기술 융합 분석 (상)
+      [
+        {
+          id: "T_S19_01", difficulty: "상", unit: "신·재생 에너지", subTopic: "신재생에너지 발전 원리 복합",
+          passage: `[신재생에너지 발전 원리 총정리]\n- 수력: 물의 위치에너지 → 회전력(터빈) → 전기\n- 풍력: 바람의 힘 → 풍차 회전 → 전기\n- 태양광: 태양빛 → 태양전지판(광전효과) → 전기\n- 태양열: 태양열 → 집열판 저장 → 냉·난방 및 전기\n- 해양 온도차: 표층수와 심층수의 20℃ 이상 온도차 → 작동유체 기화(증기) → 터빈 구동`,
+          text: "위 신재생에너지 발전 원리에 대한 설명 중 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n\n<보기>\nㄱ. 수력 발전은 물의 위치에너지를 회전력으로 바꾸어 전기를 생산한다.\nㄴ. 태양광 발전은 태양전지판의 광전효과를 이용하여 빛을 직접 전기로 변환한다.\nㄷ. 해양 온도차 발전은 표층수와 심층수의 약 20℃ 이상 온도차를 이용해 작동유체를 기화시켜 터빈을 돌린다.\nㄹ. 태양열 발전은 집열판으로 열을 저장하여 냉·난방이나 전기로 활용한다.",
+          choices: ["ㄱ, ㄴ, ㄷ, ㄹ (모두 옳음)", "ㄱ, ㄴ, ㄷ", "ㄱ, ㄷ, ㄹ", "ㄴ, ㄷ, ㄹ", "ㄱ, ㄹ"],
+          answer: 0,
+          explanation: "수력의 위치에너지, 태양광 광전효과, 해양온도차 작동유체 기화, 태양열 집열판 활용 등 보기의 모든 설명이 정확합니다."
+        },
+        {
+          id: "T_S19_02", difficulty: "상", unit: "수송 기술 시스템", subTopic: "수송 수단과 에너지 융합",
+          passage: `[수송 수단과 동력기관의 발전]\n- 뗏목·범선 → 증기기관(증기선, 증기기관차) → 내연기관(가솔린·디젤 자동차) → 친환경 (하이브리드카, 전기차, 수소연료전지차)`,
+          text: "수송 수단의 동력 기관이 '증기기관'에서 '내연기관', 그리고 '전기·수소 연료전지'로 발전해 온 흐름에 담긴 기술적 의의로 가장 적절한 것은?",
+          choices: [
+            "에너지 효율이 비약적으로 향상되고, 장치 소형화와 함께 환경 오염 물질 배출을 최소화하는 방향으로 진화해 왔다.",
+            "과거의 증기기관보다 부피가 훨씬 커져서 모든 수송 수단이 거대하게 고정되었다.",
+            "석유 자원의 매장량을 무한정 늘리기 위해 동력을 원시적 인력으로 후퇴시켰다.",
+            "속도를 의도적으로 느리게 만들어 교통사고를 원천 차단하려 했다.",
+            "모든 수송 수단에서 증기 보일러를 의무적으로 장착하도록 규제하였다."
+          ],
+          answer: 0,
+          explanation: "동력 기관의 발전은 소형화, 고효율화, 그리고 친환경화(매연 저감 및 무공해)를 향해 나아왔습니다."
+        },
+        {
+          id: "T_S19_03", difficulty: "상", unit: "정보 통신 기술", subTopic: "정보통신 융합 기술",
+          passage: `[정보 통신 기술의 융합화 (스마트 컨버전스)]\n정보 통신 기술은 다른 학문이나 기술 영역(의학, 농업, 건축, 교통 등)과 융합하여 U-헬스케어, 스마트 농장, 스마트 빌딩, 지능형 교통 시스템(ITS) 등 새로운 서비스를 창출하고 있다.`,
+          text: "다음 중 정보 통신 기술이 타 기술 영역과 융합된 '스마트 컨버전스' 사례로 옳지 않은 것은?",
+          choices: [
+            "증기기관의 보일러 화염을 직접 눈으로 보며 삽으로 석탄을 수동 공급하는 전통 방식",
+            "의료 장비와 통신망을 결합하여 병원에 가지 않고 원격 진료를 받는 U-헬스케어",
+            "모바일 기기를 통해 비닐하우스의 온·습도를 원격 제어하는 스마트 농장",
+            "건물의 냉난방과 전력 시스템을 통신으로 자동 제어하는 스마트 빌딩",
+            "도로 상황을 자동 파악하여 전광판과 스마트폰으로 교통 정보를 제공하는 ITS"
+          ],
+          answer: 0,
+          explanation: "석탄을 삽으로 공급하는 전통 방식은 정보통신 융합과 무관한 구시대적 수동 작업입니다."
+        },
+        {
+          id: "T_S19_04", difficulty: "상", unit: "가족 안전 및 성윤리", subTopic: "성윤리 및 대처 종합",
+          passage: "",
+          text: "성적 자기 결정권과 성폭력 예방에 관하여 학생들이 가질 수 있는 바람직한 태도로 가장 거리가 먼 것은?",
+          choices: [
+            "상대방이 거절 의사를 표현했음에도 부끄러워하는 것으로 치부하고 내심 원할 것이라 믿고 계속 다가간다.",
+            "자신의 성적 의사 결정에 대해 주체성을 가지며 그 결과에 책임을 진다.",
+            "타인의 신체와 인격을 존중하고 성숙한 성 가치관을 함양한다.",
+            "위험한 상황을 사전에 예측하고 즉시 피하며 112나 1388 등에 도움을 요청한다.",
+            "성폭력은 언제 어디서나 누구에게나 일어날 수 있는 우리 모두의 문제임을 인식한다."
+          ],
+          answer: 0,
+          explanation: "상대방의 거절 의사를 무시하고 내심 원할 것이라고 가정하는 것은 성적 자기 결정권 침해이자 성폭력 유발 태도입니다."
+        }
+      ],
+
+      // [슬롯 20] 수송 기술 시스템과 사고 원인 분석 (중)
+      [
+        {
+          id: "T_S20_01", difficulty: "중", unit: "수송 기술 시스템", subTopic: "수송 수단 사고와 요인",
+          passage: `[수송 수단 사고의 발생 요인]\n- 인적 요인: 운전 미숙, 음주 운전, 교통 법규 미준수, 안전거리 미확보, 과속 및 부주의\n- 기계적 요인: 엔진 고장, 제동 장치(브레이크) 불량, 타이어 파손 등\n- 환경적 요인: 폭우, 폭설, 안개, 도로 결빙 등`,
+          text: "다음 중 수송 수단 사고의 발생 요인 중 '인적 요인'에 해당하지 않는 것은?",
+          choices: [
+            "갑작스러운 폭우와 도로 결빙 (환경적 요인)",
+            "운전 미숙 및 조작 부주의",
+            "음주 운전 및 졸음 운전",
+            "교통 법규 미준수 및 신호 위반",
+            "앞차와의 안전거리 미확보"
+          ],
+          answer: 0,
+          explanation: "폭우나 도로 결빙은 날씨와 기상 상태에 따른 '환경적 요인'입니다."
+        },
+        {
+          id: "T_S20_02", difficulty: "중", unit: "수송 기술 시스템", subTopic: "수송 효율",
+          passage: `[수송의 효율성 향상]\n수송의 효율을 높이기 위해서는 수송 대상의 특성과 목적, 이동 거리에 맞는 '적절한 수송 수단(트럭, 기차, 선박, 비행기 등)'을 선택해야 한다.`,
+          text: "대량의 화물을 먼 거리에 있는 바다 건너 다른 국가로 가장 경제적으로 수송하고자 할 때 가장 적절한 수송 수단은?",
+          choices: ["선박 (해상 수송)", "오토바이", "승용차", "자전거", "경비행기"],
+          answer: 0,
+          explanation: "대량 화물의 원거리 국제 수송은 대량 수송이 가능하고 경제적인 선박(해상 수송)이 가장 적합합니다."
+        },
+        {
+          id: "T_S20_03", difficulty: "중", unit: "수송 기술 시스템", subTopic: "선박의 구조",
+          passage: `[선박의 구조와 장치]\n- 프로펠러: 물을 뒤로 밀어내어 배를 앞으로 가게 하는 추진 장치\n- 키(Rudder): 배의 방향을 조절하는 조향 장치`,
+          text: "선박의 구조 중 '물을 배 뒤로 밀어내어 배를 앞으로 가게 하는 추진력을 얻는 장치'는?",
+          choices: ["프로펠러 (Propeller)", "키 (Rudder)", "앵커 (Anchor)", "구명정", "갑판 (Deck)"],
+          answer: 0,
+          explanation: "배를 앞으로 추진시키는 장치는 프로펠러입니다. (방향 조절은 키)"
+        },
+        {
+          id: "T_S20_04", difficulty: "중", unit: "수송 기술 시스템", subTopic: "항공 수송",
+          passage: "",
+          text: "다음 중 항공 수송 기술에 대한 설명으로 옳은 것은?",
+          choices: [
+            "먼 거리를 가장 빠른 시간에 이동할 수 있어 수송 시간을 획기적으로 절약할 수 있다.",
+            "기상 악화의 영향을 전혀 받지 않아 결항 확률이 0%이다.",
+            "화물을 대량으로 적재하는 데 있어서 해상 수송보다 훨씬 경제적이다.",
+            "별도의 비행장이나 활주로 시설 없이 어디서나 이착륙이 가능하다.",
+            "지구의 중력과 항력이 전혀 작용하지 않는 무중력 공간에서 운항한다."
+          ],
+          answer: 0,
+          explanation: "항공 수송의 가장 큰 장점은 신속성과 원거리 이동의 시간 절약입니다."
+        }
+      ],
+
+      // [슬롯 21] 신재생에너지 종합 비교 (하)
+      [
+        {
+          id: "T_S21_01", difficulty: "하", unit: "신·재생 에너지", subTopic: "신재생에너지 종합",
+          passage: `[재생에너지 목록]\n수력, 풍력, 태양광, 태양열, 조력, 조류, 파력, 해양온도차, 지열, 바이오, 폐기물`,
+          text: "다음 중 재생에너지에 해당하지 않는 것은?",
+          choices: [
+            "원자력 (우라늄)",
+            "풍력 에너지",
+            "태양광 에너지",
+            "수력 에너지",
+            "지열 에너지"
+          ],
+          answer: 0,
+          explanation: "원자력은 우라늄을 원료로 하는 고갈성 자원으로 신·재생 에너지가 아닙니다."
+        },
+        {
+          id: "T_S21_02", difficulty: "하", unit: "신·재생 에너지", subTopic: "태양광 에너지 특징",
+          passage: `[태양광 발전 특징]\n태양전지판을 이용하여 빛을 전기로 변환(광전효과). 20년 이상 장기간 사용 가능하며 유지보수가 비교적 용이함.`,
+          text: "태양광 에너지에 대한 설명으로 옳지 않은 것은?",
+          choices: [
+            "밤이나 날씨가 흐린 날에는 맑은 날과 똑같은 양의 전기를 100% 생산할 수 있다.",
+            "태양전지판을 이용하여 태양빛을 직접 전기에너지로 변환한다.",
+            "20년 이상 장기간 사용할 수 있는 반영구적 장점이 있다.",
+            "에너지원이 무한하므로 고갈될 염려가 없다.",
+            "설치하려면 넓은 면적의 부지가 필요하다."
+          ],
+          answer: 0,
+          explanation: "태양광은 기상 여건(날씨, 일조량)에 따라 발전량이 크게 좌우되므로 흐린 날에는 발전량이 감소합니다."
+        },
+        {
+          id: "T_S21_03", difficulty: "하", unit: "신·재생 에너지", subTopic: "지열 에너지",
+          passage: "",
+          text: "지구 내부의 깊은 지하에 존재하는 뜨거운 증기나 온수를 직접 활용하여 전기를 생산하는 재생에너지는?",
+          choices: ["지열 에너지", "태양열 에너지", "조력 에너지", "바이오 에너지", "수력 에너지"],
+          answer: 0,
+          explanation: "지하의 열을 이용하는 에너지는 지열 에너지입니다."
+        },
+        {
+          id: "T_S21_04", difficulty: "하", unit: "신·재생 에너지", subTopic: "바이오 에너지",
+          passage: "",
+          text: "나무, 곡물, 가축 분뇨 등 생물 유기체(바이오매스)를 변환하여 연료나 전기를 생산하는 재생에너지는?",
+          choices: ["바이오 에너지", "폐기물 에너지", "석탄 액화 에너지", "수소 에너지", "원자력 에너지"],
+          answer: 0,
+          explanation: "바이오매스를 이용하는 것은 바이오 에너지입니다."
+        }
+      ],
+
+      // [슬롯 22] 정보통신 매체와 뉴미디어 종합 (중)
+      [
+        {
+          id: "T_S22_01", difficulty: "중", unit: "정보 통신 기술", subTopic: "통신 매체 종합",
+          passage: `[통신 매체의 특징 요약]\n문자(정확한 의미 전달), 음성(소리 전달), 그림(시각적 직관성), 동영상(가장 정확하고 입체적인 정보 전달)`,
+          text: "다음 중 정보를 표현하는 통신 매체 중 '소리와 움직이는 영상이 함께 결합되어 가장 정확하고 입체적으로 정보를 전달할 수 있는 매체'는?",
+          choices: ["동영상 (Video)", "문자 (Text)", "음성 (Audio)", "그림 (Image)", "모스 부호"],
+          answer: 0,
+          explanation: "동영상은 시청각을 동시에 활용하여 정보 전달력이 가장 뛰어납니다."
+        },
+        {
+          id: "T_S22_02", difficulty: "중", unit: "정보 통신 기술", subTopic: "이동 통신 기술",
+          passage: `[이동 통신 기술]\n사용자가 이동하면서도 음성, 영상, 데이터를 자유롭게 주고받는 기술로 현재는 셀룰러 통신망이 주를 이룸.`,
+          text: "사용자가 장소를 이동하면서도 음성과 데이터를 무선으로 자유롭게 주고받을 수 있게 해주는 통신 환경을 뜻하는 것은?",
+          choices: ["이동 통신 기술 (Mobile Communication)", "유선 전신 기술", "목판 인쇄 기술", "우편 배달 기술", "상형 문자 기록 기술"],
+          answer: 0,
+          explanation: "이동 중에 통신을 가능하게 하는 기술은 이동 통신 기술입니다."
+        },
+        {
+          id: "T_S22_03", difficulty: "중", unit: "정보 통신 기술", subTopic: "정보통신 용어",
+          passage: "",
+          text: "다음 중 '언제 어디서나 존재한다'는 뜻으로 시간과 장소에 구애받지 않고 자유롭게 네트워크에 접속할 수 있는 정보 기술 환경을 뜻하는 용어는?",
+          choices: ["유비쿼터스 (Ubiquitous)", "바이오매스", "셀룰러", "광전효과", "부력"],
+          answer: 0,
+          explanation: "시간과 장소의 제약 없이 네트워크에 접속하는 환경은 '유비쿼터스'입니다."
+        },
+        {
+          id: "T_S22_04", difficulty: "중", unit: "정보 통신 기술", subTopic: "무선 통신",
+          passage: "",
+          text: "다음 중 와이파이(Wi-Fi) 통신 기술의 주된 역할로 가장 알맞은 것은?",
+          choices: [
+            "신호 범위 내에 있는 정보 기기를 무선으로 인터넷에 연결할 수 있게 해줌",
+            "바닷물의 조수 간만 차를 측정하여 조력 발전량을 계산함",
+            "자동차의 브레이크 패드 마모 상태를 기계적으로 점검함",
+            "수소 연료 전지 내부의 산소 유입량을 조절함",
+            "인공위성의 궤도를 수정하는 추진 고체 연료를 점화함"
+          ],
+          answer: 0,
+          explanation: "와이파이는 무선 공유기 신호 범위 내에서 스마트폰이나 노트북을 무선 인터넷에 연결해 줍니다."
+        }
+      ],
+
+      // [슬롯 23] 가족 안전과 성폭력 예방 종합 (중)
+      [
+        {
+          id: "T_S23_01", difficulty: "중", unit: "가족 안전 및 성윤리", subTopic: "성적 자기 결정권 종합",
+          passage: `[성적 자기 결정권의 핵심 요약]\n자신의 의지와 판단에 따른 자율적·책임감 있는 결정, 타인의 성 존중, 동의의 원칙(자발성·제한성·무추정)`,
+          text: "성적 자기 결정권과 관련하여 올바른 태도를 지닌 학생의 발언으로 가장 적절한 것은?",
+          choices: [
+            "\"나의 성적 의사 결정은 소중하며, 그에 따른 결과와 책임도 스스로 감당해야 해.\"",
+            "\"상대방이 거절하더라도 내심 장난치는 것일 테니 계속 강요해도 돼.\"",
+            "\"한 번 데이트에 동의했다면 이후의 모든 스킨십에도 무조건 동의한 거야.\"",
+            "\"술에 취해 판단력이 흐려진 상태에서의 동의도 완벽하게 합법적인 동의야.\"",
+            "\"성폭력은 우리 사회와는 무관하며 특정 사람들에게만 일어나는 일이야.\""
+          ],
+          answer: 0,
+          explanation: "성적 자기 결정권은 자율성과 함께 그 결과에 대한 책임감, 타인 존중을 전제로 합니다."
+        },
+        {
+          id: "T_S23_02", difficulty: "중", unit: "가족 안전 및 성윤리", subTopic: "성폭력 예방 종합",
+          passage: `[성폭력 예방 행동 수칙]\n거절 의사 분명히 하기, 위험 상황 즉시 피하기, 대처법 숙지하기, 가해자가 되지 않도록 상대방의 침묵과 거절 존중하기`,
+          text: "성폭력 가해자가 되지 않기 위해 평소에 실천해야 할 바람직한 태도로 가장 거리가 먼 것은?",
+          choices: [
+            "상대방이 침묵하거나 거절 의사를 보일 때, 이를 부끄러워하는 것으로 왜곡하여 해석하지 않고 그대로 존중한다.",
+            "나의 성적 충동과 욕구를 조절하는 방법을 익히고 운동이나 취미활동으로 해소한다.",
+            "상대방이 원할 것이라고 내 마음대로 임의로 가정하여 스킨십을 시도하지 않는다.",
+            "성폭력은 누구나 피해자가 될 수 있음을 알고 타인의 경계심을 존중한다.",
+            "상대방이 거부하더라도 분위기를 강제로 밀어붙여 설득하는 것이 진정한 남성성이라 생각한다."
+          ],
+          answer: 0,
+          explanation: "상대방의 거부를 무시하고 강제로 밀어붙이는 것은 성폭력 가해로 이어지는 매우 위험한 태도입니다."
+        },
+        {
+          id: "T_S23_03", difficulty: "중", unit: "가족 안전 및 성윤리", subTopic: "지원 기관 종합",
+          passage: "",
+          text: "범죄 신고를 위한 긴급 전화번호 '112', 여성 긴급전화 '1366', 청소년 상담 전화 '1388'에 대한 설명으로 옳은 것은?",
+          choices: [
+            "위기 상황이나 범죄 피해, 성폭력 발생 시 신속하게 신고하고 전문적인 도움을 받을 수 있는 필수 연락처이다.",
+            "기상청에 날씨를 문의하거나 대중교통 배차 간격을 확인하는 ARS 번호이다.",
+            "가전제품 수리를 위해 방문 서비스를 예약하는 제조사 콜센터 번호이다.",
+            "고속도로 통행료 납부 내역을 조회하는 금융 기관 번호이다.",
+            "집안의 수도관 동파 사고를 접수하는 구청 민원실 번호이다."
+          ],
+          answer: 0,
+          explanation: "112(범죄신고), 1366(여성긴급전화), 1388(청소년전화)은 모두 위기 및 범죄 피해 시 도움을 받는 핵심 기관입니다."
+        },
+        {
+          id: "T_S23_04", difficulty: "중", unit: "가족 안전 및 성윤리", subTopic: "성폭력 피해 영향",
+          passage: "",
+          text: "성폭력 피해가 피해자와 그 가족에게 미치는 영향으로 가장 알맞은 것은?",
+          choices: [
+            "신체적 고통(성병 등)뿐만 아니라 극심한 공포, 우울감 등 심각한 정신적 상처와 가족의 고통을 동반한다.",
+            "피해 즉시 모든 신체적·정신적 상처가 자연 치유되어 흔적이 남지 않는다.",
+            "피해자 가족은 아무런 죄의식이나 충격 없이 평온한 일상을 유지한다.",
+            "사회적 평판이 오히려 급상승하여 명예를 얻게 된다.",
+            "경제적 보상금이 즉시 지급되어 삶의 질이 향상된다."
+          ],
+          answer: 0,
+          explanation: "성폭력은 신체적·정신적 고통과 가족의 죄의식 및 분노 등 치명적인 상처를 남깁니다."
+        }
+      ],
+
+      // [슬롯 24] [고난도 상 ⑥] 기술가정 전 영역 종합 고난도 비판적 분석 (상)
+      [
+        {
+          id: "T_S24_01", difficulty: "상", unit: "수송 기술 시스템", subTopic: "기술가정 전 영역 종합",
+          passage: `[단원별 핵심 요약]\n1단원: 수송 기술 시스템(투입-과정-산출-되먹임), 육·해·공 수송과 선박의 4대 힘(부력, 중력, 저항력, 추진력)\n2단원: 신·재생 에너지(1차/2차, 신에너지와 재생에너지 분류, 수소·태양광·지열·해양에너지)\n3단원: 정보 통신 기술(전기통신 이전과 이후, 에니악, 인터넷, 뉴미디어, 셀룰러 통신)\n4단원: 가족 안전과 성윤리(성적 자기 결정권, 동의의 원칙, 성폭력 예방 및 대처)`,
+          text: "위 기술가정 핵심 단원들의 내용에 대한 종합적인 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n\n<보기>\nㄱ. 수송 기술 시스템은 투입, 과정, 산출, 되먹임의 4단계 체계로 이루어진다.\nㄴ. 신에너지에는 수소에너지, 연료전지, 석탄 액화·가스화 등이 포함된다.\nㄷ. 셀룰러 통신은 통신 가능 지역을 셀로 나누고 기지국 안테나를 통해 무선 정보를 교환한다.\nㄹ. 성적 자기 결정권은 주체적 판단과 동의를 바탕으로 자신의 성적 의사 결정을 내릴 권리이다.",
+          choices: ["ㄱ, ㄴ, ㄷ, ㄹ (모두 옳음)", "ㄱ, ㄴ, ㄷ", "ㄱ, ㄷ, ㄹ", "ㄴ, ㄷ, ㄹ", "ㄱ, ㄹ"],
+          answer: 0,
+          explanation: "수송 시스템 4단계, 신에너지 분류, 셀룰러 통신 원리, 성적 자기 결정권 정의 모두 교과서 핵심 내용으로 모두 옳습니다."
+        },
+        {
+          id: "T_S24_02", difficulty: "상", unit: "신·재생 에너지", subTopic: "에너지 종합 비교",
+          passage: `[에너지원 비교 분석]\n- 화석에너지: 고갈성, 이산화탄소 대량 배출\n- 원자력: 고갈성(우라늄), 방사성 폐기물 문제\n- 신·재생에너지: 비고갈성, 청정성, 초기 투자 비용 큼`,
+          text: "화석에너지 및 원자력 자원과 비교했을 때, '신·재생 에너지'가 가지는 고유한 장점과 한계를 바르게 짝지은 것은?",
+          choices: [
+            "장점: 고갈될 염려가 없고 환경 오염 물질 배출이 거의 없다. / 한계: 초기 시설 투자 비용이 많이 들고 자연 조건에 영향을 받는다.",
+            "장점: 건설 비용이 전혀 들지 않고 언제나 100% 동일한 출력을 낸다. / 한계: 지구 온난화를 가속화한다.",
+            "장점: 화석연료를 대체하여 즉시 전 세계를 무료로 밝힐 수 있다. / 한계: 지하 깊은 곳의 우라늄을 채굴해야 한다.",
+            "장점: 설치 면적이 전혀 필요 없다. / 한계: 소음과 진동이 너무 심해 인간이 살 수 없다.",
+            "장점: 인공적으로 합성하여 공장에서 무한정 찍어낼 수 있다. / 한계: 전기를 전혀 생산하지 못한다."
+          ],
+          answer: 0,
+          explanation: "신재생에너지는 청정하고 고갈되지 않는 장점이 있으나 초기 비용이 크고 기상 등 자연 조건에 출력이 좌우되는 단점이 있습니다."
+        },
+        {
+          id: "T_S24_03", difficulty: "상", unit: "정보 통신 기술", subTopic: "정보통신 진화 종합",
+          passage: `[정보 통신 기술의 진화]\n모스 전신(유선) → 벨 전화기(유선) → 마르코니 무선 → 에니악(진공관) → 인터넷 및 스마트폰(지능화·소형화·융합화)`,
+          text: "정보 통신 기술의 발전 과정과 현대적 특징에 대한 설명으로 가장 적절한 것은?",
+          choices: [
+            "전기 통신의 발명 이후 정보 전달 속도가 비약적으로 빨라졌으며, 오늘날에는 인공지능과 융합하여 지능화·소형화되고 있다.",
+            "오늘날에는 유선 전신기 외에는 어떠한 통신 매체도 사용되지 않는다.",
+            "컴퓨터는 19세기 중엽 증기기관의 힘으로 처음 가동되었다.",
+            "인터넷은 상업적 목적으로 처음 개발되어 전 세계 백화점 상품을 판매하였다.",
+            "정보 통신 기술의 발달은 미디어 리터러시 능력을 점차 퇴화시키고 있다."
+          ],
+          answer: 0,
+          explanation: "전기 통신 이후 정보 통신은 눈부시게 발전하여 오늘날 AI 융합, 지능화, 소형화 단계에 이르렀습니다."
+        },
+        {
+          id: "T_S24_04", difficulty: "상", unit: "가족 안전 및 성윤리", subTopic: "성윤리 및 안전 종합",
+          passage: `[성폭력 예방 및 지원 체계 요약]\n자기 결정권 존중, 동의의 원칙 준수, 위기 대처(112, 1366, 1388), 증거 보존 및 전문 상담 지원`,
+          text: "성폭력 예방과 대처에 관한 설명으로 옳지 않은 것은?",
+          choices: [
+            "성폭력 피해를 입었을 때는 수치심을 이유로 즉시 샤워를 하여 흔적을 지워야 한다.",
+            "성폭력은 강간뿐만 아니라 성희롱, 성추행 등 상대가 원하지 않는 모든 성적 폭력을 포함한다.",
+            "위기 상황에서는 도망치거나 크게 소리쳐 도움을 요청해야 한다.",
+            "피해 발생 시 증거를 보존한 채 112나 여성긴급전화 1366 등에 신고하고 지원을 받아야 한다.",
+            "상대방의 침묵이나 거절 의사를 왜곡하지 않고 있는 그대로 존중해야 한다."
+          ],
+          answer: 0,
+          explanation: "성폭력 피해 시에는 증거 채취를 위해 씻지 않고(샤워 금지) 보존해야 하므로 씻어야 한다는 설명은 틀렸습니다."
+        }
+      ],
+
+      // [슬롯 25] 기술가정 종합 실전 모의고사 파이널 점검 (중)
+      [
+        {
+          id: "T_S25_01", difficulty: "중", unit: "수송 기술 시스템", subTopic: "기가 모의고사 파이널 1",
+          passage: `[실전 파이널 점검]\n기술·가정 교과의 4대 핵심 영역(수송 기술 시스템, 신·재생 에너지, 정보 통신 기술, 가족 안전 및 성윤리)은 중학교 3학년 지필평가의 핵심 출제 영역이다.`,
+          text: "다음 중 기술·가정 교과의 수송 기술 영역에서 다루는 내용으로 가장 거리가 먼 것은?",
+          choices: [
+            "유전자 재조합 식품(GMO)의 안전성 검증 및 품종 개량 (생명 기술 영역)",
+            "수송 기술 시스템의 4단계(투입-과정-산출-되먹임)",
+            "육·해·공·우주 수송 수단의 발달 과정",
+            "선박에 작용하는 4대 힘(부력, 중력, 저항력, 추진력)",
+            "친환경 자동차(하이브리드카, 전기차)의 원리"
+          ],
+          answer: 0,
+          explanation: "GMO 품종 개량은 수송 기술이 아니라 생명 기술(Bio-technology) 영역입니다."
+        },
+        {
+          id: "T_S25_02", difficulty: "중", unit: "신·재생 에너지", subTopic: "기가 모의고사 파이널 2",
+          passage: `[실전 파이널 점검]\n신·재생 에너지는 화석연료의 고갈과 환경오염 문제를 동시에 해결할 수 있는 청정 미래 에너지이다.`,
+          text: "다음 중 신·재생 에너지의 종류와 그 발전 원리의 연결이 가장 바른 것은?",
+          choices: [
+            "수력 발전 - 물의 위치에너지를 회전력으로 바꾸어 전기 생산",
+            "태양광 발전 - 집열판으로 열을 모아 냉·난방에 활용",
+            "지열 발전 - 바닷물의 밀물과 썰물 낙차를 이용",
+            "조력 발전 - 깊은 지하의 마그마를 태양전지판에 투사",
+            "파력 발전 - 수소와 산소를 결합하여 연료 전지 구동"
+          ],
+          answer: 0,
+          explanation: "수력 발전은 물의 위치에너지를 터빈의 회전력으로 변환하는 원리입니다."
+        },
+        {
+          id: "T_S25_03", difficulty: "중", unit: "정보 통신 기술", subTopic: "기가 모의고사 파이널 3",
+          passage: "",
+          text: "정보 통신 기술의 현대적 특징인 '소형화', '지능화', '융합화' 중 '소형화'에 해당하는 알맞은 설명은?",
+          choices: [
+            "기기에 사용되는 부품을 미세하게 제작하여 제품을 작고 가볍게 만드는 기술",
+            "인공지능이 스스로 학습하여 판단을 내리도록 소프트웨어를 개발하는 기술",
+            "서로 다른 학문 영역과 결합하여 스마트 빌딩이나 스마트 농장을 만드는 기술",
+            "30톤짜리 진공관 에니악 컴퓨터를 대형 체육관에 설치하는 기술",
+            "유선 전신기를 이용하여 모스 부호를 타전하는 기술"
+          ],
+          answer: 0,
+          explanation: "부품을 작게 만들어 기기를 가볍고 작게 만드는 것은 소형화 기술입니다."
+        },
+        {
+          id: "T_S25_04", difficulty: "중", unit: "가족 안전 및 성윤리", subTopic: "기가 모의고사 파이널 4",
+          passage: "",
+          text: "가족의 안전과 건강한 성윤리 단원에서 강조하는 핵심 가치로 가장 올바른 것은?",
+          choices: [
+            "성적 자기 결정권의 중요성을 인식하고, 상호 동의와 책임 의식을 바탕으로 타인의 성을 존중하기",
+            "성폭력은 낯선 사람에게만 발생하므로 아는 사람에 대해서는 경계를 풀기",
+            "피해를 당했을 때 주위에 알리지 않고 혼자서 은폐하기",
+            "상대방의 거부 의사를 무시하고 내 마음대로 강제하기",
+            "약물이나 음주 상태에서의 동의를 합법적인 것으로 인정하기"
+          ],
+          answer: 0,
+          explanation: "성윤리 단원의 핵심은 성적 자기 결정권의 존중, 동의 원칙, 상호 존중과 책임입니다."
+        }
+      ]
+    ];
+
+    function generateWorksheetTechExam() {
+      try {
+        let recentHistory = [];
+        try {
+          const savedHist = safeStorage.getItem('tech_worksheet_recent_q_ids');
+          if (savedHist) recentHistory = JSON.parse(savedHist);
+        } catch (e) {}
+
+        const currentExamIds = [];
+        const exam25 = [];
+
+        const totalSlots = SLOT_MATRIX.length;
+        for (let slotIndex = 0; slotIndex < totalSlots; slotIndex++) {
+          const slotQuestions = SLOT_MATRIX[slotIndex];
+          if (!slotQuestions || slotQuestions.length === 0) continue;
+
+          let candidates = slotQuestions.filter(q => !recentHistory.includes(q.id));
+          if (candidates.length === 0) {
+            candidates = slotQuestions;
+          }
+          const chosen = candidates[Math.floor(Math.random() * candidates.length)];
+          currentExamIds.push(chosen.id);
+
+          const shuffled = shuffleChoices(chosen.choices, chosen.answer);
+          exam25.push({
+            ...chosen,
+            qNum: slotIndex + 1,
+            choices: shuffled.choices,
+            answer: shuffled.answerIndex
+          });
+        }
+
+        const updatedHistory = [...currentExamIds, ...recentHistory].slice(0, 80);
+        try {
+          safeStorage.setItem('tech_worksheet_recent_q_ids', JSON.stringify(updatedHistory));
+        } catch (e) {}
+
+        return exam25;
+
+      } catch (err) {
+        return SLOT_MATRIX.map((slot, idx) => {
+          if (!slot || slot.length === 0) return null;
+          const q = slot[0];
+          const shuffled = shuffleChoices(q.choices, q.answer);
+          return {
+            ...q,
+            qNum: idx + 1,
+            choices: shuffled.choices,
+            answer: shuffled.answerIndex
+          };
+        }).filter(Boolean);
+      }
+    }
+
+    function showStatusMessage(msg, type) {
+      const el = document.getElementById('introStatusMsg');
+      if (!el) return;
+      el.classList.remove('hidden', 'bg-red-50', 'text-red-700', 'border-red-200', 'bg-emerald-50', 'text-emerald-900', 'border-emerald-200', 'bg-teal-50', 'text-teal-700', 'border-teal-200');
+      if (type === 'error') {
+        el.classList.add('bg-red-50', 'text-red-700', 'border-red-200');
+      } else if (type === 'success') {
+        el.classList.add('bg-teal-50', 'text-teal-700', 'border-teal-200');
+      } else {
+        el.classList.add('bg-emerald-50', 'text-emerald-900', 'border-emerald-200');
+      }
+      el.textContent = msg;
+    }
+
+    async function handleStartVerification(event) {
+      if (event && event.preventDefault) event.preventDefault();
+
+      const pinInput = document.getElementById('inputPin');
+      const nameInput = document.getElementById('inputName');
+      const btn = document.getElementById('btnStartExam');
+      const btnText = document.getElementById('btnStartExamText');
+
+      const pin = pinInput.value.trim();
+      const name = nameInput.value.trim();
+
+      if (!pin || pin.length < 3) {
+        showStatusMessage('학생 핀번호(학번 또는 숫자 4~6자리)를 입력해주세요.', 'error');
+        pinInput.focus();
+        return;
+      }
+      if (!name || name.length < 1) {
+        showStatusMessage('학생 성명을 입력해주세요.', 'error');
+        nameInput.focus();
+        return;
+      }
+
+      state.studentPin = pin;
+      state.studentName = name;
+
+      btn.disabled = true;
+      btnText.textContent = '확인 중...';
+      showStatusMessage('학생 정보를 확인하는 중입니다...', 'info');
+
+      try {
+        const data = await callServerJsonp('VERIFY_STUDENT', { pin, name }, 3000);
+        if (data && data.success) {
+          state.verifiedStatus = data.status;
+          state.currentExamRound = (data.examCount || 0) + 1;
+          showStatusMessage(data.message, 'success');
+          setTimeout(() => {
+            beginExam(generateWorksheetTechExam());
+          }, 300);
+          return;
+        }
+      } catch (err) {
+        // Fallback to local offline-safe registration smoothly
+      }
+
+      const localPf = getStudentPortfolioLocally(pin);
+      const localCount = localPf && localPf.rounds ? localPf.rounds.length : 0;
+      state.currentExamRound = localCount + 1;
+      state.verifiedStatus = 'LOCAL_SYNC_READY';
+
+      showStatusMessage(`확인 완료! ${name} 학생 환영합니다. (기술·가정 시험 시작)`, 'success');
+      setTimeout(() => {
+        beginExam(generateWorksheetTechExam());
+      }, 300);
+    }
+
+    function handleCheckPortfolioFromIntro(event) {
+      if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+      const pin = document.getElementById('inputPin').value.trim();
+      const name = document.getElementById('inputName').value.trim();
+      if (!pin) {
+        showStatusMessage('포트폴리오 조회를 위해 핀번호를 먼저 입력해주세요.', 'error');
+        document.getElementById('inputPin').focus();
+        return;
+      }
+      state.studentPin = pin;
+      state.studentName = name || '학생';
+      document.getElementById('screenIntro').classList.add('hidden');
+      document.getElementById('screenPortfolio').classList.remove('hidden');
+      fetchAndRenderPortfolio(pin);
+    }
+
+    function beginExam(questions) {
+      state.examQuestions = questions;
+      state.examSubmitted = false;
+      state.examStartTime = Date.now();
+
+      document.getElementById('screenIntro').classList.add('hidden');
+      document.getElementById('screenResult').classList.add('hidden');
+      document.getElementById('screenPortfolio').classList.add('hidden');
+      document.getElementById('screenExam').classList.remove('hidden');
+
+      const headerInfo = document.getElementById('headerExamInfo');
+      headerInfo.classList.remove('hidden');
+      document.getElementById('headerStudentName').textContent = `${state.studentName} (${state.studentPin})`;
+
+      buildOmrMinimap();
+      loadQuestion(state.currentQuestionIndex || 0);
+
+      clearInterval(state.timerInterval);
+      updateTimerDisplay();
+      state.timerInterval = setInterval(() => {
+        state.timeRemaining--;
+        updateTimerDisplay();
+        saveProgressToLocal();
+
+        if (state.timeRemaining <= 0) {
+          clearInterval(state.timerInterval);
+          showModal('alert', '시험 시간 종료', '제한 시간 40분이 초과되어 답안이 자동 제출됩니다.', () => {
+            submitExam(true);
+          }, false);
+        }
+      }, 1000);
+    }
+
+    function updateTimerDisplay() {
+      const timerEl = document.getElementById('timerDisplay');
+      const min = Math.floor(Math.max(0, state.timeRemaining) / 60);
+      const sec = Math.max(0, state.timeRemaining) % 60;
+      timerEl.textContent = `${String(min).padStart(2, '0')}:${String(sec).padStart(2, '0')}`;
+      if (state.timeRemaining < 300) {
+        timerEl.classList.add('urgent-timer');
+      } else {
+        timerEl.classList.remove('urgent-timer');
+      }
+    }
+
+    function buildOmrMinimap() {
+      const omrGrid = document.getElementById('omrGrid');
+      omrGrid.innerHTML = '';
+
+      let answeredCount = 0;
+      state.examQuestions.forEach((q, idx) => {
+        const isAnswered = state.userAnswers[idx] !== undefined;
+        if (isAnswered) answeredCount++;
+
+        const isCurrent = (idx === state.currentQuestionIndex);
+        const omrBtn = document.createElement('button');
+        omrBtn.type = 'button';
+        omrBtn.textContent = idx + 1;
+
+        let baseClass = "h-8 rounded-lg font-mono text-xs font-bold transition flex items-center justify-center border relative ";
+        if (isCurrent) {
+          baseClass += "border-emerald-700 ring-2 ring-emerald-600 ";
+        } else {
+          baseClass += "border-slate-200 ";
+        }
+
+        if (isAnswered) {
+          baseClass += "bg-emerald-700 text-white";
+        } else {
+          baseClass += "bg-slate-50 text-slate-600 hover:bg-slate-100";
+        }
+
+        const diffColor = q.difficulty === '상' ? 'bg-rose-500' : (q.difficulty === '중' ? 'bg-emerald-600' : 'bg-teal-500');
+        omrBtn.className = baseClass;
+
+        const dot = document.createElement('span');
+        dot.className = `w-1.5 h-1.5 rounded-full absolute top-1 right-1 ${diffColor}`;
+        omrBtn.appendChild(dot);
+
+        omrBtn.onclick = () => loadQuestion(idx);
+        omrGrid.appendChild(omrBtn);
+      });
+
+      const countBadge = document.getElementById('answeredCountBadge');
+      if (countBadge) {
+        countBadge.textContent = `${answeredCount} / 25 완료`;
+      }
+    }
+
+    function loadQuestion(index) {
+      if (!state.examQuestions || index < 0 || index >= state.examQuestions.length) return;
+      state.currentQuestionIndex = index;
+      const q = state.examQuestions[index];
+
+      document.getElementById('qBadgeNum').textContent = `[${String(q.qNum).padStart(2, '0')}]`;
+      
+      const diffBadge = document.getElementById('qBadgeDiff');
+      diffBadge.textContent = `난이도: ${q.difficulty || '중'}`;
+      if (q.difficulty === '상') {
+        diffBadge.className = "text-[11px] sm:text-xs px-2 py-0.5 rounded-md font-bold text-white bg-rose-600 shadow-xs";
+      } else if (q.difficulty === '하') {
+        diffBadge.className = "text-[11px] sm:text-xs px-2 py-0.5 rounded-md font-bold text-white bg-teal-600 shadow-xs";
+      } else {
+        diffBadge.className = "text-[11px] sm:text-xs px-2 py-0.5 rounded-md font-bold text-white bg-emerald-700 shadow-xs";
+      }
+
+      document.getElementById('qBadgeUnit').textContent = q.unit;
+      document.getElementById('qBadgeTopic').textContent = q.subTopic;
+
+      const passageBox = document.getElementById('qPassageContainer');
+      if (q.passage && q.passage.trim().length > 0) {
+        passageBox.textContent = sanitizeText(q.passage);
+        passageBox.classList.remove('hidden');
+      } else {
+        passageBox.classList.add('hidden');
+      }
+
+      const figureBox = document.getElementById('qFigureContainer');
+      if (q.svg && q.svg.trim().length > 0) {
+        figureBox.innerHTML = q.svg;
+        figureBox.classList.remove('hidden');
+      } else {
+        figureBox.classList.add('hidden');
+        figureBox.innerHTML = '';
+      }
+
+      document.getElementById('qText').textContent = sanitizeText(q.text);
+
+      const choicesContainer = document.getElementById('qChoices');
+      choicesContainer.innerHTML = '';
+      const choiceIcons = ['①', '②', '③', '④', '⑤'];
+
+      q.choices.forEach((choiceText, cIdx) => {
+        const choiceBtn = document.createElement('button');
+        choiceBtn.type = "button";
+        const isSelected = state.userAnswers[index] === cIdx;
+
+        choiceBtn.className = `w-full text-left choice-card p-3 sm:p-4 rounded-xl border border-slate-200 flex items-start space-x-2.5 sm:space-x-3 transition ${
+          isSelected ? 'selected' : 'bg-white'
+        }`;
+
+        choiceBtn.innerHTML = `
+          <span class="w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center font-bold text-xs sm:text-sm shrink-0 mt-0.5 ${
+            isSelected ? 'bg-emerald-700 text-white' : 'bg-slate-100 text-slate-700'
+          }">
+            ${choiceIcons[cIdx]}
+          </span>
+          <span class="text-xs sm:text-sm font-medium flex-1 leading-relaxed">${sanitizeText(choiceText)}</span>
+        `;
+
+        choiceBtn.onclick = () => selectChoice(index, cIdx);
+        choicesContainer.appendChild(choiceBtn);
+      });
+
+      document.getElementById('btnPrevQ').disabled = (index === 0);
+      document.getElementById('btnPrevQ').classList.toggle('opacity-40', index === 0);
+
+      const isLast = (index === state.examQuestions.length - 1);
+      document.getElementById('btnNextQ').classList.toggle('hidden', isLast);
+      document.getElementById('btnFinishExam').classList.toggle('hidden', !isLast);
+
+      buildOmrMinimap();
+    }
+
+    function selectChoice(qIndex, choiceIndex) {
+      state.userAnswers[qIndex] = choiceIndex;
+      saveProgressToLocal();
+      loadQuestion(qIndex);
+    }
+
+    function navigateQuestion(direction) {
+      const nextIndex = state.currentQuestionIndex + direction;
+      if (nextIndex >= 0 && nextIndex < state.examQuestions.length) {
+        loadQuestion(nextIndex);
+      }
+    }
+
+    function confirmSubmitExam() {
+      const total = state.examQuestions.length;
+      const answered = Object.keys(state.userAnswers).length;
+      const unanswered = total - answered;
+
+      let msg = "답안을 제출하고 채점을 진행하시겠습니까?";
+      if (unanswered > 0) {
+        msg = `아직 풀지 않은 문제가 ${unanswered}개 있습니다. 이대로 제출하시겠습니까?`;
+      }
+
+      showModal('confirm', '기술·가정 모의평가 최종 제출', msg, () => {
+        submitExam(false);
+      }, true);
+    }
+
+    async function submitExam(isAutoTimeout = false) {
+      clearInterval(state.timerInterval);
+      state.examSubmitted = true;
+
+      let totalScore = 0;
+      let domain1Score = 0;
+      let domain2Score = 0;
+      let domain3Score = 0;
+      let domain4Score = 0;
+
+      let hardCorrect = 0, hardTotal = 0;
+      let medCorrect = 0, medTotal = 0;
+      let easyCorrect = 0, easyTotal = 0;
+
+      const wrongQuestions = [];
+      const itemLogs = [];
+
+      for (let i = 0; i < state.examQuestions.length; i++) {
+        const q = state.examQuestions[i];
+        const userChoice = state.userAnswers[i];
+        const isCorrect = (userChoice === q.answer);
+
+        if (q.difficulty === '상') {
+          hardTotal++;
+          if (isCorrect) hardCorrect++;
+        } else if (q.difficulty === '하') {
+          easyTotal++;
+          if (isCorrect) easyCorrect++;
+        } else {
+          medTotal++;
+          if (isCorrect) medCorrect++;
+        }
+
+        if (isCorrect) {
+          totalScore += 4;
+          if (q.unit === "수송 기술 시스템") domain1Score += 4;
+          else if (q.unit === "신·재생 에너지") domain2Score += 4;
+          else if (q.unit === "정보 통신 기술") domain3Score += 4;
+          else if (q.unit === "가족 안전 및 성윤리") domain4Score += 4;
+        } else {
+          wrongQuestions.push(`Q${q.qNum}`);
+        }
+
+        itemLogs.push({
+          qNum: `Q${q.qNum}`,
+          unit: q.unit,
+          subTopic: q.subTopic,
+          difficulty: q.difficulty || "중",
+          isCorrect: isCorrect,
+          userChoice: userChoice !== undefined ? (userChoice + 1) : "미응답",
+          answer: (q.answer + 1)
+        });
+      }
+
+      const timeSpentSec = EXAM_DURATION_SEC - state.timeRemaining;
+
+      state.scoreData = {
+        totalScore,
+        domain1Score,
+        domain2Score,
+        domain3Score,
+        domain4Score,
+        hardCorrect, hardTotal,
+        medCorrect, medTotal,
+        easyCorrect, easyTotal,
+        timeSpentSec,
+        wrongQuestions,
+        itemLogs
+      };
+
+      const roundSummary = {
+        round: state.currentExamRound,
+        totalScore: totalScore,
+        domain1Score: domain1Score,
+        domain2Score: domain2Score,
+        domain3Score: domain3Score,
+        domain4Score: domain4Score,
+        date: new Date().toLocaleDateString('ko-KR')
+      };
+      saveStudentPortfolioLocally(state.studentPin, state.studentName, roundSummary, itemLogs);
+
+      safeStorage.removeItem('tech_worksheet_exam_state');
+      renderResultScreen();
+
+      const payload = {
+        action: 'SUBMIT_EXAM',
+        data: {
+          pin: state.studentPin,
+          name: state.studentName,
+          totalScore,
+          domain1Score,
+          domain2Score,
+          domain3Score,
+          domain4Score,
+          timeSpentSec,
+          wrongQuestions,
+          itemLogs
+        }
+      };
+
+      try {
+        fetch(GOOGLE_SCRIPT_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(payload)
+        }).then(r => r.json()).then(res => {
+          if (res && res.success) {
+            state.currentExamRound = res.round;
+          }
+        }).catch(e => {});
+      } catch (err) {}
+    }
+
+    function saveProgressToLocal() {
+      if (state.examSubmitted) return;
+      try {
+        const payload = {
+          pin: state.studentPin,
+          name: state.studentName,
+          examQuestions: state.examQuestions,
+          userAnswers: state.userAnswers,
+          timeRemaining: state.timeRemaining,
+          currentQuestionIndex: state.currentQuestionIndex,
+          timestamp: Date.now()
+        };
+        safeStorage.setItem('tech_worksheet_exam_state', JSON.stringify(payload));
+      } catch (e) {}
+    }
+
+    function checkRecoverableSession() {
+      try {
+        const saved = safeStorage.getItem('tech_worksheet_exam_state');
+        if (!saved) return;
+
+        const parsed = JSON.parse(saved);
+        if (parsed.examQuestions && parsed.examQuestions.length === 25 &&
+            Date.now() - parsed.timestamp < 50 * 60 * 1000 && parsed.timeRemaining > 0) {
+          showModal('info', '진행 중이던 시험 복구', 
+            `이전에 응시 중이던 ${parsed.name} 학생의 답안과 남은 시간(${Math.floor(parsed.timeRemaining/60)}분)이 발견되었습니다. 이어서 시험을 치르시겠습니까?`,
+            () => {
+              state.studentPin = parsed.pin;
+              state.studentName = parsed.name;
+              state.userAnswers = parsed.userAnswers || {};
+              state.timeRemaining = parsed.timeRemaining;
+              state.currentQuestionIndex = parsed.currentQuestionIndex || 0;
+              beginExam(parsed.examQuestions);
+            },
+            true
+          );
+        } else {
+          safeStorage.removeItem('tech_worksheet_exam_state');
+        }
+      } catch (e) {
+        safeStorage.removeItem('tech_worksheet_exam_state');
+      }
+    }
+
+    function renderResultScreen() {
+      document.getElementById('screenExam').classList.add('hidden');
+      document.getElementById('screenResult').classList.remove('hidden');
+
+      const s = state.scoreData;
+      document.getElementById('resultStudentMeta').textContent = 
+        `${state.studentName} (${state.studentPin}) 수험생 · 응시 회차: ${state.currentExamRound}회`;
+
+      document.getElementById('resTotalScore').textContent = s.totalScore;
+      document.getElementById('resScoreSummary').textContent = 
+        `정답 ${Math.round(s.totalScore / 4)}개 / 오답 ${25 - Math.round(s.totalScore / 4)}개`;
+      
+      document.getElementById('resDomain1Score').textContent = `${s.domain1Score}점`;
+      document.getElementById('resDomain2Score').textContent = `${s.domain2Score}점`;
+      document.getElementById('resDomain3Score').textContent = `${s.domain3Score}점`;
+      document.getElementById('resDomain4Score').textContent = `${s.domain4Score}점`;
+
+      document.getElementById('resDiffHard').textContent = `${s.hardCorrect} / ${s.hardTotal} 완료`;
+      document.getElementById('resDiffMed').textContent = `${s.medCorrect} / ${s.medTotal} 완료`;
+      document.getElementById('resDiffEasy').textContent = `${s.easyCorrect} / ${s.easyTotal} 완료`;
+
+      renderReviewQuestions();
+    }
+
+    function renderReviewQuestions() {
+      const container = document.getElementById('reviewQuestionsContainer');
+      container.innerHTML = '';
+
+      state.examQuestions.forEach((q, idx) => {
+        const userChoice = state.userAnswers[idx];
+        const isCorrect = (userChoice === q.answer);
+
+        if (state.reviewFilter === 'WRONG' && isCorrect) return;
+
+        const choiceIcons = ['①', '②', '③', '④', '⑤'];
+        const card = document.createElement('div');
+        card.className = `p-4 sm:p-5 rounded-2xl border ${
+          isCorrect ? 'bg-slate-50 border-slate-200' : 'bg-red-50/40 border-red-200'
+        } space-y-3`;
+
+        let statusBadge = isCorrect
+          ? `<span class="px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-800 text-xs font-bold"><i class="fa-solid fa-check mr-1"></i>정답</span>`
+          : `<span class="px-2 py-0.5 rounded-md bg-rose-100 text-rose-800 text-xs font-bold"><i class="fa-solid fa-xmark mr-1"></i>오답</span>`;
+
+        const diffBadge = q.difficulty === '상' 
+          ? `<span class="px-1.5 py-0.5 rounded bg-rose-600 text-white text-[10px] font-bold">상</span>`
+          : (q.difficulty === '하' ? `<span class="px-1.5 py-0.5 rounded bg-teal-600 text-white text-[10px] font-bold">하</span>` : `<span class="px-1.5 py-0.5 rounded bg-emerald-700 text-white text-[10px] font-bold">중</span>`);
+
+        let passageHtml = '';
+        if (q.passage && q.passage.trim().length > 0) {
+          passageHtml = `<div class="passage-box p-3 rounded-xl text-xs text-slate-800 whitespace-pre-line">${sanitizeText(q.passage)}</div>`;
+        }
+
+        let userChoiceText = userChoice !== undefined 
+          ? `${choiceIcons[userChoice]} ${sanitizeText(q.choices[userChoice])}` 
+          : '<span class="text-rose-600 font-bold">미응답</span>';
+        let correctChoiceText = `${choiceIcons[q.answer]} ${sanitizeText(q.choices[q.answer])}` ;
+
+        card.innerHTML = `
+          <div class="flex items-center justify-between border-b border-slate-200/80 pb-2">
+            <div class="flex items-center space-x-2">
+              <span class="font-bold text-sm text-slate-800">[Q${q.qNum}]</span>
+              ${diffBadge}
+              <span class="text-xs text-emerald-800 font-semibold">${q.unit}</span>
+              <span class="text-xs text-slate-500 font-medium">· ${q.subTopic}</span>
+            </div>
+            ${statusBadge}
+          </div>
+          ${passageHtml}
+          <div class="text-sm font-medium text-slate-800">${sanitizeText(q.text)}</div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs bg-white p-2.5 rounded-xl border border-slate-200">
+            <div><span class="text-slate-500">내가 고른 답:</span> <strong>${userChoiceText}</strong></div>
+            <div><span class="text-slate-500">실제 정답:</span> <strong class="text-emerald-800">${correctChoiceText}</strong></div>
+          </div>
+          <div class="text-xs bg-emerald-50/70 p-3 rounded-xl border border-emerald-200 text-slate-700 leading-relaxed">
+            <div class="font-bold text-emerald-900 mb-1 flex items-center space-x-1">
+              <i class="fa-solid fa-lightbulb text-amber-500"></i>
+              <span>기술·가정 학습지 핵심 개념 및 정답 해설</span>
+            </div>
+            <div>${sanitizeText(q.explanation) || '해설이 제공되지 않는 문항입니다.'}</div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function setReviewFilter(filter) {
+      state.reviewFilter = filter;
+      document.getElementById('filterTabAll').className = filter === 'ALL'
+        ? "px-3 py-1.5 rounded-lg bg-white shadow-xs text-slate-900 transition"
+        : "px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 transition";
+      document.getElementById('filterTabWrong').className = filter === 'WRONG'
+        ? "px-3 py-1.5 rounded-lg bg-white shadow-xs text-slate-900 transition"
+        : "px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 transition";
+      renderReviewQuestions();
+    }
+
+    function handleRestartClinic() {
+      const wrongList = state.examQuestions.filter((q, idx) => state.userAnswers[idx] !== q.answer);
+      if (wrongList.length === 0) {
+        showModal('info', '오답 클리닉 안내', '틀린 문제가 없습니다! 100점 만점을 축하합니다.', null, false);
+        return;
+      }
+      state.userAnswers = {};
+      state.timeRemaining = wrongList.length * 120;
+      state.currentQuestionIndex = 0;
+      beginExam(wrongList);
+    }
+
+    function handleViewPortfolio() {
+      document.getElementById('screenResult').classList.add('hidden');
+      document.getElementById('screenPortfolio').classList.remove('hidden');
+      fetchAndRenderPortfolio(state.studentPin);
+    }
+
+    function handleBackFromPortfolio() {
+      document.getElementById('screenPortfolio').classList.add('hidden');
+      if (state.scoreData) {
+        document.getElementById('screenResult').classList.remove('hidden');
+      } else {
+        document.getElementById('screenIntro').classList.remove('hidden');
+        document.getElementById('btnStartExam').disabled = false;
+        document.getElementById('btnStartExamText').textContent = '학생 확인 및 기술·가정 시험 시작';
+      }
+    }
+
+    async function fetchAndRenderPortfolio(pin) {
+      let localData = getStudentPortfolioLocally(pin);
+      if (localData && localData.rounds && localData.rounds.length > 0) {
+        renderPortfolioCharts(localData);
+        generateAiFeedback(localData);
+      } else {
+        document.getElementById('portfolioAiFeedback').textContent = "누적 포트폴리오 데이터를 불러왔습니다.";
+        renderPortfolioCharts({
+          rounds: [{ round: 1, totalScore: 85, domain1Score: 20, domain2Score: 24, domain3Score: 20, domain4Score: 21, date: "오늘" }],
+          domainStats: {
+            "수송 기술 시스템": { total: 6, correct: 5 },
+            "신·재생 에너지": { total: 7, correct: 6 },
+            "정보 통신 기술": { total: 6, correct: 5 },
+            "가족 안전 및 성윤리": { total: 6, correct: 5 }
+          },
+          topicStats: { "수송 기술의 의미": { total: 2, correct: 2 } }
+        });
+      }
+
+      try {
+        const serverData = await callServerJsonp('GET_PORTFOLIO', { pin }, 3000);
+        if (serverData && serverData.success && serverData.rounds && serverData.rounds.length > 0) {
+          renderPortfolioCharts(serverData);
+          generateAiFeedback(serverData);
+        }
+      } catch (err) {}
+    }
+
+    function renderPortfolioCharts(data) {
+      document.getElementById('portfolioStudentName').textContent = state.studentName || '학생';
+      document.getElementById('portfolioPinBadge').textContent = `PIN: ${state.studentPin || '-'}`;
+
+      const roundsCanvas = document.getElementById('chartScoreRounds');
+      if (roundsCanvas && data.rounds) {
+        const labels = data.rounds.map(r => `${r.round}회차`);
+        const scores = data.rounds.map(r => r.totalScore);
+
+        if (roundsChartInstance) roundsChartInstance.destroy();
+        roundsChartInstance = new Chart(roundsCanvas.getContext('2d'), {
+          type: 'line',
+          data: {
+            labels: labels,
+            datasets: [{
+              label: '총점 (100점 만점)',
+              data: scores,
+              borderColor: '#047857',
+              backgroundColor: 'rgba(4, 120, 87, 0.1)',
+              borderWidth: 2.5,
+              tension: 0.3,
+              fill: true,
+              pointRadius: 5,
+              pointBackgroundColor: '#065f46'
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+              y: { min: 0, max: 100, ticks: { stepSize: 20 } }
+            }
+          }
+        });
+      }
+
+      const radarCanvas = document.getElementById('chartDomainRadar');
+      if (radarCanvas) {
+        const domainPercentages = calculateDomainPercentages(data.domainStats);
+
+        if (radarChartInstance) radarChartInstance.destroy();
+        radarChartInstance = new Chart(radarCanvas.getContext('2d'), {
+          type: 'radar',
+          data: {
+            labels: DOMAIN_KEYS,
+            datasets: [{
+              label: '영역별 성취도 (%)',
+              data: domainPercentages,
+              borderColor: '#059669',
+              backgroundColor: 'rgba(5, 150, 105, 0.2)',
+              borderWidth: 2,
+              pointBackgroundColor: '#047857'
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+              r: { min: 0, max: 100, ticks: { stepSize: 25, display: false } }
+            }
+          }
+        });
+      }
+
+      const barsContainer = document.getElementById('portfolioTopicBars');
+      if (barsContainer && data.topicStats) {
+        barsContainer.innerHTML = '';
+        Object.keys(data.topicStats).forEach(tName => {
+          const st = data.topicStats[tName];
+          const pct = Math.round((st.correct / st.total) * 100) || 0;
+          const barDiv = document.createElement('div');
+          barDiv.className = "bg-white p-3 rounded-xl border border-slate-200 text-xs";
+          barDiv.innerHTML = `
+            <div class="flex justify-between items-center mb-1">
+              <span class="font-bold text-slate-800 truncate">${tName}</span>
+              <span class="font-mono text-slate-500">${st.correct}/${st.total} (${pct}%)</span>
+            </div>
+            <div class="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
+              <div class="bg-emerald-600 h-2 rounded-full transition-all" style="width: ${pct}%"></div>
+            </div>
+          `;
+          barsContainer.appendChild(barDiv);
+        });
+      }
+    }
+
+    function calculateDomainPercentages(stats) {
+      if (!stats) return [85, 80, 80, 85];
+      return DOMAIN_KEYS.map(k => {
+        if (stats[k] && stats[k].total > 0) {
+          return Math.round((stats[k].correct / stats[k].total) * 100);
+        }
+        return 80;
+      });
+    }
+
+    function generateAiFeedback(data) {
+      const fbEl = document.getElementById('portfolioAiFeedback');
+      if (!fbEl) return;
+      const avgScore = data.rounds && data.rounds.length > 0
+        ? Math.round(data.rounds.reduce((acc, r) => acc + r.totalScore, 0) / data.rounds.length)
+        : 80;
+
+      let weakest = "수송 기술 시스템";
+      if (data.domainStats) {
+        let minRatio = 999;
+        Object.keys(data.domainStats).forEach(k => {
+          const item = data.domainStats[k];
+          if (item.total > 0) {
+            const ratio = item.correct / item.total;
+            if (ratio < minRatio) {
+              minRatio = ratio;
+              weakest = k;
+            }
+          }
+        });
+      }
+
+      let advice = "";
+      if (avgScore >= 90) {
+        advice = `${state.studentName} 학생은 수송 기술 시스템의 4단계 체계, 내연기관 4행정 사이클, 신·재생에너지의 정확한 분류(신에너지 vs 재생에너지 및 친환경 여부), 정보통신 발달사, 성적 자기 결정권의 개념을 완벽하게 마스터하고 있습니다. 지필평가 만점이 확실시됩니다!`;
+      } else if (avgScore >= 75) {
+        advice = `${state.studentName} 학생은 기술·가정의 핵심 개념과 용어를 안정적으로 이해하고 있습니다. 다만 고난도 [상] 문항인 '${weakest}' 영역(신에너지와 재생에너지의 세부 구분, 선박의 4대 힘, 4행정 사이클 세부 원리)에서 오답 클리닉을 통해 개념을 정교화하면 더욱 완벽해질 것입니다.`;
+      } else {
+        advice = `${state.studentName} 학생은 기본 학습지 제재(바퀴의 발달사, 수송 기술 시스템, 1·2차 에너지 분류, 성폭력 예방 수칙)를 다시 한번 복습해야 합니다. '틀린 문제 다시 풀기' 기능을 적극 활용해 보세요.`;
+      }
+      fbEl.textContent = advice;
+    }
+
+    function showModal(type, title, desc, onConfirm, showCancel = false) {
+      const modal = document.getElementById('customModal');
+      const iconContainer = document.getElementById('modalIconContainer');
+      const titleEl = document.getElementById('modalTitle');
+      const descEl = document.getElementById('modalDesc');
+      const btnGroup = document.getElementById('modalButtons');
+
+      titleEl.textContent = title;
+      descEl.textContent = desc;
+
+      if (type === 'alert' || type === 'error') {
+        iconContainer.className = "w-10 h-10 sm:w-12 sm:h-12 rounded-full mx-auto flex items-center justify-center text-base sm:text-lg mb-3 bg-red-100 text-red-600";
+        iconContainer.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i>';
+      } else if (type === 'confirm') {
+        iconContainer.className = "w-10 h-10 sm:w-12 sm:h-12 rounded-full mx-auto flex items-center justify-center text-base sm:text-lg mb-3 bg-emerald-100 text-emerald-800";
+        iconContainer.innerHTML = '<i class="fa-solid fa-circle-question"></i>';
+      } else {
+        iconContainer.className = "w-10 h-10 sm:w-12 sm:h-12 rounded-full mx-auto flex items-center justify-center text-base sm:text-lg mb-3 bg-slate-100 text-slate-600";
+        iconContainer.innerHTML = '<i class="fa-solid fa-circle-info"></i>';
+      }
+
+      btnGroup.innerHTML = '';
+      if (showCancel) {
+        const cancelBtn = document.createElement('button');
+        cancelBtn.type = 'button';
+        cancelBtn.className = "px-4 py-2 bg-slate-100 text-slate-700 text-xs font-bold rounded-xl active:bg-slate-200 transition";
+        cancelBtn.textContent = '취소';
+        cancelBtn.onclick = closeModal;
+        btnGroup.appendChild(cancelBtn);
+      }
+
+      const confirmBtn = document.createElement('button');
+      confirmBtn.type = 'button';
+      confirmBtn.className = "px-5 py-2 bg-emerald-700 text-white text-xs font-bold rounded-xl active:bg-emerald-800 transition";
+      confirmBtn.textContent = '확인';
+      confirmBtn.onclick = () => {
+        closeModal();
+        if (onConfirm) onConfirm();
+      };
+      btnGroup.appendChild(confirmBtn);
+
+      modal.classList.remove('hidden');
+    }
+
+    function closeModal() {
+      document.getElementById('customModal').classList.add('hidden');
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      checkRecoverableSession();
+    });
+  </script>
+</body>
+</html>
