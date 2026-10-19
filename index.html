@@ -82,7 +82,6 @@
 <body class="min-h-screen flex flex-col justify-between">
 
   <div id="app" class="flex-1 flex flex-col">
-    <!-- Global Header -->
     <header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-xs">
       <div class="max-w-5xl mx-auto px-3 sm:px-4 py-2 sm:py-3 flex items-center justify-between">
         <div class="flex items-center space-x-2 sm:space-x-3">
@@ -110,7 +109,6 @@
       </div>
     </header>
 
-    <!-- [화면 1] 시작 및 학생 인증 화면 -->
     <section id="screenIntro" class="flex-1 flex items-center justify-center p-3 sm:p-6">
       <div class="max-w-xl w-full paper-sheet rounded-2xl p-5 sm:p-10 my-2">
         <div class="text-center mb-6 sm:mb-8 border-b border-slate-200 pb-5 sm:pb-6">
@@ -183,7 +181,6 @@
       </div>
     </section>
 
-    <!-- [화면 2] 시험장 화면 (Test Screen) -->
     <section id="screenExam" class="hidden flex-1 max-w-5xl w-full mx-auto p-2.5 sm:p-6 space-y-4 sm:space-y-6">
       <!-- OMR Minimap & Progress -->
       <div class="paper-sheet rounded-2xl p-3.5 sm:p-5">
@@ -254,7 +251,6 @@
       </div>
     </section>
 
-    <!-- [화면 3] 채점 결과 및 오답 풀이 (Result Screen) -->
     <section id="screenResult" class="hidden flex-1 max-w-5xl w-full mx-auto p-3 sm:p-6 space-y-4 sm:space-y-6">
       <div class="paper-sheet rounded-2xl p-5 sm:p-8">
         <div class="text-center max-w-md mx-auto mb-6 sm:mb-8 border-b border-slate-200 pb-5 sm:pb-6">
@@ -353,7 +349,6 @@
       </div>
     </section>
 
-    <!-- [화면 4] 학생 누적 학습 포트폴리오 (Portfolio Screen) -->
     <section id="screenPortfolio" class="hidden flex-1 max-w-5xl w-full mx-auto p-3 sm:p-6 space-y-4 sm:space-y-6">
       <div class="paper-sheet rounded-2xl p-4 sm:p-8">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 sm:mb-8 border-b border-slate-200 pb-4 sm:pb-6">
@@ -477,7 +472,6 @@
     let roundsChartInstance = null;
     let radarChartInstance = null;
 
-    // Robust JSONP wrapper with fallback error suppression to prevent any "Script error" crash
     function callServerJsonp(action, params = {}, timeoutMs = 3500) {
       return new Promise((resolve, reject) => {
         const callbackName = 'gas_tech_cb_' + Date.now() + '_' + Math.floor(Math.random() * 10000);
@@ -595,7 +589,6 @@
         .replace(/\$([^\$]+)\$/g, '$1');
     }
 
-    // 25개 고유 기가 평가 슬롯 (난이도 상 6문항 고정 보장: Q03, Q08, Q12, Q15, Q19, Q24)
     const SLOT_MATRIX = [
       // [슬롯 01] 수송 기술의 의미와 구성 요소 (하)
       [
@@ -668,7 +661,6 @@
             <path d="M235 45 L255 45" stroke="#15803d" stroke-width="2"/>
             <rect x="255" y="25" width="70" height="40" rx="6" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
             <text x="290" y="49" font-size="10" font-weight="bold" fill="#991b1b" text-anchor="middle">되먹임</text>
-            <!-- 되먹임 화살표 -->
             <path d="M290 65 Q 290 100, 170 100 Q 50 100, 50 65" fill="none" stroke="#dc2626" stroke-dasharray="4,3" stroke-width="1.5"/>
             <text x="170" y="118" font-size="9" font-weight="bold" fill="#dc2626" text-anchor="middle">문제 발생 시 피드백 및 수정 단계</text>
           </svg>`,
@@ -712,10 +704,10 @@
           text: "수송 기술 시스템의 각 단계와 세부 활동의 연결이 가장 바른 것은?",
           choices: [
             "투입 - 수송 대상, 수송 수단, 지원 시설의 준비 및 점검",
-            "과정 - 목적지 도착 후 최종 만족도 설문 조사 집계 (산출 또는 되먹임)",
-            "산출 - 운전기사의 음주 여부 단속 (투입)",
-            "되먹임 - 버스 정류장에 승객이 탑승하는 것 (과정)",
-            "과정 - 비행기 격납고의 정비 점검 (투입)"
+            "과정 - 목적지 도착 후 최종 만족도 설문 조사 집계",
+            "산출 - 운전기사의 음주 여부 단속",
+            "되먹임 - 버스 정류장에 승객이 탑승하는 것",
+            "과정 - 비행기 격납고의 정비 점검"
           ],
           answer: 0,
           explanation: "투입은 수송을 위한 준비 및 대상·수단·시설·인력의 점검 단계입니다."
@@ -728,7 +720,6 @@
           id: "T_S03_01", difficulty: "상", unit: "수송 기술 시스템", subTopic: "육상 수송의 발달",
           svg: `<svg viewBox="0 0 340 160" class="max-w-[320px] h-auto" xmlns="http://www.w3.org/2000/svg">
             <rect width="340" height="160" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
-            <!-- 바퀴 4단계 변천 -->
             <rect x="15" y="20" width="70" height="110" rx="5" fill="#f8fafc" stroke="#64748b"/>
             <text x="50" y="40" font-size="9.5" font-weight="bold" fill="#0f172a" text-anchor="middle">통나무 바퀴</text>
             <text x="50" y="65" font-size="8" fill="#475569" text-anchor="middle">가장 오래된 바퀴</text>
@@ -846,21 +837,14 @@
           id: "T_S05_01", difficulty: "중", unit: "수송 기술 시스템", subTopic: "해상 수송과 선박",
           svg: `<svg viewBox="0 0 340 160" class="max-w-[320px] h-auto" xmlns="http://www.w3.org/2000/svg">
             <rect width="340" height="160" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
-            <!-- 바다 수면선 -->
             <path d="M 10 90 Q 90 80, 170 90 Q 250 100, 330 90" fill="none" stroke="#0284c7" stroke-width="2"/>
-            <!-- 선박 본체 -->
             <path d="M 60 70 L 280 70 L 260 95 L 80 95 Z" fill="#e0f2fe" stroke="#0369a1" stroke-width="1.5"/>
-            <!-- 4대 힘 화살표 -->
-            <!-- 부력 (위로) -->
             <line x1="170" y1="80" x2="170" y2="35" stroke="#15803d" stroke-width="2.5"/>
             <text x="170" y="27" font-size="10" font-weight="bold" fill="#15803d" text-anchor="middle">부력 (위로 뜨는 힘)</text>
-            <!-- 중력 (아래로) -->
             <line x1="170" y1="85" x2="170" y2="135" stroke="#dc2626" stroke-width="2.5"/>
             <text x="170" y="148" font-size="10" font-weight="bold" fill="#dc2626" text-anchor="middle">중력 (아래로 누르는 힘)</text>
-            <!-- 추진력 (앞으로) -->
             <line x1="260" y1="82" x2="310" y2="82" stroke="#2563eb" stroke-width="2.5"/>
             <text x="285" y="68" font-size="9" font-weight="bold" fill="#2563eb" text-anchor="middle">추진력</text>
-            <!-- 저항력 (뒤로) -->
             <line x1="80" y1="82" x2="30" y2="82" stroke="#ca8a04" stroke-width="2.5"/>
             <text x="55" y="68" font-size="9" font-weight="bold" fill="#ca8a04" text-anchor="middle">저항력 (마찰)</text>
           </svg>`,
@@ -893,18 +877,20 @@
           explanation: "프로펠러는 엔진의 회전 운동을 이용해 물을 뒤로 밀어냄으로써 반작용으로 추진력(앞으로 가는 힘)을 얻습니다."
         },
         {
+          // ★ [정답 오류 수정 문항 1: 사용자 캡처 화면 2번 대응]
+          // 옳지 않은 것을 묻고 있으므로, 실제 오답인 "오늘날의 해상 수송은 소형화와 느린 속도를 목표로 퇴보하고 있다"가 choices[0]으로 오도록 수정
           id: "T_S05_04", difficulty: "중", unit: "수송 기술 시스템", subTopic: "해상 수송의 발달",
           passage: "",
           text: "해상 수송 기술의 발달 과정과 특징으로 옳지 않은 것은?",
           choices: [
+            "오늘날의 해상 수송은 소형화와 느린 속도를 목표로 퇴보하고 있다.",
             "뗏목(사람의 힘) → 범선(바람의 힘) → 증기선(증기기관) → 디젤기관선 및 원자력선 순으로 발전하였다.",
             "범선은 바람의 힘을 이용하므로 13세기 이후 원거리 무역을 크게 활성화하였다.",
             "증기선은 19세기 초 증기기관의 도입으로 해상 수송의 속도와 효율을 크게 높였다.",
-            "해상 수송은 사람과 대량의 화물을 저렴하게 수송할 수 있어 경제적이지만 물의 마찰 저항으로 속도가 다소 느리다.",
-            "오늘날의 해상 수송은 소형화와 느린 속도를 목표로 퇴보하고 있다."
+            "해상 수송은 사람과 대량의 화물을 저렴하게 수송할 수 있어 경제적이지만 물의 마찰 저항으로 속도가 다소 느리다."
           ],
           answer: 0,
-          explanation: "오늘날의 해상 수송은 대형화와 고속화, 전문화(컨테이너선, LNG선 등) 방향으로 발전하고 있습니다."
+          explanation: "오늘날의 해상 수송은 대형화와 고속화, 전문화(컨테이너선, LNG선 등) 방향으로 발전하고 있으므로, 소형화나 느린 속도로 퇴보한다는 설명이 옳지 않은 정답입니다."
         }
       ],
 
@@ -998,7 +984,6 @@
           id: "T_S08_01", difficulty: "상", unit: "신·재생 에너지", subTopic: "신재생에너지 분류",
           svg: `<svg viewBox="0 0 340 160" class="max-w-[320px] h-auto" xmlns="http://www.w3.org/2000/svg">
             <rect width="340" height="160" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
-            <!-- 신에너지 vs 재생에너지 분류 -->
             <rect x="20" y="20" width="140" height="120" rx="6" fill="#f0fdf4" stroke="#15803d" stroke-width="1.5"/>
             <text x="90" y="45" font-size="11" font-weight="bold" fill="#14532d" text-anchor="middle">신에너지 (New Energy)</text>
             <text x="90" y="70" font-size="9" fill="#166534" text-anchor="middle">• 수소 에너지</text>
@@ -1207,7 +1192,6 @@
           id: "T_S12_01", difficulty: "상", unit: "정보 통신 기술", subTopic: "정보 통신 기술의 발달",
           svg: `<svg viewBox="0 0 340 160" class="max-w-[320px] h-auto" xmlns="http://www.w3.org/2000/svg">
             <rect width="340" height="160" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
-            <!-- 전기통신 이전 vs 이후 -->
             <rect x="15" y="20" width="145" height="115" rx="6" fill="#f8fafc" stroke="#64748b"/>
             <text x="87" y="42" font-size="11" font-weight="bold" fill="#0f172a" text-anchor="middle">전기 통신 이전</text>
             <text x="87" y="65" font-size="9" fill="#475569" text-anchor="middle">• 몸짓과 소리 (원시 시대)</text>
@@ -1285,7 +1269,7 @@
         },
         {
           id: "T_S13_03", difficulty: "중", unit: "정보 통신 기술", subTopic: "미디어 리터러시",
-          passage: `[미디어 리터러시 (Media Literacy) 정의]\n다양한 연령 및 계층의 사람들이 다양한 형태의 미라이언스(미디어)에 대한 접근 능력, 미디어에 대한 비판적 이해 능력, 미디어를 통한 창의적 표현 능력 및 소통 능력`,
+          passage: `[미디어 리터러시 (Media Literacy) 정의]\n다양한 연령 및 계층의 사람들이 다양한 형태의 미디어에 대한 접근 능력, 미디어에 대한 비판적 이해 능력, 미디어를 통한 창의적 표현 능력 및 소통 능력`,
           text: "미디어 리터러시(Media Literacy)의 핵심 역량으로 거리가 먼 것은?",
           choices: [
             "모든 미디어 매체의 광고 내용을 무조건 맹신하고 그대로 수용하는 능력",
@@ -1319,7 +1303,6 @@
           id: "T_S14_01", difficulty: "중", unit: "정보 통신 기술", subTopic: "이동 통신 기술",
           svg: `<svg viewBox="0 0 340 160" class="max-w-[320px] h-auto" xmlns="http://www.w3.org/2000/svg">
             <rect width="340" height="160" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
-            <!-- 육각형 셀 구조 모식 -->
             <polygon points="70,30 110,30 130,65 110,100 70,100 50,65" fill="#f0fdf4" stroke="#15803d" stroke-width="1.5"/>
             <text x="90" y="70" font-size="9" font-weight="bold" fill="#14532d" text-anchor="middle">셀 (Cell)</text>
             <circle cx="90" cy="50" r="4" fill="#dc2626"/>
@@ -1370,16 +1353,12 @@
           id: "T_S15_01", difficulty: "상", unit: "가족 안전 및 성윤리", subTopic: "성적 자기 결정권",
           svg: `<svg viewBox="0 0 340 160" class="max-w-[320px] h-auto" xmlns="http://www.w3.org/2000/svg">
             <rect width="340" height="160" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
-            <!-- 성적 자기 결정권 중심 구조 -->
             <rect x="70" y="20" width="200" height="40" rx="6" fill="#f0fdf4" stroke="#15803d" stroke-width="2"/>
             <text x="170" y="45" font-size="11" font-weight="bold" fill="#14532d" text-anchor="middle">성적 자기 결정권 (Sexual Autonomy)</text>
-            
             <line x1="170" y1="60" x2="170" y2="85" stroke="#15803d" stroke-width="1.5"/>
-
             <rect x="25" y="85" width="135" height="55" rx="5" fill="#f8fafc" stroke="#64748b"/>
             <text x="92" y="105" font-size="9.5" font-weight="bold" fill="#0f172a" text-anchor="middle">자율적이고 책임감 있는</text>
             <text x="92" y="122" font-size="9" fill="#475569" text-anchor="middle">성적 의사 결정 권리</text>
-
             <rect x="180" y="85" width="135" height="55" rx="5" fill="#f8fafc" stroke="#64748b"/>
             <text x="247" y="105" font-size="9.5" font-weight="bold" fill="#0f172a" text-anchor="middle">자신과 타인의 성을</text>
             <text x="247" y="122" font-size="9" fill="#475569" text-anchor="middle">소중히 여기고 존중</text>
@@ -1437,7 +1416,7 @@
       // [슬롯 16] 성폭력의 원인과 영향 및 오해와 진실 (하)
       [
         {
-          id: "T_S16_01", dlDifficulty: "하", unit: "가족 안전 및 성윤리", subTopic: "성폭력의 원인",
+          id: "T_S16_01", difficulty: "하", unit: "가족 안전 및 성윤리", subTopic: "성폭력의 원인",
           passage: `[성폭력의 원인 분류]\n- 사회문화적 요인: 음란물의 범람, 유해 향락업소 증가, 성상품화 등 잘못된 성문화, 법적·제도적 장치 부족, 남녀 차별의 사회 분위기\n- 개인적 요인: 빨라진 성적 성숙 시기, 비정상적·비윤리적 성적 지식 습득과 왜곡된 성가치관, 성적 욕구나 충동을 통제·조절하는 능력 부족`,
           text: "다음 중 성폭력의 '사회문화적 원인'에 해당하는 것은?",
           choices: [
@@ -1451,7 +1430,7 @@
           explanation: "음란물 범람, 성상품화, 남녀 차별 분위기 등은 사회문화적 원인에 속합니다."
         },
         {
-          id: "T_S16_02", dlDifficulty: "하", unit: "가족 안전 및 성윤리", subTopic: "성폭력의 피해",
+          id: "T_S16_02", difficulty: "하", unit: "가족 안전 및 성윤리", subTopic: "성폭력의 피해",
           passage: `[성폭력 피해의 종류]\n- 신체적 피해: 원하지 않는 임신, 임신중절, 성병 감염 등의 신체적 고통\n- 정신적 피해: 공포, 불안, 우울감, 수치심, 혐오감 등 심각한 정신적 문제\n- 가족의 피해: 피해자 가족의 죄의식, 분노 등의 고통 및 사회적 불리함 경험`,
           text: "성폭력 피해가 미치는 영향 중 '신체적 피해'에 해당하는 내용으로 가장 알맞은 것은?",
           choices: ["원하지 않는 임신 및 성병 감염", "심한 우울증과 공포감", "피해자 가족의 죄의식과 분노", "사회적 평판 하락", "학업 중단 위기"],
@@ -1459,7 +1438,7 @@
           explanation: "원하지 않는 임신이나 임신중절, 성병 감염 등은 직접적인 신체적 피해에 해당합니다."
         },
         {
-          id: "T_S16_03", dlDifficulty: "하", unit: "가족 안전 및 성윤리", subTopic: "성폭력 오해와 진실",
+          id: "T_S16_03", difficulty: "하", unit: "가족 안전 및 성윤리", subTopic: "성폭력 오해와 진실",
           passage: "",
           text: "성폭력에 관한 일반적인 통념이나 오해로 옳은 것은?",
           choices: [
@@ -1473,18 +1452,20 @@
           explanation: "성폭력은 아는 사람(지인, 친구, 연인)에 의해 일어나는 경우가 많음에도 '낯선 사람에 의해 일어난다'는 것이 대표적 오해입니다."
         },
         {
-          id: "T_S16_04", dlDifficulty: "하", unit: "가족 안전 및 성윤리", subTopic: "성폭력 피해",
+          // ★ [정답 오류 수정 문항 2: 사용자 캡처 화면 1번 대응]
+          // 가족들이 겪는 고통으로 적절하지 않은 것을 묻고 있으므로, 실제 오답인 "피해 회복과 무관하게 즉각적인 경제적 이득 확보와 명예 상승"이 choices[0]으로 오도록 수정
+          id: "T_S16_04", difficulty: "하", unit: "가족 안전 및 성윤리", subTopic: "성폭력 피해",
           passage: "",
           text: "성폭력 피해를 입은 당사자뿐만 아니라 그 가족들이 겪는 고통으로 적절하지 않은 것은?",
           choices: [
+            "피해 회복과 무관하게 즉각적인 경제적 이득 확보와 명예 상승",
             "피해를 사전에 막지 못했다는 자책감이나 죄의식",
             "가해자에 대한 분노와 억울함",
             "주위의 시선이나 사회적 불리함에 대한 두려움",
-            "범죄 피해 이후 겪는 가정 내 갈등과 정신적 고통",
-            "피해 회복과 무관하게 즉각적인 경제적 대부벌 확보와 명예 상승"
+            "범죄 피해 이후 겪는 가정 내 갈등과 정신적 고통"
           ],
           answer: 0,
-          explanation: "성폭력 피해 가족은 죄의식, 분노, 사회적 불리함 등으로 고통을 겪지 명예가 상승하지 않습니다."
+          explanation: "성폭력 피해 가족은 죄의식, 분노, 자책감, 사회적 불리함 등으로 심각한 고통을 겪으며, 경제적 이득이나 명예 상승은 전혀 적절하지 않은 오답이자 이 문제의 올바른 정답입니다."
         }
       ],
 
@@ -1809,11 +1790,11 @@
           passage: `[성폭력 예방 행동 수칙]\n거절 의사 분명히 하기, 위험 상황 즉시 피하기, 대처법 숙지하기, 가해자가 되지 않도록 상대방의 침묵과 거절 존중하기`,
           text: "성폭력 가해자가 되지 않기 위해 평소에 실천해야 할 바람직한 태도로 가장 거리가 먼 것은?",
           choices: [
+            "상대방이 거부하더라도 분위기를 강제로 밀어붙여 설득하는 것이 진정한 남성성이라 생각한다.",
             "상대방이 침묵하거나 거절 의사를 보일 때, 이를 부끄러워하는 것으로 왜곡하여 해석하지 않고 그대로 존중한다.",
             "나의 성적 충동과 욕구를 조절하는 방법을 익히고 운동이나 취미활동으로 해소한다.",
             "상대방이 원할 것이라고 내 마음대로 임의로 가정하여 스킨십을 시도하지 않는다.",
-            "성폭력은 누구나 피해자가 될 수 있음을 알고 타인의 경계심을 존중한다.",
-            "상대방이 거부하더라도 분위기를 강제로 밀어붙여 설득하는 것이 진정한 남성성이라 생각한다."
+            "성폭력은 누구나 피해자가 될 수 있음을 알고 타인의 경계심을 존중한다."
           ],
           answer: 0,
           explanation: "상대방의 거부를 무시하고 강제로 밀어붙이는 것은 성폭력 가해로 이어지는 매우 위험한 태도입니다."
@@ -2071,9 +2052,7 @@
           }, 300);
           return;
         }
-      } catch (err) {
-        // Fallback to local offline-safe registration smoothly
-      }
+      } catch (err) {}
 
       const localPf = getStudentPortfolioLocally(pin);
       const localCount = localPf && localPf.rounds ? localPf.rounds.length : 0;
